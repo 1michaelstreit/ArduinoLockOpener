@@ -52,6 +52,8 @@ Arduino\hardware\avr\cores\arduino\WString.cpp
 
 Arduino\hardware\avr\libraries\SoftwareSerial\src\SoftwareSerial.cpp
 
+src\GsmCommunicationClass.cpp
+
 src\Leds.cpp
 
 src\main_LockOpener.cpp
