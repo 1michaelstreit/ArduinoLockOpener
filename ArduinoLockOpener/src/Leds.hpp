@@ -25,6 +25,8 @@
 
 
 /* Class constant declaration  */
+#define LED_STATE		0
+#define LED_BUILTIN		5
 
 /* Class Type declaration      */
 
@@ -38,7 +40,8 @@ class LedManagerClass
 	public:
 		enum {MAX_LED = 8};
 		enum {PORTB_BASE = 0x25};
-		enum LedState{ON = 1, OFF = 0};		
+		enum LedState{ON = 1, OFF = 0};	
+		int toggleTime = 0;	
 			
 	private:
 	      volatile uint8_t *LedBase;

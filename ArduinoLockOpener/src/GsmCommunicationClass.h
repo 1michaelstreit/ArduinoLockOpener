@@ -40,6 +40,7 @@ class GsmCommunicationClass
 // Data
 public:
 SoftwareSerial *GsmSerial;
+int checkConnectionTime;
 
 private:
 static const int bufferSize = 256;
@@ -47,6 +48,7 @@ char receiveBuffer[bufferSize];
 bool gsmIsConnected = false;
 bool gsmIsConnectedOld = false;
 bool answerReceived = false;
+char smsSenderNr[20] = {0};
  
 
 
@@ -56,13 +58,19 @@ public:
 	~GsmCommunicationClass();
 	
 	void checkConnection();
+	void readSerial();
+	void handleReceivedSms();
 	
 private:
 
-	void readSerial();
+
 	void displayString(char *dString);
 	void checkReceivedData();
+	int  checkAuthorzation(char *nrToCheck);
+	void isolateSmsSenderPhoneNr();
 	void setUpSmsMode();
+	
+	
 };
 /*****************************************************************************/
 /*  End Header  : GsmCommunicationClass                                              */

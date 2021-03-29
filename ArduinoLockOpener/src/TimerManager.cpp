@@ -1,29 +1,24 @@
 /*****************************************************************************/
-/*  Class      : TemplateClass                                  Version 1.0  */
+/*  Class      : TimerManager                                  Version 1.0  */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function   : This class describes ....                                   */
+/*  Function   :                                    */
 /*                                                                           */
 /*                                                                           */
-/*  Methodes   : TemplateClass()  ToDo                                       */
-/*              ~TemplateClass()  ToDo                                       */
+/*  Methodes   :                                       */
 /*                                                                           */
 /*  Author     : Michael Streit                                              */
 /*                                                                           */
-/*  History    : 05.03.2021  IO Created                                      */
+/*  History    : 29.03.2021  IO Created                                      */
 /*                                                                           */
-/*  File       : TemplateClass.cpp                                           */
+/*  File       : TimerManager.cpp                                           */
 /*                                                                           */
 /*****************************************************************************/
 /* HTA Burgdorf                                                              */
 /*****************************************************************************/
 
 /* imports */
-#include <Arduino.h>
-#include <SoftwareSerial.h>
-#include "Leds.hpp"
-
-//#include <iostream>
+#include "TimerManager.h"
 
 using namespace std;
 
@@ -36,12 +31,12 @@ using namespace std;
 /* Class procedure declaration */
 
 /*****************************************************************************/
-/*  Method      :                                                   */
+/*  Method      : TimerManagerClass                                                  */
 /*****************************************************************************/
 /*                                                                           */
 /*  Function    :                                                            */
 /*                                                                           */
-/*  Type        :                                                 */
+/*  Type        : Constructor                                                */
 /*                                                                           */
 /*  Input Para  :                                                            */
 /*                                                                           */
@@ -49,62 +44,26 @@ using namespace std;
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
-/*  History     : 10.11.2021  IO  Created                                    */
+/*  History     : 29.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-
-LedManagerClass::LedManagerClass(uint8_t BaseAdress) : LedBase((uint8_t*) BaseAdress){
-	   *LedBase = 0;
-	   ShadowLedRegister = 0;
-
-		// init GPIO
-		DDRB	|=  (1 << LED_STATE);	// set GPIO as Output
-		PORTB	&= ~(1 << LED_STATE);	// clear bit
-		
-}
-
-LedManagerClass::~LedManagerClass(void)
+TimerManager::TimerManager()
 {
-	   *LedBase = 0;
-	   ShadowLedRegister = 0;
-}
+	// initialize Timer
+	/*
+	TCCR1A = 0;		// set entire Register to 0
+	TCCR1B = 0;		
+	TCNT1  = 0;
+	
+	OCR1A = 15625;            // compare match register 16MHz/256/4Hz
+	TCCR1B |= (1 << WGM12);   // CTC mode
+	TCCR1B |= (1 << CS12);    // 256 prescaler
+	TIMSK1 |= (1 << OCIE1A);  // enable timer compare interrupt
+	interrupts();             // enable all interrupts
+	*/
+} //TimerManager
 
-void LedManagerClass::SetLed(int LedNumber, LedState State)
+// default destructor
+TimerManager::~TimerManager()
 {
-   if ((LedNumber >= 0) && (LedNumber <= MAX_LED-1)) {
-
-	   /* Find correct bitposition */
-	  unsigned long  Mask = 1 << (LedNumber);
-
-	   /* and clear or set bit according to State */
-	   if (State != OFF) {
-		   ShadowLedRegister |= Mask;
-		   } else {
-		   ShadowLedRegister  &= ~Mask; 
-	   }
-	   
-	   *LedBase = ShadowLedRegister;
-	}
-   }
-
-void LedManagerClass::ToggleLed(int LedNumber)
-{
-	if(toggleTime > 5){
-		toggleTime = 0;
-	if ((LedNumber >= 0) && (LedNumber <= MAX_LED-1)) {
-
-	   /* Find correct bitposition */
-		unsigned long  Mask = 1 << (LedNumber);
-
-	   /* and clear or set bit according to State */
-		ShadowLedRegister ^= Mask;
-	   
-	   *LedBase = ShadowLedRegister;
-	}
-	}else{
-		toggleTime++;
-	}
-}
-/*****************************************************************************/
-/*  End Class   : TemplateClass                                              */
-/*****************************************************************************/
+} //~TimerManager

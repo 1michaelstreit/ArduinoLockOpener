@@ -75,7 +75,8 @@ C_SRCS +=  \
 ../Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.cpp \
 ../src/GsmCommunicationClass.cpp \
 ../src/Leds.cpp \
-../src/main_LockOpener.cpp
+../src/main_LockOpener.cpp \
+../src/TimerManager.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -112,7 +113,8 @@ Arduino/hardware/avr/cores/arduino/WString.o \
 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o \
 src/GsmCommunicationClass.o \
 src/Leds.o \
-src/main_LockOpener.o
+src/main_LockOpener.o \
+src/TimerManager.o
 
 OBJS_AS_ARGS +=  \
 Arduino/hardware/avr/cores/arduino/abi.o \
@@ -142,7 +144,8 @@ Arduino/hardware/avr/cores/arduino/WString.o \
 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o \
 src/GsmCommunicationClass.o \
 src/Leds.o \
-src/main_LockOpener.o
+src/main_LockOpener.o \
+src/TimerManager.o
 
 C_DEPS +=  \
 Arduino/hardware/avr/cores/arduino/abi.d \
@@ -172,7 +175,8 @@ Arduino/hardware/avr/cores/arduino/WString.d \
 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.d \
 src/GsmCommunicationClass.d \
 src/Leds.d \
-src/main_LockOpener.d
+src/main_LockOpener.d \
+src/TimerManager.d
 
 C_DEPS_AS_ARGS +=  \
 Arduino/hardware/avr/cores/arduino/abi.d \
@@ -202,7 +206,8 @@ Arduino/hardware/avr/cores/arduino/WString.d \
 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.d \
 src/GsmCommunicationClass.d \
 src/Leds.d \
-src/main_LockOpener.d
+src/main_LockOpener.d \
+src/TimerManager.d
 
 OUTPUT_FILE_PATH +=ArduinoLockOpener.elf
 
@@ -408,6 +413,13 @@ src/Leds.o: ../src/Leds.cpp
 	
 
 src/main_LockOpener.o: ../src/main_LockOpener.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\include" -I"../Arduino/hardware/avr/variants/standard" -I"../Arduino/hardware/avr/cores/arduino" -I"../Arduino/hardware/avr/libraries/SoftwareSerial/src" -I"../Arduino/hardware/avr/libraries/EEPROM/src"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+src/TimerManager.o: ../src/TimerManager.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\include" -I"../Arduino/hardware/avr/variants/standard" -I"../Arduino/hardware/avr/cores/arduino" -I"../Arduino/hardware/avr/libraries/SoftwareSerial/src" -I"../Arduino/hardware/avr/libraries/EEPROM/src"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

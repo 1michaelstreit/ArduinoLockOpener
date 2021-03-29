@@ -330,6 +330,12 @@
     <Compile Include="src\main_LockOpener.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\TimerManager.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\TimerManager.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Arduino" />

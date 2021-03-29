@@ -61,6 +61,7 @@ GsmCommunicationClass::GsmCommunicationClass(SoftwareSerial *NewGsmSerial)
 	// begin serial communication
 	Serial.begin(BAUDRATE_DEBUG_SERIAL);		// for debugging with USB
 	GsmSerial->begin(BAUDRATE_GSM_SERIAL);		// for GSM communication
+
 	_delay_ms(1000);
 	
 	GsmSerial->println("AT");	// AT Handshake with GSM
@@ -92,6 +93,8 @@ GsmCommunicationClass::~GsmCommunicationClass()
 /*****************************************************************************/
 void GsmCommunicationClass::checkConnection()
 {	
+	if(checkConnectionTime > 10){	// check connection loop rate
+		checkConnectionTime = 0;
 	if (GsmSerial->available()==0){
 		GsmSerial->println("AT+CREG?");		// ask if connected to cellular Network
 	}
@@ -101,13 +104,15 @@ void GsmCommunicationClass::checkConnection()
 		gsmIsConnected = true;
 		Serial.write("GSM Connected\n\n\n");
 		if(gsmIsConnected == true && gsmIsConnectedOld == false){
-			setUpSmsMode();
+			setUpSmsMode();		// set up Sms Mode if connected
 		}
 		gsmIsConnectedOld = gsmIsConnected;
 		}else{
 		gsmIsConnected = false;
 	}
-	
+	}else{
+		checkConnectionTime++;
+	}
 }
 
 void GsmCommunicationClass::readSerial(){
@@ -129,7 +134,7 @@ void GsmCommunicationClass::readSerial(){
 	// set end of string
 	receiveBuffer[i] = '\0';
 	
-	// print receibed Buffer
+	// print received Buffer
 	displayString(receiveBuffer);
 }
 
@@ -143,7 +148,53 @@ void GsmCommunicationClass::displayString(char *dString){
 }
 
 void GsmCommunicationClass::checkReceivedData(){
+}
+
+void GsmCommunicationClass::handleReceivedSms(){
+	if(strstr(receiveBuffer,"+CMT:") != NULL){	// if SMS received
+		isolateSmsSenderPhoneNr();
+		if(checkAuthorzation(&smsSenderNr[0]) == 1){
+			Serial.write("SMS sender AUTHORIZED !\n");
+		}
+	}
+}
+
+int GsmCommunicationClass::checkAuthorzation(char *nrToCheck){
+	Serial.write("CheckAuthorization\n");
+	//displayString(nrToCheck);
+	return(1);
+}
 	
+void GsmCommunicationClass::isolateSmsSenderPhoneNr(){
+	int i=0;
+	int recordPhoneNr = 0;
+	int stopRecordPhoneNr = 0;
+	
+	// isolate Phone Number of the SMS sender
+	for(int u=0;(receiveBuffer[u]!='\0')&&(stopRecordPhoneNr == 0);u++){	
+		
+		if((receiveBuffer[u-7]=='+' &&	// find beginning of the Phone Number
+		receiveBuffer[u-6]=='C' &&
+		receiveBuffer[u-5]=='M' &&
+		receiveBuffer[u-4]=='T' &&
+		receiveBuffer[u-3]==':' &&
+		receiveBuffer[u-2]==' ' &&
+		receiveBuffer[u-1]=='"') || recordPhoneNr==1){ 
+			if(receiveBuffer[u] == '"'){			// if end of Phone Nr is not reached copying Nr
+				smsSenderNr[i]='\0';				// end string
+				stopRecordPhoneNr = 1;				// stop copying Nr
+				}else{
+				recordPhoneNr = 1;					// start copying Nr
+				smsSenderNr[i] = receiveBuffer[u];	// copy phone Nr into variable
+				i++;
+			}
+		}
+	}
+	
+	// Display SMS sender
+	Serial.write("SMS sender: ");
+	displayString(smsSenderNr);
+	Serial.write("\n\n");
 }
 
 void GsmCommunicationClass::setUpSmsMode(){
@@ -162,3 +213,4 @@ void GsmCommunicationClass::setUpSmsMode(){
 		Serial.write("No response in SMS configuration\n");
 	}
 }
+
