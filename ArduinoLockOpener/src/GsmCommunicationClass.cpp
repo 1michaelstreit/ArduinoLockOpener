@@ -54,17 +54,16 @@ using namespace std;
 /*  History     : 05.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-GsmCommunicationClass::GsmCommunicationClass()
+GsmCommunicationClass::GsmCommunicationClass(SoftwareSerial *NewGsmSerial)
 {
-	SoftwareSerial GsmSerial(RX, TX); // RX TX
-	GsmSerialPtr = &GsmSerial;
+	GsmSerial = NewGsmSerial;
 	
 	// begin serial communication
 	Serial.begin(BAUDRATE_DEBUG_SERIAL);		// for debugging with USB
-	GsmSerialPtr->begin(BAUDRATE_GSM_SERIAL);	// for GSM communication
+	GsmSerial->begin(BAUDRATE_GSM_SERIAL);		// for GSM communication
 	_delay_ms(1000);
 	
-	GsmSerialPtr->println("AT");	// AT Handshake with GSM
+	GsmSerial->println("AT");	// AT Handshake with GSM
 	readSerial();
 	
 } //GsmCommunicationClass
@@ -92,16 +91,15 @@ GsmCommunicationClass::~GsmCommunicationClass()
 /*                                                                           */
 /*****************************************************************************/
 void GsmCommunicationClass::checkConnection()
-{
-	
-	if (GsmSerialPtr->available()==0){
-		GsmSerialPtr->println("AT+CREG?");		// ask if connected to cellular Network
+{	
+	if (GsmSerial->available()==0){
+		GsmSerial->println("AT+CREG?");		// ask if connected to cellular Network
 	}
-	
 	readSerial();		// read Answer
+	
 	if(strstr(receiveBuffer, "+CREG: 0,1") != NULL){ // check if connection was successful
 		gsmIsConnected = true;
-		
+		Serial.write("GSM Connected\n\n\n");
 		if(gsmIsConnected == true && gsmIsConnectedOld == false){
 			setUpSmsMode();
 		}
@@ -123,23 +121,24 @@ void GsmCommunicationClass::readSerial(){
 	}
 	
 	// fill Buffer
-	while(GsmSerialPtr->available()){
-		receiveBuffer[i] = GsmSerialPtr->read();
+	while(GsmSerial->available()){
+		receiveBuffer[i] = GsmSerial->read();
 		i++;
 	}
 	
 	// set end of string
 	receiveBuffer[i] = '\0';
 	
-	if(receiveBuffer!=0){
-		displayString(receiveBuffer);
-		Serial.print("\n");
-	}
+	// print receibed Buffer
+	displayString(receiveBuffer);
 }
 
 void GsmCommunicationClass::displayString(char *dString){
-	for(int i=0; dString[i]!='\0';i++){
-		Serial.print(dString[i]);
+	if(dString!=0){
+		for(int i=0; dString[i]!='\0';i++){
+			Serial.print(dString[i]);
+		}
+		Serial.print("\n");
 	}
 }
 
@@ -148,18 +147,18 @@ void GsmCommunicationClass::checkReceivedData(){
 }
 
 void GsmCommunicationClass::setUpSmsMode(){
-	GsmSerialPtr->println("AT+CMGF=1");	// Configure TEXT mode
+	GsmSerial->println("AT+CMGF=1");	// Configure TEXT mode
 	readSerial();
 	
-	GsmSerialPtr->println("AT+CNMI=1,2,0,0,0");	// define how newly arrived SMS Msg. should be handled
+	GsmSerial->println("AT+CNMI=1,2,0,0,0");	// define how newly arrived SMS Msg. should be handled
 	readSerial();
 	// check Answer
 	if(strstr(receiveBuffer, "OK") != NULL){ // check if configured
-		Serial.write("SMS Mode is configured");
+		Serial.write("SMS Mode is configured\n\n");
 		gsmIsConnectedOld = gsmIsConnected;
 	}else if(strstr(receiveBuffer, "ERROR")){
-		Serial.write("ERROR in SMS mode configuration");
+		Serial.write("ERROR in SMS mode configuration\n");
 	}else{
-		Serial.write("No response in SMS configuration");
+		Serial.write("No response in SMS configuration\n");
 	}
 }

@@ -39,9 +39,9 @@ class GsmCommunicationClass
 {
 // Data
 public:
+SoftwareSerial *GsmSerial;
 
 private:
-SoftwareSerial *GsmSerialPtr;
 static const int bufferSize = 256;
 char receiveBuffer[bufferSize];	
 bool gsmIsConnected = false;
@@ -52,7 +52,7 @@ bool answerReceived = false;
 
 // Methods
 public:
-	GsmCommunicationClass();
+	GsmCommunicationClass(SoftwareSerial *NewGsmSerial);
 	~GsmCommunicationClass();
 	
 	void checkConnection();

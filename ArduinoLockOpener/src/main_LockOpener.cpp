@@ -26,23 +26,26 @@
 
 
 
+
+
 // the loop function runs over and over again forever
 void main_ArduinoLockOpener() {
 	
-	GsmCommunicationClass GsmCommunication;
+	SoftwareSerial GsmSerial(RX, TX); // RX TX
 	
+	GsmCommunicationClass GsmCommunication(&GsmSerial);
 	
-
     DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
 	LedManagerClass LedManager;
 	PortClass Led1(&LedManager,6);
 	
-	_delay_ms(250);
+	_delay_ms(1000);
 	Serial.write("Start\n");
-	_delay_ms(250);
+	_delay_ms(1000);
 	
-    for(;;)
-    {
+
+    for(;;){
+		_delay_ms(1500);
 		GsmCommunication.checkConnection();		
 	}
 }
