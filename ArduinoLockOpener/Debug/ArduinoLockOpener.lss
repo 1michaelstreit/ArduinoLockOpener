@@ -3,31 +3,31 @@ ArduinoLockOpener.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         0000012e  00800100  00001672  00001706  2**0
+  0 .data         0000014c  00800100  00001708  0000179c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00001672  00000000  00000000  00000094  2**1
+  1 .text         00001708  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          000001b7  0080022e  0080022e  00001834  2**0
+  2 .bss          000001b7  0080024c  0080024c  000018e8  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00001834  2**0
+  3 .comment      00000030  00000000  00000000  000018e8  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001864  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001918  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000004a8  00000000  00000000  000018a4  2**0
+  5 .debug_aranges 000004d8  00000000  00000000  00001958  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000ce35  00000000  00000000  00001d4c  2**0
+  6 .debug_info   0000d4e4  00000000  00000000  00001e30  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00002b58  00000000  00000000  0000eb81  2**0
+  7 .debug_abbrev 00002dfe  00000000  00000000  0000f314  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000031d4  00000000  00000000  000116d9  2**0
+  8 .debug_line   00003497  00000000  00000000  00012112  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000dc4  00000000  00000000  000148b0  2**2
+  9 .debug_frame  00000e1c  00000000  00000000  000155ac  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00002e5b  00000000  00000000  00015674  2**0
+ 10 .debug_str    00002f3e  00000000  00000000  000163c8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000051f9  00000000  00000000  000184cf  2**0
+ 11 .debug_loc    0000531b  00000000  00000000  00019306  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000004d0  00000000  00000000  0001d6c8  2**0
+ 12 .debug_ranges 000004f0  00000000  00000000  0001e621  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -101,18 +101,18 @@ Disassembly of section .text:
       d4:	12 e0       	ldi	r17, 0x02	; 2
       d6:	a0 e0       	ldi	r26, 0x00	; 0
       d8:	b1 e0       	ldi	r27, 0x01	; 1
-      da:	e2 e7       	ldi	r30, 0x72	; 114
-      dc:	f6 e1       	ldi	r31, 0x16	; 22
+      da:	e8 e0       	ldi	r30, 0x08	; 8
+      dc:	f7 e1       	ldi	r31, 0x17	; 23
       de:	02 c0       	rjmp	.+4      	; 0xe4 <__do_copy_data+0x10>
       e0:	05 90       	lpm	r0, Z+
       e2:	0d 92       	st	X+, r0
-      e4:	ae 32       	cpi	r26, 0x2E	; 46
+      e4:	ac 34       	cpi	r26, 0x4C	; 76
       e6:	b1 07       	cpc	r27, r17
       e8:	d9 f7       	brne	.-10     	; 0xe0 <__do_copy_data+0xc>
 
 000000ea <__do_clear_bss>:
-      ea:	23 e0       	ldi	r18, 0x03	; 3
-      ec:	ae e2       	ldi	r26, 0x2E	; 46
+      ea:	24 e0       	ldi	r18, 0x04	; 4
+      ec:	ac e4       	ldi	r26, 0x4C	; 76
       ee:	b2 e0       	ldi	r27, 0x02	; 2
       f0:	01 c0       	rjmp	.+2      	; 0xf4 <.do_clear_bss_start>
 
@@ -120,7 +120,7 @@ Disassembly of section .text:
       f2:	1d 92       	st	X+, r1
 
 000000f4 <.do_clear_bss_start>:
-      f4:	a5 3e       	cpi	r26, 0xE5	; 229
+      f4:	a3 30       	cpi	r26, 0x03	; 3
       f6:	b2 07       	cpc	r27, r18
       f8:	e1 f7       	brne	.-8      	; 0xf2 <.do_clear_bss_loop>
 
@@ -131,12 +131,12 @@ Disassembly of section .text:
      100:	04 c0       	rjmp	.+8      	; 0x10a <__do_global_ctors+0x10>
      102:	21 97       	sbiw	r28, 0x01	; 1
      104:	fe 01       	movw	r30, r28
-     106:	0e 94 17 0b 	call	0x162e	; 0x162e <__tablejump2__>
+     106:	0e 94 62 0b 	call	0x16c4	; 0x16c4 <__tablejump2__>
      10a:	c2 36       	cpi	r28, 0x62	; 98
      10c:	d1 07       	cpc	r29, r17
      10e:	c9 f7       	brne	.-14     	; 0x102 <__do_global_ctors+0x8>
      110:	0e 94 cb 02 	call	0x596	; 0x596 <main>
-     114:	0c 94 37 0b 	jmp	0x166e	; 0x166e <_exit>
+     114:	0c 94 82 0b 	jmp	0x1704	; 0x1704 <_exit>
 
 00000118 <__bad_interrupt>:
      118:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -645,7 +645,7 @@ void HardwareSerial::begin(unsigned long baud, byte config)
      32e:	90 e0       	ldi	r25, 0x00	; 0
      330:	a7 01       	movw	r20, r14
      332:	96 01       	movw	r18, r12
-     334:	0e 94 f5 0a 	call	0x15ea	; 0x15ea <__udivmodsi4>
+     334:	0e 94 40 0b 	call	0x1680	; 0x1680 <__udivmodsi4>
      338:	da 01       	movw	r26, r20
      33a:	c9 01       	movw	r24, r18
      33c:	01 97       	sbiw	r24, 0x01	; 1
@@ -678,7 +678,7 @@ void HardwareSerial::begin(unsigned long baud, byte config)
      360:	90 e0       	ldi	r25, 0x00	; 0
      362:	a7 01       	movw	r20, r14
      364:	96 01       	movw	r18, r12
-     366:	0e 94 f5 0a 	call	0x15ea	; 0x15ea <__udivmodsi4>
+     366:	0e 94 40 0b 	call	0x1680	; 0x1680 <__udivmodsi4>
      36a:	da 01       	movw	r26, r20
      36c:	c9 01       	movw	r24, r18
      36e:	01 97       	sbiw	r24, 0x01	; 1
@@ -783,15 +783,15 @@ void HardwareSerial::begin(unsigned long baud, byte config)
 void HardwareSerial::_rx_complete_irq(void)
 {
   if (bit_is_clear(*_ucsra, UPE0)) {
-     3e8:	e0 91 3e 02 	lds	r30, 0x023E	; 0x80023e <__data_end+0x10>
-     3ec:	f0 91 3f 02 	lds	r31, 0x023F	; 0x80023f <__data_end+0x11>
+     3e8:	e0 91 5c 02 	lds	r30, 0x025C	; 0x80025c <__data_end+0x10>
+     3ec:	f0 91 5d 02 	lds	r31, 0x025D	; 0x80025d <__data_end+0x11>
      3f0:	80 81       	ld	r24, Z
      3f2:	82 fd       	sbrc	r24, 2
      3f4:	14 c0       	rjmp	.+40     	; 0x41e <__EEPROM_REGION_LENGTH__+0x1e>
     // No Parity error, read byte and store it in the buffer if there is
     // room
     unsigned char c = *_udr;
-     3f6:	ee e2       	ldi	r30, 0x2E	; 46
+     3f6:	ec e4       	ldi	r30, 0x4C	; 76
      3f8:	f2 e0       	ldi	r31, 0x02	; 2
      3fa:	a6 89       	ldd	r26, Z+22	; 0x16
      3fc:	b7 89       	ldd	r27, Z+23	; 0x17
@@ -813,7 +813,7 @@ void HardwareSerial::_rx_complete_irq(void)
      40c:	df 01       	movw	r26, r30
      40e:	e1 8d       	ldd	r30, Z+25	; 0x19
      410:	f0 e0       	ldi	r31, 0x00	; 0
-     412:	e2 5d       	subi	r30, 0xD2	; 210
+     412:	e4 5b       	subi	r30, 0xB4	; 180
      414:	fd 4f       	sbci	r31, 0xFD	; 253
      416:	25 8f       	std	Z+29, r18	; 0x1d
       _rx_buffer_head = i;
@@ -824,8 +824,8 @@ void HardwareSerial::_rx_complete_irq(void)
   } else {
     // Parity error, read byte but discard it
     *_udr;
-     41e:	e0 91 44 02 	lds	r30, 0x0244	; 0x800244 <__data_end+0x16>
-     422:	f0 91 45 02 	lds	r31, 0x0245	; 0x800245 <__data_end+0x17>
+     41e:	e0 91 62 02 	lds	r30, 0x0262	; 0x800262 <__data_end+0x16>
+     422:	f0 91 63 02 	lds	r31, 0x0263	; 0x800263 <__data_end+0x17>
      426:	80 81       	ld	r24, Z
     Serial._rx_complete_irq();
   }
@@ -867,7 +867,7 @@ ISR(USART_UDRE_vect)
      45e:	ef 93       	push	r30
      460:	ff 93       	push	r31
   Serial._tx_udr_empty_irq();
-     462:	8e e2       	ldi	r24, 0x2E	; 46
+     462:	8c e4       	ldi	r24, 0x4C	; 76
      464:	92 e0       	ldi	r25, 0x02	; 2
      466:	0e 94 dc 00 	call	0x1b8	; 0x1b8 <_ZN14HardwareSerial17_tx_udr_empty_irqEv>
 }
@@ -896,7 +896,7 @@ ISR(USART_UDRE_vect)
 // pulling in this file if it's not otherwise used.
 bool Serial0_available() {
   return Serial.available();
-     48c:	8e e2       	ldi	r24, 0x2E	; 46
+     48c:	8c e4       	ldi	r24, 0x4C	; 76
      48e:	92 e0       	ldi	r25, 0x02	; 2
      490:	0e 94 8e 00 	call	0x11c	; 0x11c <_ZN14HardwareSerial9availableEv>
      494:	21 e0       	ldi	r18, 0x01	; 1
@@ -914,7 +914,7 @@ bool Serial0_available() {
     void setWriteError(int err = 1) { write_error = err; }
   public:
     Print() : write_error(0) {}
-     4a0:	ee e2       	ldi	r30, 0x2E	; 46
+     4a0:	ec e4       	ldi	r30, 0x4C	; 76
      4a2:	f2 e0       	ldi	r31, 0x02	; 2
      4a4:	13 82       	std	Z+3, r1	; 0x03
      4a6:	12 82       	std	Z+2, r1	; 0x02
@@ -1050,7 +1050,7 @@ IPAddress::IPAddress()
 }
 
 IPAddress::IPAddress(uint8_t first_octet, uint8_t second_octet, uint8_t third_octet, uint8_t fourth_octet)
-     57e:	eb ec       	ldi	r30, 0xCB	; 203
+     57e:	e9 ee       	ldi	r30, 0xE9	; 233
      580:	f2 e0       	ldi	r31, 0x02	; 2
      582:	8b e1       	ldi	r24, 0x1B	; 27
      584:	91 e0       	ldi	r25, 0x01	; 1
@@ -1098,7 +1098,7 @@ int main(void)
     
 	for (;;) {
 		main_ArduinoLockOpener();
-     5a2:	0e 94 90 0a 	call	0x1520	; 0x1520 <main_ArduinoLockOpener>
+     5a2:	0e 94 03 0a 	call	0x1406	; 0x1406 <main_ArduinoLockOpener>
 		if (serialEventRun) serialEventRun();
      5a6:	20 97       	sbiw	r28, 0x00	; 0
      5a8:	e1 f3       	breq	.-8      	; 0x5a2 <main+0xc>
@@ -1261,7 +1261,7 @@ size_t Print::println(long num, int base)
      6c4:	b1 2c       	mov	r11, r1
      6c6:	a5 01       	movw	r20, r10
      6c8:	94 01       	movw	r18, r8
-     6ca:	0e 94 f5 0a 	call	0x15ea	; 0x15ea <__udivmodsi4>
+     6ca:	0e 94 40 0b 	call	0x1680	; 0x1680 <__udivmodsi4>
      6ce:	e6 2f       	mov	r30, r22
      6d0:	62 2f       	mov	r22, r18
      6d2:	73 2f       	mov	r23, r19
@@ -1501,10 +1501,10 @@ ISR(TIMER2_COMPA_vect)
      7fe:	ff 93       	push	r31
 
   if (timer2_toggle_count != 0)
-     800:	80 91 d4 02 	lds	r24, 0x02D4	; 0x8002d4 <timer2_toggle_count>
-     804:	90 91 d5 02 	lds	r25, 0x02D5	; 0x8002d5 <timer2_toggle_count+0x1>
-     808:	a0 91 d6 02 	lds	r26, 0x02D6	; 0x8002d6 <timer2_toggle_count+0x2>
-     80c:	b0 91 d7 02 	lds	r27, 0x02D7	; 0x8002d7 <timer2_toggle_count+0x3>
+     800:	80 91 f2 02 	lds	r24, 0x02F2	; 0x8002f2 <timer2_toggle_count>
+     804:	90 91 f3 02 	lds	r25, 0x02F3	; 0x8002f3 <timer2_toggle_count+0x1>
+     808:	a0 91 f4 02 	lds	r26, 0x02F4	; 0x8002f4 <timer2_toggle_count+0x2>
+     80c:	b0 91 f5 02 	lds	r27, 0x02F5	; 0x8002f5 <timer2_toggle_count+0x3>
      810:	89 2b       	or	r24, r25
      812:	8a 2b       	or	r24, r26
      814:	8b 2b       	or	r24, r27
@@ -1512,35 +1512,35 @@ ISR(TIMER2_COMPA_vect)
   {
     // toggle the pin
     *timer2_pin_port ^= timer2_pin_mask;
-     818:	90 91 d1 02 	lds	r25, 0x02D1	; 0x8002d1 <timer2_pin_mask>
-     81c:	e0 91 d2 02 	lds	r30, 0x02D2	; 0x8002d2 <timer2_pin_port>
-     820:	f0 91 d3 02 	lds	r31, 0x02D3	; 0x8002d3 <timer2_pin_port+0x1>
+     818:	90 91 ef 02 	lds	r25, 0x02EF	; 0x8002ef <timer2_pin_mask>
+     81c:	e0 91 f0 02 	lds	r30, 0x02F0	; 0x8002f0 <timer2_pin_port>
+     820:	f0 91 f1 02 	lds	r31, 0x02F1	; 0x8002f1 <timer2_pin_port+0x1>
      824:	80 81       	ld	r24, Z
      826:	89 27       	eor	r24, r25
      828:	80 83       	st	Z, r24
 
     if (timer2_toggle_count > 0)
-     82a:	80 91 d4 02 	lds	r24, 0x02D4	; 0x8002d4 <timer2_toggle_count>
-     82e:	90 91 d5 02 	lds	r25, 0x02D5	; 0x8002d5 <timer2_toggle_count+0x1>
-     832:	a0 91 d6 02 	lds	r26, 0x02D6	; 0x8002d6 <timer2_toggle_count+0x2>
-     836:	b0 91 d7 02 	lds	r27, 0x02D7	; 0x8002d7 <timer2_toggle_count+0x3>
+     82a:	80 91 f2 02 	lds	r24, 0x02F2	; 0x8002f2 <timer2_toggle_count>
+     82e:	90 91 f3 02 	lds	r25, 0x02F3	; 0x8002f3 <timer2_toggle_count+0x1>
+     832:	a0 91 f4 02 	lds	r26, 0x02F4	; 0x8002f4 <timer2_toggle_count+0x2>
+     836:	b0 91 f5 02 	lds	r27, 0x02F5	; 0x8002f5 <timer2_toggle_count+0x3>
      83a:	18 16       	cp	r1, r24
      83c:	19 06       	cpc	r1, r25
      83e:	1a 06       	cpc	r1, r26
      840:	1b 06       	cpc	r1, r27
      842:	c4 f4       	brge	.+48     	; 0x874 <__DATA_REGION_LENGTH__+0x74>
       timer2_toggle_count--;
-     844:	80 91 d4 02 	lds	r24, 0x02D4	; 0x8002d4 <timer2_toggle_count>
-     848:	90 91 d5 02 	lds	r25, 0x02D5	; 0x8002d5 <timer2_toggle_count+0x1>
-     84c:	a0 91 d6 02 	lds	r26, 0x02D6	; 0x8002d6 <timer2_toggle_count+0x2>
-     850:	b0 91 d7 02 	lds	r27, 0x02D7	; 0x8002d7 <timer2_toggle_count+0x3>
+     844:	80 91 f2 02 	lds	r24, 0x02F2	; 0x8002f2 <timer2_toggle_count>
+     848:	90 91 f3 02 	lds	r25, 0x02F3	; 0x8002f3 <timer2_toggle_count+0x1>
+     84c:	a0 91 f4 02 	lds	r26, 0x02F4	; 0x8002f4 <timer2_toggle_count+0x2>
+     850:	b0 91 f5 02 	lds	r27, 0x02F5	; 0x8002f5 <timer2_toggle_count+0x3>
      854:	01 97       	sbiw	r24, 0x01	; 1
      856:	a1 09       	sbc	r26, r1
      858:	b1 09       	sbc	r27, r1
-     85a:	80 93 d4 02 	sts	0x02D4, r24	; 0x8002d4 <timer2_toggle_count>
-     85e:	90 93 d5 02 	sts	0x02D5, r25	; 0x8002d5 <timer2_toggle_count+0x1>
-     862:	a0 93 d6 02 	sts	0x02D6, r26	; 0x8002d6 <timer2_toggle_count+0x2>
-     866:	b0 93 d7 02 	sts	0x02D7, r27	; 0x8002d7 <timer2_toggle_count+0x3>
+     85a:	80 93 f2 02 	sts	0x02F2, r24	; 0x8002f2 <timer2_toggle_count>
+     85e:	90 93 f3 02 	sts	0x02F3, r25	; 0x8002f3 <timer2_toggle_count+0x1>
+     862:	a0 93 f4 02 	sts	0x02F4, r26	; 0x8002f4 <timer2_toggle_count+0x2>
+     866:	b0 93 f5 02 	sts	0x02F5, r27	; 0x8002f5 <timer2_toggle_count+0x3>
      86a:	04 c0       	rjmp	.+8      	; 0x874 <__DATA_REGION_LENGTH__+0x74>
   else
   {
@@ -1684,11 +1684,11 @@ IMPLEMENT_ISR(INT1_vect, EXTERNAL_INT_1)
      944:	9f 93       	push	r25
      946:	af 93       	push	r26
      948:	bf 93       	push	r27
-     94a:	80 91 d9 02 	lds	r24, 0x02D9	; 0x8002d9 <timer0_millis>
-     94e:	90 91 da 02 	lds	r25, 0x02DA	; 0x8002da <timer0_millis+0x1>
-     952:	a0 91 db 02 	lds	r26, 0x02DB	; 0x8002db <timer0_millis+0x2>
-     956:	b0 91 dc 02 	lds	r27, 0x02DC	; 0x8002dc <timer0_millis+0x3>
-     95a:	30 91 d8 02 	lds	r19, 0x02D8	; 0x8002d8 <timer0_fract>
+     94a:	80 91 f7 02 	lds	r24, 0x02F7	; 0x8002f7 <timer0_millis>
+     94e:	90 91 f8 02 	lds	r25, 0x02F8	; 0x8002f8 <timer0_millis+0x1>
+     952:	a0 91 f9 02 	lds	r26, 0x02F9	; 0x8002f9 <timer0_millis+0x2>
+     956:	b0 91 fa 02 	lds	r27, 0x02FA	; 0x8002fa <timer0_millis+0x3>
+     95a:	30 91 f6 02 	lds	r19, 0x02F6	; 0x8002f6 <timer0_fract>
      95e:	23 e0       	ldi	r18, 0x03	; 3
      960:	23 0f       	add	r18, r19
      962:	2d 37       	cpi	r18, 0x7D	; 125
@@ -1702,22 +1702,22 @@ IMPLEMENT_ISR(INT1_vect, EXTERNAL_INT_1)
      972:	02 96       	adiw	r24, 0x02	; 2
      974:	a1 1d       	adc	r26, r1
      976:	b1 1d       	adc	r27, r1
-     978:	20 93 d8 02 	sts	0x02D8, r18	; 0x8002d8 <timer0_fract>
-     97c:	80 93 d9 02 	sts	0x02D9, r24	; 0x8002d9 <timer0_millis>
-     980:	90 93 da 02 	sts	0x02DA, r25	; 0x8002da <timer0_millis+0x1>
-     984:	a0 93 db 02 	sts	0x02DB, r26	; 0x8002db <timer0_millis+0x2>
-     988:	b0 93 dc 02 	sts	0x02DC, r27	; 0x8002dc <timer0_millis+0x3>
-     98c:	80 91 dd 02 	lds	r24, 0x02DD	; 0x8002dd <timer0_overflow_count>
-     990:	90 91 de 02 	lds	r25, 0x02DE	; 0x8002de <timer0_overflow_count+0x1>
-     994:	a0 91 df 02 	lds	r26, 0x02DF	; 0x8002df <timer0_overflow_count+0x2>
-     998:	b0 91 e0 02 	lds	r27, 0x02E0	; 0x8002e0 <timer0_overflow_count+0x3>
+     978:	20 93 f6 02 	sts	0x02F6, r18	; 0x8002f6 <timer0_fract>
+     97c:	80 93 f7 02 	sts	0x02F7, r24	; 0x8002f7 <timer0_millis>
+     980:	90 93 f8 02 	sts	0x02F8, r25	; 0x8002f8 <timer0_millis+0x1>
+     984:	a0 93 f9 02 	sts	0x02F9, r26	; 0x8002f9 <timer0_millis+0x2>
+     988:	b0 93 fa 02 	sts	0x02FA, r27	; 0x8002fa <timer0_millis+0x3>
+     98c:	80 91 fb 02 	lds	r24, 0x02FB	; 0x8002fb <timer0_overflow_count>
+     990:	90 91 fc 02 	lds	r25, 0x02FC	; 0x8002fc <timer0_overflow_count+0x1>
+     994:	a0 91 fd 02 	lds	r26, 0x02FD	; 0x8002fd <timer0_overflow_count+0x2>
+     998:	b0 91 fe 02 	lds	r27, 0x02FE	; 0x8002fe <timer0_overflow_count+0x3>
      99c:	01 96       	adiw	r24, 0x01	; 1
      99e:	a1 1d       	adc	r26, r1
      9a0:	b1 1d       	adc	r27, r1
-     9a2:	80 93 dd 02 	sts	0x02DD, r24	; 0x8002dd <timer0_overflow_count>
-     9a6:	90 93 de 02 	sts	0x02DE, r25	; 0x8002de <timer0_overflow_count+0x1>
-     9aa:	a0 93 df 02 	sts	0x02DF, r26	; 0x8002df <timer0_overflow_count+0x2>
-     9ae:	b0 93 e0 02 	sts	0x02E0, r27	; 0x8002e0 <timer0_overflow_count+0x3>
+     9a2:	80 93 fb 02 	sts	0x02FB, r24	; 0x8002fb <timer0_overflow_count>
+     9a6:	90 93 fc 02 	sts	0x02FC, r25	; 0x8002fc <timer0_overflow_count+0x1>
+     9aa:	a0 93 fd 02 	sts	0x02FD, r26	; 0x8002fd <timer0_overflow_count+0x2>
+     9ae:	b0 93 fe 02 	sts	0x02FE, r27	; 0x8002fe <timer0_overflow_count+0x3>
      9b2:	bf 91       	pop	r27
      9b4:	af 91       	pop	r26
      9b6:	9f 91       	pop	r25
@@ -2129,23 +2129,23 @@ uint16_t SoftwareSerial::subtract_cap(uint16_t num, uint16_t sub) {
   else
     return 1;
 }
-     b7c:	20 91 e3 03 	lds	r18, 0x03E3	; 0x8003e3 <_ZN14SoftwareSerial13active_objectE>
-     b80:	30 91 e4 03 	lds	r19, 0x03E4	; 0x8003e4 <_ZN14SoftwareSerial13active_objectE+0x1>
+     b7c:	20 91 01 04 	lds	r18, 0x0401	; 0x800401 <_ZN14SoftwareSerial13active_objectE>
+     b80:	30 91 02 04 	lds	r19, 0x0402	; 0x800402 <_ZN14SoftwareSerial13active_objectE+0x1>
      b84:	28 17       	cp	r18, r24
      b86:	39 07       	cpc	r19, r25
      b88:	99 f4       	brne	.+38     	; 0xbb0 <_ZN14SoftwareSerial4readEv+0x34>
-     b8a:	90 91 e1 02 	lds	r25, 0x02E1	; 0x8002e1 <_ZN14SoftwareSerial20_receive_buffer_headE>
-     b8e:	80 91 e2 02 	lds	r24, 0x02E2	; 0x8002e2 <_ZN14SoftwareSerial20_receive_buffer_tailE>
+     b8a:	90 91 ff 02 	lds	r25, 0x02FF	; 0x8002ff <_ZN14SoftwareSerial20_receive_buffer_headE>
+     b8e:	80 91 00 03 	lds	r24, 0x0300	; 0x800300 <_ZN14SoftwareSerial20_receive_buffer_tailE>
      b92:	98 17       	cp	r25, r24
      b94:	81 f0       	breq	.+32     	; 0xbb6 <_ZN14SoftwareSerial4readEv+0x3a>
-     b96:	e0 91 e1 02 	lds	r30, 0x02E1	; 0x8002e1 <_ZN14SoftwareSerial20_receive_buffer_headE>
+     b96:	e0 91 ff 02 	lds	r30, 0x02FF	; 0x8002ff <_ZN14SoftwareSerial20_receive_buffer_headE>
      b9a:	f0 e0       	ldi	r31, 0x00	; 0
-     b9c:	ed 51       	subi	r30, 0x1D	; 29
-     b9e:	fd 4f       	sbci	r31, 0xFD	; 253
+     b9c:	ef 5f       	subi	r30, 0xFF	; 255
+     b9e:	fc 4f       	sbci	r31, 0xFC	; 252
      ba0:	80 81       	ld	r24, Z
-     ba2:	20 91 e1 02 	lds	r18, 0x02E1	; 0x8002e1 <_ZN14SoftwareSerial20_receive_buffer_headE>
+     ba2:	20 91 ff 02 	lds	r18, 0x02FF	; 0x8002ff <_ZN14SoftwareSerial20_receive_buffer_headE>
      ba6:	2f 5f       	subi	r18, 0xFF	; 255
-     ba8:	20 93 e1 02 	sts	0x02E1, r18	; 0x8002e1 <_ZN14SoftwareSerial20_receive_buffer_headE>
+     ba8:	20 93 ff 02 	sts	0x02FF, r18	; 0x8002ff <_ZN14SoftwareSerial20_receive_buffer_headE>
      bac:	90 e0       	ldi	r25, 0x00	; 0
      bae:	08 95       	ret
      bb0:	8f ef       	ldi	r24, 0xFF	; 255
@@ -2156,13 +2156,13 @@ uint16_t SoftwareSerial::subtract_cap(uint16_t num, uint16_t sub) {
      bba:	08 95       	ret
 
 00000bbc <_ZN14SoftwareSerial9availableEv>:
-     bbc:	20 91 e3 03 	lds	r18, 0x03E3	; 0x8003e3 <_ZN14SoftwareSerial13active_objectE>
-     bc0:	30 91 e4 03 	lds	r19, 0x03E4	; 0x8003e4 <_ZN14SoftwareSerial13active_objectE+0x1>
+     bbc:	20 91 01 04 	lds	r18, 0x0401	; 0x800401 <_ZN14SoftwareSerial13active_objectE>
+     bc0:	30 91 02 04 	lds	r19, 0x0402	; 0x800402 <_ZN14SoftwareSerial13active_objectE+0x1>
      bc4:	28 17       	cp	r18, r24
      bc6:	39 07       	cpc	r19, r25
      bc8:	99 f4       	brne	.+38     	; 0xbf0 <_ZN14SoftwareSerial9availableEv+0x34>
-     bca:	20 91 e2 02 	lds	r18, 0x02E2	; 0x8002e2 <_ZN14SoftwareSerial20_receive_buffer_tailE>
-     bce:	80 91 e1 02 	lds	r24, 0x02E1	; 0x8002e1 <_ZN14SoftwareSerial20_receive_buffer_headE>
+     bca:	20 91 00 03 	lds	r18, 0x0300	; 0x800300 <_ZN14SoftwareSerial20_receive_buffer_tailE>
+     bce:	80 91 ff 02 	lds	r24, 0x02FF	; 0x8002ff <_ZN14SoftwareSerial20_receive_buffer_headE>
      bd2:	30 e0       	ldi	r19, 0x00	; 0
      bd4:	33 95       	inc	r19
      bd6:	28 1b       	sub	r18, r24
@@ -2263,19 +2263,19 @@ uint16_t SoftwareSerial::subtract_cap(uint16_t num, uint16_t sub) {
      c8c:	08 95       	ret
 
 00000c8e <_ZN14SoftwareSerial4peekEv>:
-     c8e:	20 91 e3 03 	lds	r18, 0x03E3	; 0x8003e3 <_ZN14SoftwareSerial13active_objectE>
-     c92:	30 91 e4 03 	lds	r19, 0x03E4	; 0x8003e4 <_ZN14SoftwareSerial13active_objectE+0x1>
+     c8e:	20 91 01 04 	lds	r18, 0x0401	; 0x800401 <_ZN14SoftwareSerial13active_objectE>
+     c92:	30 91 02 04 	lds	r19, 0x0402	; 0x800402 <_ZN14SoftwareSerial13active_objectE+0x1>
      c96:	28 17       	cp	r18, r24
      c98:	39 07       	cpc	r19, r25
      c9a:	71 f4       	brne	.+28     	; 0xcb8 <_ZN14SoftwareSerial4peekEv+0x2a>
-     c9c:	90 91 e1 02 	lds	r25, 0x02E1	; 0x8002e1 <_ZN14SoftwareSerial20_receive_buffer_headE>
-     ca0:	80 91 e2 02 	lds	r24, 0x02E2	; 0x8002e2 <_ZN14SoftwareSerial20_receive_buffer_tailE>
+     c9c:	90 91 ff 02 	lds	r25, 0x02FF	; 0x8002ff <_ZN14SoftwareSerial20_receive_buffer_headE>
+     ca0:	80 91 00 03 	lds	r24, 0x0300	; 0x800300 <_ZN14SoftwareSerial20_receive_buffer_tailE>
      ca4:	98 17       	cp	r25, r24
      ca6:	59 f0       	breq	.+22     	; 0xcbe <_ZN14SoftwareSerial4peekEv+0x30>
-     ca8:	e0 91 e1 02 	lds	r30, 0x02E1	; 0x8002e1 <_ZN14SoftwareSerial20_receive_buffer_headE>
+     ca8:	e0 91 ff 02 	lds	r30, 0x02FF	; 0x8002ff <_ZN14SoftwareSerial20_receive_buffer_headE>
      cac:	f0 e0       	ldi	r31, 0x00	; 0
-     cae:	ed 51       	subi	r30, 0x1D	; 29
-     cb0:	fd 4f       	sbci	r31, 0xFD	; 253
+     cae:	ef 5f       	subi	r30, 0xFF	; 255
+     cb0:	fc 4f       	sbci	r31, 0xFC	; 252
      cb2:	80 81       	ld	r24, Z
      cb4:	90 e0       	ldi	r25, 0x00	; 0
      cb6:	08 95       	ret
@@ -2287,8 +2287,8 @@ uint16_t SoftwareSerial::subtract_cap(uint16_t num, uint16_t sub) {
      cc2:	08 95       	ret
 
 00000cc4 <_ZN14SoftwareSerial13stopListeningEv>:
-     cc4:	e0 91 e3 03 	lds	r30, 0x03E3	; 0x8003e3 <_ZN14SoftwareSerial13active_objectE>
-     cc8:	f0 91 e4 03 	lds	r31, 0x03E4	; 0x8003e4 <_ZN14SoftwareSerial13active_objectE+0x1>
+     cc4:	e0 91 01 04 	lds	r30, 0x0401	; 0x800401 <_ZN14SoftwareSerial13active_objectE>
+     cc8:	f0 91 02 04 	lds	r31, 0x0402	; 0x800402 <_ZN14SoftwareSerial13active_objectE+0x1>
      ccc:	e8 17       	cp	r30, r24
      cce:	f9 07       	cpc	r31, r25
      cd0:	69 f4       	brne	.+26     	; 0xcec <_ZN14SoftwareSerial13stopListeningEv+0x28>
@@ -2299,8 +2299,8 @@ uint16_t SoftwareSerial::subtract_cap(uint16_t num, uint16_t sub) {
      cda:	80 95       	com	r24
      cdc:	89 23       	and	r24, r25
      cde:	8c 93       	st	X, r24
-     ce0:	10 92 e4 03 	sts	0x03E4, r1	; 0x8003e4 <_ZN14SoftwareSerial13active_objectE+0x1>
-     ce4:	10 92 e3 03 	sts	0x03E3, r1	; 0x8003e3 <_ZN14SoftwareSerial13active_objectE>
+     ce0:	10 92 02 04 	sts	0x0402, r1	; 0x800402 <_ZN14SoftwareSerial13active_objectE+0x1>
+     ce4:	10 92 01 04 	sts	0x0401, r1	; 0x800401 <_ZN14SoftwareSerial13active_objectE>
      ce8:	81 e0       	ldi	r24, 0x01	; 1
      cea:	08 95       	ret
      cec:	80 e0       	ldi	r24, 0x00	; 0
@@ -2314,8 +2314,8 @@ uint16_t SoftwareSerial::subtract_cap(uint16_t num, uint16_t sub) {
      cf8:	9b 8d       	ldd	r25, Y+27	; 0x1b
      cfa:	89 2b       	or	r24, r25
      cfc:	f1 f0       	breq	.+60     	; 0xd3a <_ZN14SoftwareSerial6listenEv+0x4a>
-     cfe:	80 91 e3 03 	lds	r24, 0x03E3	; 0x8003e3 <_ZN14SoftwareSerial13active_objectE>
-     d02:	90 91 e4 03 	lds	r25, 0x03E4	; 0x8003e4 <_ZN14SoftwareSerial13active_objectE+0x1>
+     cfe:	80 91 01 04 	lds	r24, 0x0401	; 0x800401 <_ZN14SoftwareSerial13active_objectE>
+     d02:	90 91 02 04 	lds	r25, 0x0402	; 0x800402 <_ZN14SoftwareSerial13active_objectE+0x1>
      d06:	c8 17       	cp	r28, r24
      d08:	d9 07       	cpc	r29, r25
      d0a:	c9 f0       	breq	.+50     	; 0xd3e <_ZN14SoftwareSerial6listenEv+0x4e>
@@ -2325,10 +2325,10 @@ uint16_t SoftwareSerial::subtract_cap(uint16_t num, uint16_t sub) {
      d14:	8e 8d       	ldd	r24, Y+30	; 0x1e
      d16:	8e 7f       	andi	r24, 0xFE	; 254
      d18:	8e 8f       	std	Y+30, r24	; 0x1e
-     d1a:	10 92 e2 02 	sts	0x02E2, r1	; 0x8002e2 <_ZN14SoftwareSerial20_receive_buffer_tailE>
-     d1e:	10 92 e1 02 	sts	0x02E1, r1	; 0x8002e1 <_ZN14SoftwareSerial20_receive_buffer_headE>
-     d22:	d0 93 e4 03 	sts	0x03E4, r29	; 0x8003e4 <_ZN14SoftwareSerial13active_objectE+0x1>
-     d26:	c0 93 e3 03 	sts	0x03E3, r28	; 0x8003e3 <_ZN14SoftwareSerial13active_objectE>
+     d1a:	10 92 00 03 	sts	0x0300, r1	; 0x800300 <_ZN14SoftwareSerial20_receive_buffer_tailE>
+     d1e:	10 92 ff 02 	sts	0x02FF, r1	; 0x8002ff <_ZN14SoftwareSerial20_receive_buffer_headE>
+     d22:	d0 93 02 04 	sts	0x0402, r29	; 0x800402 <_ZN14SoftwareSerial13active_objectE+0x1>
+     d26:	c0 93 01 04 	sts	0x0401, r28	; 0x800401 <_ZN14SoftwareSerial13active_objectE>
      d2a:	eb 89       	ldd	r30, Y+19	; 0x13
      d2c:	fc 89       	ldd	r31, Y+20	; 0x14
      d2e:	90 81       	ld	r25, Z
@@ -2364,8 +2364,8 @@ uint16_t SoftwareSerial::subtract_cap(uint16_t num, uint16_t sub) {
      d66:	df 93       	push	r29
      d68:	ef 93       	push	r30
      d6a:	ff 93       	push	r31
-     d6c:	a0 91 e3 03 	lds	r26, 0x03E3	; 0x8003e3 <_ZN14SoftwareSerial13active_objectE>
-     d70:	b0 91 e4 03 	lds	r27, 0x03E4	; 0x8003e4 <_ZN14SoftwareSerial13active_objectE+0x1>
+     d6c:	a0 91 01 04 	lds	r26, 0x0401	; 0x800401 <_ZN14SoftwareSerial13active_objectE>
+     d70:	b0 91 02 04 	lds	r27, 0x0402	; 0x800402 <_ZN14SoftwareSerial13active_objectE+0x1>
      d74:	10 97       	sbiw	r26, 0x00	; 0
      d76:	09 f4       	brne	.+2      	; 0xd7a <__vector_3+0x34>
      d78:	78 c0       	rjmp	.+240    	; 0xe6a <__vector_3+0x124>
@@ -2451,17 +2451,17 @@ uint16_t SoftwareSerial::subtract_cap(uint16_t num, uint16_t sub) {
      e18:	5e 97       	sbiw	r26, 0x1e	; 30
      e1a:	81 fd       	sbrc	r24, 1
      e1c:	40 95       	com	r20
-     e1e:	80 91 e2 02 	lds	r24, 0x02E2	; 0x8002e2 <_ZN14SoftwareSerial20_receive_buffer_tailE>
+     e1e:	80 91 00 03 	lds	r24, 0x0300	; 0x800300 <_ZN14SoftwareSerial20_receive_buffer_tailE>
      e22:	8f 5f       	subi	r24, 0xFF	; 255
-     e24:	20 91 e1 02 	lds	r18, 0x02E1	; 0x8002e1 <_ZN14SoftwareSerial20_receive_buffer_headE>
+     e24:	20 91 ff 02 	lds	r18, 0x02FF	; 0x8002ff <_ZN14SoftwareSerial20_receive_buffer_headE>
      e28:	28 17       	cp	r18, r24
      e2a:	49 f0       	breq	.+18     	; 0xe3e <__vector_3+0xf8>
-     e2c:	e0 91 e2 02 	lds	r30, 0x02E2	; 0x8002e2 <_ZN14SoftwareSerial20_receive_buffer_tailE>
+     e2c:	e0 91 00 03 	lds	r30, 0x0300	; 0x800300 <_ZN14SoftwareSerial20_receive_buffer_tailE>
      e30:	f0 e0       	ldi	r31, 0x00	; 0
-     e32:	ed 51       	subi	r30, 0x1D	; 29
-     e34:	fd 4f       	sbci	r31, 0xFD	; 253
+     e32:	ef 5f       	subi	r30, 0xFF	; 255
+     e34:	fc 4f       	sbci	r31, 0xFC	; 252
      e36:	40 83       	st	Z, r20
-     e38:	80 93 e2 02 	sts	0x02E2, r24	; 0x8002e2 <_ZN14SoftwareSerial20_receive_buffer_tailE>
+     e38:	80 93 00 03 	sts	0x0300, r24	; 0x800300 <_ZN14SoftwareSerial20_receive_buffer_tailE>
      e3c:	07 c0       	rjmp	.+14     	; 0xe4c <__vector_3+0x106>
      e3e:	5e 96       	adiw	r26, 0x1e	; 30
      e40:	8c 91       	ld	r24, X
@@ -2657,7 +2657,7 @@ void SoftwareSerial::begin(long speed)
      fa4:	79 e0       	ldi	r23, 0x09	; 9
      fa6:	8d e3       	ldi	r24, 0x3D	; 61
      fa8:	90 e0       	ldi	r25, 0x00	; 0
-     faa:	0e 94 f5 0a 	call	0x15ea	; 0x15ea <__udivmodsi4>
+     faa:	0e 94 40 0b 	call	0x1680	; 0x1680 <__udivmodsi4>
      fae:	f9 01       	movw	r30, r18
   uint8_t port = digitalPinToPort(rx);
   _receivePortRegister = portInputRegister(port);
@@ -2934,15 +2934,15 @@ void GsmCommunicationClass::checkReceivedData(){
     10be:	66 23       	and	r22, r22
     10c0:	41 f0       	breq	.+16     	; 0x10d2 <_ZN21GsmCommunicationClass13displayStringEPc+0x22>
     10c2:	21 96       	adiw	r28, 0x01	; 1
-    10c4:	8e e2       	ldi	r24, 0x2E	; 46
+    10c4:	8c e4       	ldi	r24, 0x4C	; 76
     10c6:	92 e0       	ldi	r25, 0x02	; 2
     10c8:	0e 94 1d 03 	call	0x63a	; 0x63a <_ZN5Print5printEc>
     10cc:	69 91       	ld	r22, Y+
     10ce:	61 11       	cpse	r22, r1
     10d0:	f9 cf       	rjmp	.-14     	; 0x10c4 <_ZN21GsmCommunicationClass13displayStringEPc+0x14>
-    10d2:	65 e2       	ldi	r22, 0x25	; 37
-    10d4:	72 e0       	ldi	r23, 0x02	; 2
-    10d6:	8e e2       	ldi	r24, 0x2E	; 46
+    10d2:	69 ef       	ldi	r22, 0xF9	; 249
+    10d4:	71 e0       	ldi	r23, 0x01	; 1
+    10d6:	8c e4       	ldi	r24, 0x4C	; 76
     10d8:	92 e0       	ldi	r25, 0x02	; 2
     10da:	0e 94 07 03 	call	0x60e	; 0x60e <_ZN5Print5printEPKc>
     10de:	df 91       	pop	r29
@@ -3027,810 +3027,921 @@ void GsmCommunicationClass::checkReceivedData(){
     1176:	cf 93       	push	r28
     1178:	df 93       	push	r29
     117a:	ec 01       	movw	r28, r24
-    117c:	fc 01       	movw	r30, r24
-    117e:	ec 5f       	subi	r30, 0xFC	; 252
-    1180:	fe 4f       	sbci	r31, 0xFE	; 254
-    1182:	10 82       	st	Z, r1
-    1184:	31 96       	adiw	r30, 0x01	; 1
+    117c:	1b 82       	std	Y+3, r1	; 0x03
+    117e:	1a 82       	std	Y+2, r1	; 0x02
+    1180:	fc 01       	movw	r30, r24
+    1182:	ec 5f       	subi	r30, 0xFC	; 252
+    1184:	fe 4f       	sbci	r31, 0xFE	; 254
     1186:	10 82       	st	Z, r1
     1188:	31 96       	adiw	r30, 0x01	; 1
     118a:	10 82       	st	Z, r1
     118c:	31 96       	adiw	r30, 0x01	; 1
-    118e:	84 e1       	ldi	r24, 0x14	; 20
-    1190:	df 01       	movw	r26, r30
-    1192:	1d 92       	st	X+, r1
-    1194:	8a 95       	dec	r24
-    1196:	e9 f7       	brne	.-6      	; 0x1192 <_ZN21GsmCommunicationClassC1EP14SoftwareSerial+0x1c>
-    1198:	79 83       	std	Y+1, r23	; 0x01
-    119a:	68 83       	st	Y, r22
-    119c:	26 e0       	ldi	r18, 0x06	; 6
-    119e:	40 e8       	ldi	r20, 0x80	; 128
-    11a0:	55 e2       	ldi	r21, 0x25	; 37
-    11a2:	60 e0       	ldi	r22, 0x00	; 0
-    11a4:	70 e0       	ldi	r23, 0x00	; 0
-    11a6:	8e e2       	ldi	r24, 0x2E	; 46
-    11a8:	92 e0       	ldi	r25, 0x02	; 2
-    11aa:	0e 94 80 01 	call	0x300	; 0x300 <_ZN14HardwareSerial5beginEmh>
-    11ae:	40 e8       	ldi	r20, 0x80	; 128
-    11b0:	55 e2       	ldi	r21, 0x25	; 37
-    11b2:	60 e0       	ldi	r22, 0x00	; 0
-    11b4:	70 e0       	ldi	r23, 0x00	; 0
-    11b6:	88 81       	ld	r24, Y
-    11b8:	99 81       	ldd	r25, Y+1	; 0x01
-    11ba:	0e 94 c6 07 	call	0xf8c	; 0xf8c <_ZN14SoftwareSerial5beginEl>
-    11be:	bf ef       	ldi	r27, 0xFF	; 255
-    11c0:	23 ed       	ldi	r18, 0xD3	; 211
-    11c2:	80 e3       	ldi	r24, 0x30	; 48
-    11c4:	b1 50       	subi	r27, 0x01	; 1
-    11c6:	20 40       	sbci	r18, 0x00	; 0
-    11c8:	80 40       	sbci	r24, 0x00	; 0
-    11ca:	e1 f7       	brne	.-8      	; 0x11c4 <_ZN21GsmCommunicationClassC1EP14SoftwareSerial+0x4e>
-    11cc:	00 c0       	rjmp	.+0      	; 0x11ce <_ZN21GsmCommunicationClassC1EP14SoftwareSerial+0x58>
-    11ce:	00 00       	nop
-    11d0:	6e e3       	ldi	r22, 0x3E	; 62
-    11d2:	71 e0       	ldi	r23, 0x01	; 1
-    11d4:	88 81       	ld	r24, Y
-    11d6:	99 81       	ldd	r25, Y+1	; 0x01
-    11d8:	0e 94 31 03 	call	0x662	; 0x662 <_ZN5Print7printlnEPKc>
-    11dc:	ce 01       	movw	r24, r28
-    11de:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
-    11e2:	df 91       	pop	r29
-    11e4:	cf 91       	pop	r28
-    11e6:	08 95       	ret
+    118e:	10 82       	st	Z, r1
+    1190:	79 83       	std	Y+1, r23	; 0x01
+    1192:	68 83       	st	Y, r22
+    1194:	26 e0       	ldi	r18, 0x06	; 6
+    1196:	40 e8       	ldi	r20, 0x80	; 128
+    1198:	55 e2       	ldi	r21, 0x25	; 37
+    119a:	60 e0       	ldi	r22, 0x00	; 0
+    119c:	70 e0       	ldi	r23, 0x00	; 0
+    119e:	8c e4       	ldi	r24, 0x4C	; 76
+    11a0:	92 e0       	ldi	r25, 0x02	; 2
+    11a2:	0e 94 80 01 	call	0x300	; 0x300 <_ZN14HardwareSerial5beginEmh>
+    11a6:	40 e8       	ldi	r20, 0x80	; 128
+    11a8:	55 e2       	ldi	r21, 0x25	; 37
+    11aa:	60 e0       	ldi	r22, 0x00	; 0
+    11ac:	70 e0       	ldi	r23, 0x00	; 0
+    11ae:	88 81       	ld	r24, Y
+    11b0:	99 81       	ldd	r25, Y+1	; 0x01
+    11b2:	0e 94 c6 07 	call	0xf8c	; 0xf8c <_ZN14SoftwareSerial5beginEl>
+    11b6:	2f ef       	ldi	r18, 0xFF	; 255
+    11b8:	83 ed       	ldi	r24, 0xD3	; 211
+    11ba:	90 e3       	ldi	r25, 0x30	; 48
+    11bc:	21 50       	subi	r18, 0x01	; 1
+    11be:	80 40       	sbci	r24, 0x00	; 0
+    11c0:	90 40       	sbci	r25, 0x00	; 0
+    11c2:	e1 f7       	brne	.-8      	; 0x11bc <_ZN21GsmCommunicationClassC1EP14SoftwareSerial+0x46>
+    11c4:	00 c0       	rjmp	.+0      	; 0x11c6 <_ZN21GsmCommunicationClassC1EP14SoftwareSerial+0x50>
+    11c6:	00 00       	nop
+    11c8:	6e e3       	ldi	r22, 0x3E	; 62
+    11ca:	71 e0       	ldi	r23, 0x01	; 1
+    11cc:	88 81       	ld	r24, Y
+    11ce:	99 81       	ldd	r25, Y+1	; 0x01
+    11d0:	0e 94 31 03 	call	0x662	; 0x662 <_ZN5Print7printlnEPKc>
+    11d4:	ce 01       	movw	r24, r28
+    11d6:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
+    11da:	df 91       	pop	r29
+    11dc:	cf 91       	pop	r28
+    11de:	08 95       	ret
 
-000011e8 <_ZN21GsmCommunicationClass17checkAuthorzationEPc>:
+000011e0 <_ZN21GsmCommunicationClass18checkAuthorizationEPc>:
     void clearWriteError() { setWriteError(0); }
   
     virtual size_t write(uint8_t) = 0;
     size_t write(const char *str) {
       if (str == NULL) return 0;
       return write((const uint8_t *)str, strlen(str));
-    11e8:	e0 91 2e 02 	lds	r30, 0x022E	; 0x80022e <__data_end>
-    11ec:	f0 91 2f 02 	lds	r31, 0x022F	; 0x80022f <__data_end+0x1>
-    11f0:	02 80       	ldd	r0, Z+2	; 0x02
-    11f2:	f3 81       	ldd	r31, Z+3	; 0x03
-    11f4:	e0 2d       	mov	r30, r0
-    11f6:	43 e1       	ldi	r20, 0x13	; 19
-    11f8:	50 e0       	ldi	r21, 0x00	; 0
-    11fa:	61 e4       	ldi	r22, 0x41	; 65
-    11fc:	71 e0       	ldi	r23, 0x01	; 1
-    11fe:	8e e2       	ldi	r24, 0x2E	; 46
-    1200:	92 e0       	ldi	r25, 0x02	; 2
-    1202:	09 95       	icall
+    11e0:	e0 91 4c 02 	lds	r30, 0x024C	; 0x80024c <__data_end>
+    11e4:	f0 91 4d 02 	lds	r31, 0x024D	; 0x80024d <__data_end+0x1>
+    11e8:	02 80       	ldd	r0, Z+2	; 0x02
+    11ea:	f3 81       	ldd	r31, Z+3	; 0x03
+    11ec:	e0 2d       	mov	r30, r0
+    11ee:	43 e1       	ldi	r20, 0x13	; 19
+    11f0:	50 e0       	ldi	r21, 0x00	; 0
+    11f2:	61 e4       	ldi	r22, 0x41	; 65
+    11f4:	71 e0       	ldi	r23, 0x01	; 1
+    11f6:	8c e4       	ldi	r24, 0x4C	; 76
+    11f8:	92 e0       	ldi	r25, 0x02	; 2
+    11fa:	09 95       	icall
 
-int GsmCommunicationClass::checkAuthorzation(char *nrToCheck){
+int GsmCommunicationClass::checkAuthorization(char *nrToCheck){
 	Serial.write("CheckAuthorization\n");
 	//displayString(nrToCheck);
 	return(1);
 }
-    1204:	81 e0       	ldi	r24, 0x01	; 1
-    1206:	90 e0       	ldi	r25, 0x00	; 0
-    1208:	08 95       	ret
+    11fc:	81 e0       	ldi	r24, 0x01	; 1
+    11fe:	90 e0       	ldi	r25, 0x00	; 0
+    1200:	08 95       	ret
 
-0000120a <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv>:
+00001202 <_ZN21GsmCommunicationClass12setUpSmsModeEv>:
 	
-void GsmCommunicationClass::isolateSmsSenderPhoneNr(){
-    120a:	0f 93       	push	r16
-    120c:	1f 93       	push	r17
-    120e:	cf 93       	push	r28
-    1210:	df 93       	push	r29
-    1212:	ec 01       	movw	r28, r24
-	int i=0;
-	int recordPhoneNr = 0;
-	int stopRecordPhoneNr = 0;
-	
-	// isolate Phone Number of the SMS sender
-	for(int u=0;(receiveBuffer[u]!='\0')&&(stopRecordPhoneNr == 0);u++){	
-    1214:	8c 81       	ldd	r24, Y+4	; 0x04
-    1216:	88 23       	and	r24, r24
-    1218:	b1 f1       	breq	.+108    	; 0x1286 <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x7c>
-    121a:	fe 01       	movw	r30, r28
-    121c:	33 97       	sbiw	r30, 0x03	; 3
-    121e:	20 e0       	ldi	r18, 0x00	; 0
-    1220:	30 e0       	ldi	r19, 0x00	; 0
-    1222:	40 e0       	ldi	r20, 0x00	; 0
-    1224:	50 e0       	ldi	r21, 0x00	; 0
-		receiveBuffer[u-1]=='"') || recordPhoneNr==1){ 
-			if(receiveBuffer[u] == '"'){			// if end of Phone Nr is not reached copying Nr
-				smsSenderNr[i]='\0';				// end string
-				stopRecordPhoneNr = 1;				// stop copying Nr
-				}else{
-				recordPhoneNr = 1;					// start copying Nr
-    1226:	71 e0       	ldi	r23, 0x01	; 1
-    1228:	60 e0       	ldi	r22, 0x00	; 0
-	int stopRecordPhoneNr = 0;
-	
-	// isolate Phone Number of the SMS sender
-	for(int u=0;(receiveBuffer[u]!='\0')&&(stopRecordPhoneNr == 0);u++){	
-		
-		if((receiveBuffer[u-7]=='+' &&	// find beginning of the Phone Number
-    122a:	91 91       	ld	r25, Z+
-    122c:	9b 32       	cpi	r25, 0x2B	; 43
-    122e:	91 f4       	brne	.+36     	; 0x1254 <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x4a>
-    1230:	90 81       	ld	r25, Z
-    1232:	93 34       	cpi	r25, 0x43	; 67
-    1234:	79 f4       	brne	.+30     	; 0x1254 <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x4a>
-		receiveBuffer[u-6]=='C' &&
-    1236:	91 81       	ldd	r25, Z+1	; 0x01
-    1238:	9d 34       	cpi	r25, 0x4D	; 77
-    123a:	61 f4       	brne	.+24     	; 0x1254 <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x4a>
-		receiveBuffer[u-5]=='M' &&
-    123c:	92 81       	ldd	r25, Z+2	; 0x02
-    123e:	94 35       	cpi	r25, 0x54	; 84
-    1240:	49 f4       	brne	.+18     	; 0x1254 <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x4a>
-		receiveBuffer[u-4]=='T' &&
-    1242:	93 81       	ldd	r25, Z+3	; 0x03
-    1244:	9a 33       	cpi	r25, 0x3A	; 58
-    1246:	31 f4       	brne	.+12     	; 0x1254 <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x4a>
-		receiveBuffer[u-3]==':' &&
-    1248:	94 81       	ldd	r25, Z+4	; 0x04
-    124a:	90 32       	cpi	r25, 0x20	; 32
-    124c:	19 f4       	brne	.+6      	; 0x1254 <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x4a>
-		receiveBuffer[u-2]==' ' &&
-    124e:	95 81       	ldd	r25, Z+5	; 0x05
-    1250:	92 32       	cpi	r25, 0x22	; 34
-    1252:	19 f0       	breq	.+6      	; 0x125a <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x50>
-		receiveBuffer[u-1]=='"') || recordPhoneNr==1){ 
-    1254:	21 30       	cpi	r18, 0x01	; 1
-    1256:	31 05       	cpc	r19, r1
-    1258:	99 f4       	brne	.+38     	; 0x1280 <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x76>
-			if(receiveBuffer[u] == '"'){			// if end of Phone Nr is not reached copying Nr
-    125a:	82 32       	cpi	r24, 0x22	; 34
-    125c:	39 f4       	brne	.+14     	; 0x126c <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x62>
-				smsSenderNr[i]='\0';				// end string
-    125e:	4c 0f       	add	r20, r28
-    1260:	5d 1f       	adc	r21, r29
-    1262:	fa 01       	movw	r30, r20
-    1264:	e9 5f       	subi	r30, 0xF9	; 249
-    1266:	fe 4f       	sbci	r31, 0xFE	; 254
-    1268:	10 82       	st	Z, r1
-    126a:	0d c0       	rjmp	.+26     	; 0x1286 <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x7c>
-				stopRecordPhoneNr = 1;				// stop copying Nr
-				}else{
-				recordPhoneNr = 1;					// start copying Nr
-				smsSenderNr[i] = receiveBuffer[u];	// copy phone Nr into variable
-    126c:	de 01       	movw	r26, r28
-    126e:	a4 0f       	add	r26, r20
-    1270:	b5 1f       	adc	r27, r21
-    1272:	a9 5f       	subi	r26, 0xF9	; 249
-    1274:	be 4f       	sbci	r27, 0xFE	; 254
-    1276:	8c 93       	st	X, r24
-				i++;
-    1278:	4f 5f       	subi	r20, 0xFF	; 255
-    127a:	5f 4f       	sbci	r21, 0xFF	; 255
-		receiveBuffer[u-1]=='"') || recordPhoneNr==1){ 
-			if(receiveBuffer[u] == '"'){			// if end of Phone Nr is not reached copying Nr
-				smsSenderNr[i]='\0';				// end string
-				stopRecordPhoneNr = 1;				// stop copying Nr
-				}else{
-				recordPhoneNr = 1;					// start copying Nr
-    127c:	27 2f       	mov	r18, r23
-    127e:	36 2f       	mov	r19, r22
-	int i=0;
-	int recordPhoneNr = 0;
-	int stopRecordPhoneNr = 0;
-	
-	// isolate Phone Number of the SMS sender
-	for(int u=0;(receiveBuffer[u]!='\0')&&(stopRecordPhoneNr == 0);u++){	
-    1280:	87 81       	ldd	r24, Z+7	; 0x07
-    1282:	81 11       	cpse	r24, r1
-    1284:	d2 cf       	rjmp	.-92     	; 0x122a <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv+0x20>
-    1286:	0e e2       	ldi	r16, 0x2E	; 46
-    1288:	12 e0       	ldi	r17, 0x02	; 2
-    128a:	d8 01       	movw	r26, r16
-    128c:	ed 91       	ld	r30, X+
-    128e:	fc 91       	ld	r31, X
-    1290:	02 80       	ldd	r0, Z+2	; 0x02
-    1292:	f3 81       	ldd	r31, Z+3	; 0x03
-    1294:	e0 2d       	mov	r30, r0
-    1296:	4c e0       	ldi	r20, 0x0C	; 12
-    1298:	50 e0       	ldi	r21, 0x00	; 0
-    129a:	65 e5       	ldi	r22, 0x55	; 85
-    129c:	71 e0       	ldi	r23, 0x01	; 1
-    129e:	c8 01       	movw	r24, r16
-    12a0:	09 95       	icall
-		}
-	}
-	
-	// Display SMS sender
-	Serial.write("SMS sender: ");
-	displayString(smsSenderNr);
-    12a2:	be 01       	movw	r22, r28
-    12a4:	69 5f       	subi	r22, 0xF9	; 249
-    12a6:	7e 4f       	sbci	r23, 0xFE	; 254
-    12a8:	ce 01       	movw	r24, r28
-    12aa:	0e 94 58 08 	call	0x10b0	; 0x10b0 <_ZN21GsmCommunicationClass13displayStringEPc>
-    12ae:	d8 01       	movw	r26, r16
-    12b0:	ed 91       	ld	r30, X+
-    12b2:	fc 91       	ld	r31, X
-    12b4:	02 80       	ldd	r0, Z+2	; 0x02
-    12b6:	f3 81       	ldd	r31, Z+3	; 0x03
-    12b8:	e0 2d       	mov	r30, r0
-    12ba:	42 e0       	ldi	r20, 0x02	; 2
-    12bc:	50 e0       	ldi	r21, 0x00	; 0
-    12be:	64 e2       	ldi	r22, 0x24	; 36
-    12c0:	72 e0       	ldi	r23, 0x02	; 2
-    12c2:	c8 01       	movw	r24, r16
-    12c4:	09 95       	icall
-	Serial.write("\n\n");
-}
-    12c6:	df 91       	pop	r29
-    12c8:	cf 91       	pop	r28
-    12ca:	1f 91       	pop	r17
-    12cc:	0f 91       	pop	r16
-    12ce:	08 95       	ret
-
-000012d0 <_ZN21GsmCommunicationClass17handleReceivedSmsEv>:
-}
-
-void GsmCommunicationClass::checkReceivedData(){
-}
-
-void GsmCommunicationClass::handleReceivedSms(){
-    12d0:	cf 93       	push	r28
-    12d2:	df 93       	push	r29
-    12d4:	ec 01       	movw	r28, r24
-	if(strstr(receiveBuffer,"+CMT:") != NULL){	// if SMS received
-    12d6:	62 e6       	ldi	r22, 0x62	; 98
-    12d8:	71 e0       	ldi	r23, 0x01	; 1
-    12da:	04 96       	adiw	r24, 0x04	; 4
-    12dc:	0e 94 1d 0b 	call	0x163a	; 0x163a <strstr>
-    12e0:	89 2b       	or	r24, r25
-    12e2:	c9 f0       	breq	.+50     	; 0x1316 <_ZN21GsmCommunicationClass17handleReceivedSmsEv+0x46>
-		isolateSmsSenderPhoneNr();
-    12e4:	ce 01       	movw	r24, r28
-    12e6:	0e 94 05 09 	call	0x120a	; 0x120a <_ZN21GsmCommunicationClass23isolateSmsSenderPhoneNrEv>
-		if(checkAuthorzation(&smsSenderNr[0]) == 1){
-    12ea:	be 01       	movw	r22, r28
-    12ec:	69 5f       	subi	r22, 0xF9	; 249
-    12ee:	7e 4f       	sbci	r23, 0xFE	; 254
-    12f0:	ce 01       	movw	r24, r28
-    12f2:	0e 94 f4 08 	call	0x11e8	; 0x11e8 <_ZN21GsmCommunicationClass17checkAuthorzationEPc>
-    12f6:	01 97       	sbiw	r24, 0x01	; 1
-    12f8:	71 f4       	brne	.+28     	; 0x1316 <_ZN21GsmCommunicationClass17handleReceivedSmsEv+0x46>
-    12fa:	e0 91 2e 02 	lds	r30, 0x022E	; 0x80022e <__data_end>
-    12fe:	f0 91 2f 02 	lds	r31, 0x022F	; 0x80022f <__data_end+0x1>
-    1302:	02 80       	ldd	r0, Z+2	; 0x02
-    1304:	f3 81       	ldd	r31, Z+3	; 0x03
-    1306:	e0 2d       	mov	r30, r0
-    1308:	48 e1       	ldi	r20, 0x18	; 24
-    130a:	50 e0       	ldi	r21, 0x00	; 0
-    130c:	68 e6       	ldi	r22, 0x68	; 104
-    130e:	71 e0       	ldi	r23, 0x01	; 1
-    1310:	8e e2       	ldi	r24, 0x2E	; 46
-    1312:	92 e0       	ldi	r25, 0x02	; 2
-    1314:	09 95       	icall
-			Serial.write("SMS sender AUTHORIZED !\n");
-		}
-	}
-}
-    1316:	df 91       	pop	r29
-    1318:	cf 91       	pop	r28
-    131a:	08 95       	ret
-
-0000131c <_ZN21GsmCommunicationClass12setUpSmsModeEv>:
-	Serial.write("SMS sender: ");
-	displayString(smsSenderNr);
-	Serial.write("\n\n");
-}
 
 void GsmCommunicationClass::setUpSmsMode(){
-    131c:	0f 93       	push	r16
-    131e:	1f 93       	push	r17
-    1320:	cf 93       	push	r28
-    1322:	df 93       	push	r29
-    1324:	ec 01       	movw	r28, r24
+    1202:	0f 93       	push	r16
+    1204:	1f 93       	push	r17
+    1206:	cf 93       	push	r28
+    1208:	df 93       	push	r29
+    120a:	ec 01       	movw	r28, r24
 	GsmSerial->println("AT+CMGF=1");	// Configure TEXT mode
-    1326:	61 e8       	ldi	r22, 0x81	; 129
-    1328:	71 e0       	ldi	r23, 0x01	; 1
-    132a:	88 81       	ld	r24, Y
-    132c:	99 81       	ldd	r25, Y+1	; 0x01
-    132e:	0e 94 31 03 	call	0x662	; 0x662 <_ZN5Print7printlnEPKc>
+    120c:	65 e5       	ldi	r22, 0x55	; 85
+    120e:	71 e0       	ldi	r23, 0x01	; 1
+    1210:	88 81       	ld	r24, Y
+    1212:	99 81       	ldd	r25, Y+1	; 0x01
+    1214:	0e 94 31 03 	call	0x662	; 0x662 <_ZN5Print7printlnEPKc>
 	readSerial();
-    1332:	ce 01       	movw	r24, r28
-    1334:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
+    1218:	ce 01       	movw	r24, r28
+    121a:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
 	
 	GsmSerial->println("AT+CNMI=1,2,0,0,0");	// define how newly arrived SMS Msg. should be handled
-    1338:	6b e8       	ldi	r22, 0x8B	; 139
-    133a:	71 e0       	ldi	r23, 0x01	; 1
-    133c:	88 81       	ld	r24, Y
-    133e:	99 81       	ldd	r25, Y+1	; 0x01
-    1340:	0e 94 31 03 	call	0x662	; 0x662 <_ZN5Print7printlnEPKc>
+    121e:	6f e5       	ldi	r22, 0x5F	; 95
+    1220:	71 e0       	ldi	r23, 0x01	; 1
+    1222:	88 81       	ld	r24, Y
+    1224:	99 81       	ldd	r25, Y+1	; 0x01
+    1226:	0e 94 31 03 	call	0x662	; 0x662 <_ZN5Print7printlnEPKc>
 	readSerial();
-    1344:	ce 01       	movw	r24, r28
-    1346:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
+    122a:	ce 01       	movw	r24, r28
+    122c:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
 	// check Answer
 	if(strstr(receiveBuffer, "OK") != NULL){ // check if configured
-    134a:	8e 01       	movw	r16, r28
-    134c:	0c 5f       	subi	r16, 0xFC	; 252
-    134e:	1f 4f       	sbci	r17, 0xFF	; 255
-    1350:	6d e9       	ldi	r22, 0x9D	; 157
-    1352:	71 e0       	ldi	r23, 0x01	; 1
-    1354:	c8 01       	movw	r24, r16
-    1356:	0e 94 1d 0b 	call	0x163a	; 0x163a <strstr>
-    135a:	89 2b       	or	r24, r25
-    135c:	b1 f0       	breq	.+44     	; 0x138a <_ZN21GsmCommunicationClass12setUpSmsModeEv+0x6e>
-    135e:	e0 91 2e 02 	lds	r30, 0x022E	; 0x80022e <__data_end>
-    1362:	f0 91 2f 02 	lds	r31, 0x022F	; 0x80022f <__data_end+0x1>
-    1366:	02 80       	ldd	r0, Z+2	; 0x02
-    1368:	f3 81       	ldd	r31, Z+3	; 0x03
-    136a:	e0 2d       	mov	r30, r0
-    136c:	48 e1       	ldi	r20, 0x18	; 24
-    136e:	50 e0       	ldi	r21, 0x00	; 0
-    1370:	60 ea       	ldi	r22, 0xA0	; 160
-    1372:	71 e0       	ldi	r23, 0x01	; 1
-    1374:	8e e2       	ldi	r24, 0x2E	; 46
-    1376:	92 e0       	ldi	r25, 0x02	; 2
-    1378:	09 95       	icall
+    1230:	8e 01       	movw	r16, r28
+    1232:	0c 5f       	subi	r16, 0xFC	; 252
+    1234:	1f 4f       	sbci	r17, 0xFF	; 255
+    1236:	61 e7       	ldi	r22, 0x71	; 113
+    1238:	71 e0       	ldi	r23, 0x01	; 1
+    123a:	c8 01       	movw	r24, r16
+    123c:	0e 94 68 0b 	call	0x16d0	; 0x16d0 <strstr>
+    1240:	89 2b       	or	r24, r25
+    1242:	b1 f0       	breq	.+44     	; 0x1270 <_ZN21GsmCommunicationClass12setUpSmsModeEv+0x6e>
+    1244:	e0 91 4c 02 	lds	r30, 0x024C	; 0x80024c <__data_end>
+    1248:	f0 91 4d 02 	lds	r31, 0x024D	; 0x80024d <__data_end+0x1>
+    124c:	02 80       	ldd	r0, Z+2	; 0x02
+    124e:	f3 81       	ldd	r31, Z+3	; 0x03
+    1250:	e0 2d       	mov	r30, r0
+    1252:	48 e1       	ldi	r20, 0x18	; 24
+    1254:	50 e0       	ldi	r21, 0x00	; 0
+    1256:	64 e7       	ldi	r22, 0x74	; 116
+    1258:	71 e0       	ldi	r23, 0x01	; 1
+    125a:	8c e4       	ldi	r24, 0x4C	; 76
+    125c:	92 e0       	ldi	r25, 0x02	; 2
+    125e:	09 95       	icall
 		Serial.write("SMS Mode is configured\n\n");
 		gsmIsConnectedOld = gsmIsConnected;
-    137a:	fe 01       	movw	r30, r28
-    137c:	eb 5f       	subi	r30, 0xFB	; 251
-    137e:	fe 4f       	sbci	r31, 0xFE	; 254
-    1380:	cc 5f       	subi	r28, 0xFC	; 252
-    1382:	de 4f       	sbci	r29, 0xFE	; 254
-    1384:	88 81       	ld	r24, Y
-    1386:	80 83       	st	Z, r24
-    1388:	24 c0       	rjmp	.+72     	; 0x13d2 <_ZN21GsmCommunicationClass12setUpSmsModeEv+0xb6>
+    1260:	fe 01       	movw	r30, r28
+    1262:	eb 5f       	subi	r30, 0xFB	; 251
+    1264:	fe 4f       	sbci	r31, 0xFE	; 254
+    1266:	cc 5f       	subi	r28, 0xFC	; 252
+    1268:	de 4f       	sbci	r29, 0xFE	; 254
+    126a:	88 81       	ld	r24, Y
+    126c:	80 83       	st	Z, r24
+    126e:	24 c0       	rjmp	.+72     	; 0x12b8 <_ZN21GsmCommunicationClass12setUpSmsModeEv+0xb6>
 	}else if(strstr(receiveBuffer, "ERROR")){
-    138a:	69 eb       	ldi	r22, 0xB9	; 185
-    138c:	71 e0       	ldi	r23, 0x01	; 1
-    138e:	c8 01       	movw	r24, r16
-    1390:	0e 94 1d 0b 	call	0x163a	; 0x163a <strstr>
-    1394:	89 2b       	or	r24, r25
-    1396:	79 f0       	breq	.+30     	; 0x13b6 <_ZN21GsmCommunicationClass12setUpSmsModeEv+0x9a>
-    1398:	e0 91 2e 02 	lds	r30, 0x022E	; 0x80022e <__data_end>
-    139c:	f0 91 2f 02 	lds	r31, 0x022F	; 0x80022f <__data_end+0x1>
-    13a0:	02 80       	ldd	r0, Z+2	; 0x02
-    13a2:	f3 81       	ldd	r31, Z+3	; 0x03
-    13a4:	e0 2d       	mov	r30, r0
-    13a6:	40 e2       	ldi	r20, 0x20	; 32
-    13a8:	50 e0       	ldi	r21, 0x00	; 0
-    13aa:	6f eb       	ldi	r22, 0xBF	; 191
-    13ac:	71 e0       	ldi	r23, 0x01	; 1
-    13ae:	8e e2       	ldi	r24, 0x2E	; 46
-    13b0:	92 e0       	ldi	r25, 0x02	; 2
-    13b2:	09 95       	icall
-    13b4:	0e c0       	rjmp	.+28     	; 0x13d2 <_ZN21GsmCommunicationClass12setUpSmsModeEv+0xb6>
-    13b6:	e0 91 2e 02 	lds	r30, 0x022E	; 0x80022e <__data_end>
-    13ba:	f0 91 2f 02 	lds	r31, 0x022F	; 0x80022f <__data_end+0x1>
-    13be:	02 80       	ldd	r0, Z+2	; 0x02
-    13c0:	f3 81       	ldd	r31, Z+3	; 0x03
-    13c2:	e0 2d       	mov	r30, r0
-    13c4:	41 e2       	ldi	r20, 0x21	; 33
-    13c6:	50 e0       	ldi	r21, 0x00	; 0
-    13c8:	60 ee       	ldi	r22, 0xE0	; 224
-    13ca:	71 e0       	ldi	r23, 0x01	; 1
-    13cc:	8e e2       	ldi	r24, 0x2E	; 46
-    13ce:	92 e0       	ldi	r25, 0x02	; 2
-    13d0:	09 95       	icall
+    1270:	6d e8       	ldi	r22, 0x8D	; 141
+    1272:	71 e0       	ldi	r23, 0x01	; 1
+    1274:	c8 01       	movw	r24, r16
+    1276:	0e 94 68 0b 	call	0x16d0	; 0x16d0 <strstr>
+    127a:	89 2b       	or	r24, r25
+    127c:	79 f0       	breq	.+30     	; 0x129c <_ZN21GsmCommunicationClass12setUpSmsModeEv+0x9a>
+    127e:	e0 91 4c 02 	lds	r30, 0x024C	; 0x80024c <__data_end>
+    1282:	f0 91 4d 02 	lds	r31, 0x024D	; 0x80024d <__data_end+0x1>
+    1286:	02 80       	ldd	r0, Z+2	; 0x02
+    1288:	f3 81       	ldd	r31, Z+3	; 0x03
+    128a:	e0 2d       	mov	r30, r0
+    128c:	40 e2       	ldi	r20, 0x20	; 32
+    128e:	50 e0       	ldi	r21, 0x00	; 0
+    1290:	63 e9       	ldi	r22, 0x93	; 147
+    1292:	71 e0       	ldi	r23, 0x01	; 1
+    1294:	8c e4       	ldi	r24, 0x4C	; 76
+    1296:	92 e0       	ldi	r25, 0x02	; 2
+    1298:	09 95       	icall
+    129a:	0e c0       	rjmp	.+28     	; 0x12b8 <_ZN21GsmCommunicationClass12setUpSmsModeEv+0xb6>
+    129c:	e0 91 4c 02 	lds	r30, 0x024C	; 0x80024c <__data_end>
+    12a0:	f0 91 4d 02 	lds	r31, 0x024D	; 0x80024d <__data_end+0x1>
+    12a4:	02 80       	ldd	r0, Z+2	; 0x02
+    12a6:	f3 81       	ldd	r31, Z+3	; 0x03
+    12a8:	e0 2d       	mov	r30, r0
+    12aa:	41 e2       	ldi	r20, 0x21	; 33
+    12ac:	50 e0       	ldi	r21, 0x00	; 0
+    12ae:	64 eb       	ldi	r22, 0xB4	; 180
+    12b0:	71 e0       	ldi	r23, 0x01	; 1
+    12b2:	8c e4       	ldi	r24, 0x4C	; 76
+    12b4:	92 e0       	ldi	r25, 0x02	; 2
+    12b6:	09 95       	icall
 		Serial.write("ERROR in SMS mode configuration\n");
 	}else{
 		Serial.write("No response in SMS configuration\n");
 	}
 }
-    13d2:	df 91       	pop	r29
-    13d4:	cf 91       	pop	r28
-    13d6:	1f 91       	pop	r17
-    13d8:	0f 91       	pop	r16
-    13da:	08 95       	ret
+    12b8:	df 91       	pop	r29
+    12ba:	cf 91       	pop	r28
+    12bc:	1f 91       	pop	r17
+    12be:	0f 91       	pop	r16
+    12c0:	08 95       	ret
 
-000013dc <_ZN21GsmCommunicationClass15checkConnectionEv>:
+000012c2 <_ZN21GsmCommunicationClass15checkConnectionEv>:
 /*                                                                           */
 /*  History     : 23.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
 void GsmCommunicationClass::checkConnection()
 {	
-    13dc:	0f 93       	push	r16
-    13de:	1f 93       	push	r17
-    13e0:	cf 93       	push	r28
-    13e2:	df 93       	push	r29
+    12c2:	0f 93       	push	r16
+    12c4:	1f 93       	push	r17
+    12c6:	cf 93       	push	r28
+    12c8:	df 93       	push	r29
 	if(checkConnectionTime > 10){	// check connection loop rate
-    13e4:	dc 01       	movw	r26, r24
-    13e6:	12 96       	adiw	r26, 0x02	; 2
-    13e8:	2d 91       	ld	r18, X+
-    13ea:	3c 91       	ld	r19, X
-    13ec:	13 97       	sbiw	r26, 0x03	; 3
-    13ee:	2b 30       	cpi	r18, 0x0B	; 11
-    13f0:	31 05       	cpc	r19, r1
-    13f2:	0c f4       	brge	.+2      	; 0x13f6 <_ZN21GsmCommunicationClass15checkConnectionEv+0x1a>
-    13f4:	4c c0       	rjmp	.+152    	; 0x148e <_ZN21GsmCommunicationClass15checkConnectionEv+0xb2>
-    13f6:	ec 01       	movw	r28, r24
+    12ca:	dc 01       	movw	r26, r24
+    12cc:	12 96       	adiw	r26, 0x02	; 2
+    12ce:	2d 91       	ld	r18, X+
+    12d0:	3c 91       	ld	r19, X
+    12d2:	13 97       	sbiw	r26, 0x03	; 3
+    12d4:	2b 30       	cpi	r18, 0x0B	; 11
+    12d6:	31 05       	cpc	r19, r1
+    12d8:	0c f4       	brge	.+2      	; 0x12dc <_ZN21GsmCommunicationClass15checkConnectionEv+0x1a>
+    12da:	4c c0       	rjmp	.+152    	; 0x1374 <_ZN21GsmCommunicationClass15checkConnectionEv+0xb2>
+    12dc:	ec 01       	movw	r28, r24
 		checkConnectionTime = 0;
-    13f8:	1b 82       	std	Y+3, r1	; 0x03
-    13fa:	1a 82       	std	Y+2, r1	; 0x02
+    12de:	1b 82       	std	Y+3, r1	; 0x03
+    12e0:	1a 82       	std	Y+2, r1	; 0x02
 	if (GsmSerial->available()==0){
-    13fc:	88 81       	ld	r24, Y
-    13fe:	99 81       	ldd	r25, Y+1	; 0x01
-    1400:	dc 01       	movw	r26, r24
-    1402:	ed 91       	ld	r30, X+
-    1404:	fc 91       	ld	r31, X
-    1406:	00 84       	ldd	r0, Z+8	; 0x08
-    1408:	f1 85       	ldd	r31, Z+9	; 0x09
-    140a:	e0 2d       	mov	r30, r0
-    140c:	09 95       	icall
-    140e:	89 2b       	or	r24, r25
-    1410:	31 f4       	brne	.+12     	; 0x141e <_ZN21GsmCommunicationClass15checkConnectionEv+0x42>
+    12e2:	88 81       	ld	r24, Y
+    12e4:	99 81       	ldd	r25, Y+1	; 0x01
+    12e6:	dc 01       	movw	r26, r24
+    12e8:	ed 91       	ld	r30, X+
+    12ea:	fc 91       	ld	r31, X
+    12ec:	00 84       	ldd	r0, Z+8	; 0x08
+    12ee:	f1 85       	ldd	r31, Z+9	; 0x09
+    12f0:	e0 2d       	mov	r30, r0
+    12f2:	09 95       	icall
+    12f4:	89 2b       	or	r24, r25
+    12f6:	31 f4       	brne	.+12     	; 0x1304 <_ZN21GsmCommunicationClass15checkConnectionEv+0x42>
 		GsmSerial->println("AT+CREG?");		// ask if connected to cellular Network
-    1412:	62 e0       	ldi	r22, 0x02	; 2
-    1414:	72 e0       	ldi	r23, 0x02	; 2
-    1416:	88 81       	ld	r24, Y
-    1418:	99 81       	ldd	r25, Y+1	; 0x01
-    141a:	0e 94 31 03 	call	0x662	; 0x662 <_ZN5Print7printlnEPKc>
+    12f8:	66 ed       	ldi	r22, 0xD6	; 214
+    12fa:	71 e0       	ldi	r23, 0x01	; 1
+    12fc:	88 81       	ld	r24, Y
+    12fe:	99 81       	ldd	r25, Y+1	; 0x01
+    1300:	0e 94 31 03 	call	0x662	; 0x662 <_ZN5Print7printlnEPKc>
 	}
 	readSerial();		// read Answer
-    141e:	ce 01       	movw	r24, r28
-    1420:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
+    1304:	ce 01       	movw	r24, r28
+    1306:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
 	
 	if(strstr(receiveBuffer, "+CREG: 0,1") != NULL){ // check if connection was successful
-    1424:	6b e0       	ldi	r22, 0x0B	; 11
-    1426:	72 e0       	ldi	r23, 0x02	; 2
-    1428:	ce 01       	movw	r24, r28
-    142a:	04 96       	adiw	r24, 0x04	; 4
-    142c:	0e 94 1d 0b 	call	0x163a	; 0x163a <strstr>
-    1430:	89 2b       	or	r24, r25
-    1432:	49 f1       	breq	.+82     	; 0x1486 <_ZN21GsmCommunicationClass15checkConnectionEv+0xaa>
+    130a:	6f ed       	ldi	r22, 0xDF	; 223
+    130c:	71 e0       	ldi	r23, 0x01	; 1
+    130e:	ce 01       	movw	r24, r28
+    1310:	04 96       	adiw	r24, 0x04	; 4
+    1312:	0e 94 68 0b 	call	0x16d0	; 0x16d0 <strstr>
+    1316:	89 2b       	or	r24, r25
+    1318:	49 f1       	breq	.+82     	; 0x136c <_ZN21GsmCommunicationClass15checkConnectionEv+0xaa>
 		gsmIsConnected = true;
-    1434:	81 e0       	ldi	r24, 0x01	; 1
-    1436:	8e 01       	movw	r16, r28
-    1438:	0c 5f       	subi	r16, 0xFC	; 252
-    143a:	1e 4f       	sbci	r17, 0xFE	; 254
-    143c:	f8 01       	movw	r30, r16
-    143e:	80 83       	st	Z, r24
-    1440:	e0 91 2e 02 	lds	r30, 0x022E	; 0x80022e <__data_end>
-    1444:	f0 91 2f 02 	lds	r31, 0x022F	; 0x80022f <__data_end+0x1>
-    1448:	02 80       	ldd	r0, Z+2	; 0x02
-    144a:	f3 81       	ldd	r31, Z+3	; 0x03
-    144c:	e0 2d       	mov	r30, r0
-    144e:	40 e1       	ldi	r20, 0x10	; 16
-    1450:	50 e0       	ldi	r21, 0x00	; 0
-    1452:	66 e1       	ldi	r22, 0x16	; 22
-    1454:	72 e0       	ldi	r23, 0x02	; 2
-    1456:	8e e2       	ldi	r24, 0x2E	; 46
-    1458:	92 e0       	ldi	r25, 0x02	; 2
-    145a:	09 95       	icall
+    131a:	81 e0       	ldi	r24, 0x01	; 1
+    131c:	8e 01       	movw	r16, r28
+    131e:	0c 5f       	subi	r16, 0xFC	; 252
+    1320:	1e 4f       	sbci	r17, 0xFE	; 254
+    1322:	f8 01       	movw	r30, r16
+    1324:	80 83       	st	Z, r24
+    1326:	e0 91 4c 02 	lds	r30, 0x024C	; 0x80024c <__data_end>
+    132a:	f0 91 4d 02 	lds	r31, 0x024D	; 0x80024d <__data_end+0x1>
+    132e:	02 80       	ldd	r0, Z+2	; 0x02
+    1330:	f3 81       	ldd	r31, Z+3	; 0x03
+    1332:	e0 2d       	mov	r30, r0
+    1334:	40 e1       	ldi	r20, 0x10	; 16
+    1336:	50 e0       	ldi	r21, 0x00	; 0
+    1338:	6a ee       	ldi	r22, 0xEA	; 234
+    133a:	71 e0       	ldi	r23, 0x01	; 1
+    133c:	8c e4       	ldi	r24, 0x4C	; 76
+    133e:	92 e0       	ldi	r25, 0x02	; 2
+    1340:	09 95       	icall
 		Serial.write("GSM Connected\n\n\n");
 		if(gsmIsConnected == true && gsmIsConnectedOld == false){
-    145c:	d8 01       	movw	r26, r16
-    145e:	8c 91       	ld	r24, X
-    1460:	88 23       	and	r24, r24
-    1462:	49 f0       	breq	.+18     	; 0x1476 <_ZN21GsmCommunicationClass15checkConnectionEv+0x9a>
-    1464:	fe 01       	movw	r30, r28
-    1466:	eb 5f       	subi	r30, 0xFB	; 251
-    1468:	fe 4f       	sbci	r31, 0xFE	; 254
-    146a:	80 81       	ld	r24, Z
-    146c:	81 11       	cpse	r24, r1
-    146e:	03 c0       	rjmp	.+6      	; 0x1476 <_ZN21GsmCommunicationClass15checkConnectionEv+0x9a>
+    1342:	d8 01       	movw	r26, r16
+    1344:	8c 91       	ld	r24, X
+    1346:	88 23       	and	r24, r24
+    1348:	49 f0       	breq	.+18     	; 0x135c <_ZN21GsmCommunicationClass15checkConnectionEv+0x9a>
+    134a:	fe 01       	movw	r30, r28
+    134c:	eb 5f       	subi	r30, 0xFB	; 251
+    134e:	fe 4f       	sbci	r31, 0xFE	; 254
+    1350:	80 81       	ld	r24, Z
+    1352:	81 11       	cpse	r24, r1
+    1354:	03 c0       	rjmp	.+6      	; 0x135c <_ZN21GsmCommunicationClass15checkConnectionEv+0x9a>
 			setUpSmsMode();		// set up Sms Mode if connected
-    1470:	ce 01       	movw	r24, r28
-    1472:	0e 94 8e 09 	call	0x131c	; 0x131c <_ZN21GsmCommunicationClass12setUpSmsModeEv>
+    1356:	ce 01       	movw	r24, r28
+    1358:	0e 94 01 09 	call	0x1202	; 0x1202 <_ZN21GsmCommunicationClass12setUpSmsModeEv>
 		}
 		gsmIsConnectedOld = gsmIsConnected;
-    1476:	fe 01       	movw	r30, r28
-    1478:	eb 5f       	subi	r30, 0xFB	; 251
-    147a:	fe 4f       	sbci	r31, 0xFE	; 254
-    147c:	cc 5f       	subi	r28, 0xFC	; 252
-    147e:	de 4f       	sbci	r29, 0xFE	; 254
-    1480:	88 81       	ld	r24, Y
-    1482:	80 83       	st	Z, r24
-    1484:	09 c0       	rjmp	.+18     	; 0x1498 <_ZN21GsmCommunicationClass15checkConnectionEv+0xbc>
+    135c:	fe 01       	movw	r30, r28
+    135e:	eb 5f       	subi	r30, 0xFB	; 251
+    1360:	fe 4f       	sbci	r31, 0xFE	; 254
+    1362:	cc 5f       	subi	r28, 0xFC	; 252
+    1364:	de 4f       	sbci	r29, 0xFE	; 254
+    1366:	88 81       	ld	r24, Y
+    1368:	80 83       	st	Z, r24
+    136a:	09 c0       	rjmp	.+18     	; 0x137e <_ZN21GsmCommunicationClass15checkConnectionEv+0xbc>
 		}else{
 		gsmIsConnected = false;
-    1486:	cc 5f       	subi	r28, 0xFC	; 252
-    1488:	de 4f       	sbci	r29, 0xFE	; 254
-    148a:	18 82       	st	Y, r1
-    148c:	05 c0       	rjmp	.+10     	; 0x1498 <_ZN21GsmCommunicationClass15checkConnectionEv+0xbc>
+    136c:	cc 5f       	subi	r28, 0xFC	; 252
+    136e:	de 4f       	sbci	r29, 0xFE	; 254
+    1370:	18 82       	st	Y, r1
+    1372:	05 c0       	rjmp	.+10     	; 0x137e <_ZN21GsmCommunicationClass15checkConnectionEv+0xbc>
 	}
 	}else{
 		checkConnectionTime++;
-    148e:	2f 5f       	subi	r18, 0xFF	; 255
-    1490:	3f 4f       	sbci	r19, 0xFF	; 255
-    1492:	fc 01       	movw	r30, r24
-    1494:	33 83       	std	Z+3, r19	; 0x03
-    1496:	22 83       	std	Z+2, r18	; 0x02
+    1374:	2f 5f       	subi	r18, 0xFF	; 255
+    1376:	3f 4f       	sbci	r19, 0xFF	; 255
+    1378:	fc 01       	movw	r30, r24
+    137a:	33 83       	std	Z+3, r19	; 0x03
+    137c:	22 83       	std	Z+2, r18	; 0x02
 	}
 }
-    1498:	df 91       	pop	r29
-    149a:	cf 91       	pop	r28
-    149c:	1f 91       	pop	r17
-    149e:	0f 91       	pop	r16
-    14a0:	08 95       	ret
+    137e:	df 91       	pop	r29
+    1380:	cf 91       	pop	r28
+    1382:	1f 91       	pop	r17
+    1384:	0f 91       	pop	r16
+    1386:	08 95       	ret
 
-000014a2 <_ZN15LedManagerClassC1Eh>:
+00001388 <_ZN15LedManagerClassC1Eh>:
 		   ShadowLedRegister  &= ~Mask; 
 	   }
 	   
 	   *LedBase = ShadowLedRegister;
 	}
    }
-    14a2:	dc 01       	movw	r26, r24
-    14a4:	11 96       	adiw	r26, 0x01	; 1
-    14a6:	1c 92       	st	X, r1
-    14a8:	1e 92       	st	-X, r1
-    14aa:	e6 2f       	mov	r30, r22
-    14ac:	f0 e0       	ldi	r31, 0x00	; 0
-    14ae:	13 96       	adiw	r26, 0x03	; 3
-    14b0:	fc 93       	st	X, r31
-    14b2:	ee 93       	st	-X, r30
-    14b4:	12 97       	sbiw	r26, 0x02	; 2
-    14b6:	10 82       	st	Z, r1
-    14b8:	14 96       	adiw	r26, 0x04	; 4
-    14ba:	1d 92       	st	X+, r1
-    14bc:	1d 92       	st	X+, r1
-    14be:	1d 92       	st	X+, r1
-    14c0:	1c 92       	st	X, r1
-    14c2:	17 97       	sbiw	r26, 0x07	; 7
-    14c4:	20 9a       	sbi	0x04, 0	; 4
-    14c6:	28 98       	cbi	0x05, 0	; 5
-    14c8:	08 95       	ret
+    1388:	dc 01       	movw	r26, r24
+    138a:	11 96       	adiw	r26, 0x01	; 1
+    138c:	1c 92       	st	X, r1
+    138e:	1e 92       	st	-X, r1
+    1390:	e6 2f       	mov	r30, r22
+    1392:	f0 e0       	ldi	r31, 0x00	; 0
+    1394:	13 96       	adiw	r26, 0x03	; 3
+    1396:	fc 93       	st	X, r31
+    1398:	ee 93       	st	-X, r30
+    139a:	12 97       	sbiw	r26, 0x02	; 2
+    139c:	10 82       	st	Z, r1
+    139e:	14 96       	adiw	r26, 0x04	; 4
+    13a0:	1d 92       	st	X+, r1
+    13a2:	1d 92       	st	X+, r1
+    13a4:	1d 92       	st	X+, r1
+    13a6:	1c 92       	st	X, r1
+    13a8:	17 97       	sbiw	r26, 0x07	; 7
+    13aa:	20 9a       	sbi	0x04, 0	; 4
+    13ac:	28 98       	cbi	0x05, 0	; 5
+    13ae:	08 95       	ret
 
-000014ca <_ZN15LedManagerClass9ToggleLedEi>:
+000013b0 <_ZN15LedManagerClass9ToggleLedEi>:
 
 void LedManagerClass::ToggleLed(int LedNumber)
 {
-    14ca:	fc 01       	movw	r30, r24
-	if(toggleTime > 5){
-    14cc:	80 81       	ld	r24, Z
-    14ce:	91 81       	ldd	r25, Z+1	; 0x01
-    14d0:	86 30       	cpi	r24, 0x06	; 6
-    14d2:	91 05       	cpc	r25, r1
-    14d4:	0c f1       	brlt	.+66     	; 0x1518 <_ZN15LedManagerClass9ToggleLedEi+0x4e>
+    13b0:	fc 01       	movw	r30, r24
+	if(toggleTime > 1){
+    13b2:	80 81       	ld	r24, Z
+    13b4:	91 81       	ldd	r25, Z+1	; 0x01
+    13b6:	82 30       	cpi	r24, 0x02	; 2
+    13b8:	91 05       	cpc	r25, r1
+    13ba:	0c f1       	brlt	.+66     	; 0x13fe <_ZN15LedManagerClass9ToggleLedEi+0x4e>
 		toggleTime = 0;
-    14d6:	11 82       	std	Z+1, r1	; 0x01
-    14d8:	10 82       	st	Z, r1
+    13bc:	11 82       	std	Z+1, r1	; 0x01
+    13be:	10 82       	st	Z, r1
 	if ((LedNumber >= 0) && (LedNumber <= MAX_LED-1)) {
-    14da:	68 30       	cpi	r22, 0x08	; 8
-    14dc:	71 05       	cpc	r23, r1
-    14de:	f8 f4       	brcc	.+62     	; 0x151e <_ZN15LedManagerClass9ToggleLedEi+0x54>
+    13c0:	68 30       	cpi	r22, 0x08	; 8
+    13c2:	71 05       	cpc	r23, r1
+    13c4:	f8 f4       	brcc	.+62     	; 0x1404 <_ZN15LedManagerClass9ToggleLedEi+0x54>
 
 	   /* Find correct bitposition */
 		unsigned long  Mask = 1 << (LedNumber);
 
 	   /* and clear or set bit according to State */
 		ShadowLedRegister ^= Mask;
-    14e0:	81 e0       	ldi	r24, 0x01	; 1
-    14e2:	90 e0       	ldi	r25, 0x00	; 0
-    14e4:	02 c0       	rjmp	.+4      	; 0x14ea <_ZN15LedManagerClass9ToggleLedEi+0x20>
-    14e6:	88 0f       	add	r24, r24
-    14e8:	99 1f       	adc	r25, r25
-    14ea:	6a 95       	dec	r22
-    14ec:	e2 f7       	brpl	.-8      	; 0x14e6 <_ZN15LedManagerClass9ToggleLedEi+0x1c>
-    14ee:	09 2e       	mov	r0, r25
-    14f0:	00 0c       	add	r0, r0
-    14f2:	aa 0b       	sbc	r26, r26
-    14f4:	bb 0b       	sbc	r27, r27
-    14f6:	44 81       	ldd	r20, Z+4	; 0x04
-    14f8:	55 81       	ldd	r21, Z+5	; 0x05
-    14fa:	66 81       	ldd	r22, Z+6	; 0x06
-    14fc:	77 81       	ldd	r23, Z+7	; 0x07
-    14fe:	84 27       	eor	r24, r20
-    1500:	95 27       	eor	r25, r21
-    1502:	a6 27       	eor	r26, r22
-    1504:	b7 27       	eor	r27, r23
-    1506:	84 83       	std	Z+4, r24	; 0x04
-    1508:	95 83       	std	Z+5, r25	; 0x05
-    150a:	a6 83       	std	Z+6, r26	; 0x06
-    150c:	b7 83       	std	Z+7, r27	; 0x07
+    13c6:	81 e0       	ldi	r24, 0x01	; 1
+    13c8:	90 e0       	ldi	r25, 0x00	; 0
+    13ca:	02 c0       	rjmp	.+4      	; 0x13d0 <_ZN15LedManagerClass9ToggleLedEi+0x20>
+    13cc:	88 0f       	add	r24, r24
+    13ce:	99 1f       	adc	r25, r25
+    13d0:	6a 95       	dec	r22
+    13d2:	e2 f7       	brpl	.-8      	; 0x13cc <_ZN15LedManagerClass9ToggleLedEi+0x1c>
+    13d4:	09 2e       	mov	r0, r25
+    13d6:	00 0c       	add	r0, r0
+    13d8:	aa 0b       	sbc	r26, r26
+    13da:	bb 0b       	sbc	r27, r27
+    13dc:	44 81       	ldd	r20, Z+4	; 0x04
+    13de:	55 81       	ldd	r21, Z+5	; 0x05
+    13e0:	66 81       	ldd	r22, Z+6	; 0x06
+    13e2:	77 81       	ldd	r23, Z+7	; 0x07
+    13e4:	84 27       	eor	r24, r20
+    13e6:	95 27       	eor	r25, r21
+    13e8:	a6 27       	eor	r26, r22
+    13ea:	b7 27       	eor	r27, r23
+    13ec:	84 83       	std	Z+4, r24	; 0x04
+    13ee:	95 83       	std	Z+5, r25	; 0x05
+    13f0:	a6 83       	std	Z+6, r26	; 0x06
+    13f2:	b7 83       	std	Z+7, r27	; 0x07
 	   
 	   *LedBase = ShadowLedRegister;
-    150e:	02 80       	ldd	r0, Z+2	; 0x02
-    1510:	f3 81       	ldd	r31, Z+3	; 0x03
-    1512:	e0 2d       	mov	r30, r0
-    1514:	80 83       	st	Z, r24
-    1516:	08 95       	ret
+    13f4:	02 80       	ldd	r0, Z+2	; 0x02
+    13f6:	f3 81       	ldd	r31, Z+3	; 0x03
+    13f8:	e0 2d       	mov	r30, r0
+    13fa:	80 83       	st	Z, r24
+    13fc:	08 95       	ret
 	}
 	}else{
 		toggleTime++;
-    1518:	01 96       	adiw	r24, 0x01	; 1
-    151a:	91 83       	std	Z+1, r25	; 0x01
-    151c:	80 83       	st	Z, r24
-    151e:	08 95       	ret
+    13fe:	01 96       	adiw	r24, 0x01	; 1
+    1400:	91 83       	std	Z+1, r25	; 0x01
+    1402:	80 83       	st	Z, r24
+    1404:	08 95       	ret
 
-00001520 <main_ArduinoLockOpener>:
+00001406 <main_ArduinoLockOpener>:
 
 
 
 
 // the loop function runs over and over again forever
 void main_ArduinoLockOpener() {
-    1520:	cf 93       	push	r28
-    1522:	df 93       	push	r29
-    1524:	cd b7       	in	r28, 0x3d	; 61
-    1526:	de b7       	in	r29, 0x3e	; 62
-    1528:	c2 54       	subi	r28, 0x42	; 66
-    152a:	d1 40       	sbci	r29, 0x01	; 1
-    152c:	0f b6       	in	r0, 0x3f	; 63
-    152e:	f8 94       	cli
-    1530:	de bf       	out	0x3e, r29	; 62
-    1532:	0f be       	out	0x3f, r0	; 63
-    1534:	cd bf       	out	0x3d, r28	; 61
+    1406:	cf 93       	push	r28
+    1408:	df 93       	push	r29
+    140a:	cd b7       	in	r28, 0x3d	; 61
+    140c:	de b7       	in	r29, 0x3e	; 62
+    140e:	c4 54       	subi	r28, 0x44	; 68
+    1410:	d2 40       	sbci	r29, 0x02	; 2
+    1412:	0f b6       	in	r0, 0x3f	; 63
+    1414:	f8 94       	cli
+    1416:	de bf       	out	0x3e, r29	; 62
+    1418:	0f be       	out	0x3f, r0	; 63
+    141a:	cd bf       	out	0x3d, r28	; 61
 	
 	SoftwareSerial GsmSerial(RX, TX); // RX TX
-    1536:	20 e0       	ldi	r18, 0x00	; 0
-    1538:	42 e0       	ldi	r20, 0x02	; 2
-    153a:	63 e0       	ldi	r22, 0x03	; 3
-    153c:	ce 01       	movw	r24, r28
-    153e:	01 96       	adiw	r24, 0x01	; 1
-    1540:	0e 94 9a 07 	call	0xf34	; 0xf34 <_ZN14SoftwareSerialC1Ehhb>
+    141c:	20 e0       	ldi	r18, 0x00	; 0
+    141e:	42 e0       	ldi	r20, 0x02	; 2
+    1420:	63 e0       	ldi	r22, 0x03	; 3
+    1422:	ce 01       	movw	r24, r28
+    1424:	01 96       	adiw	r24, 0x01	; 1
+    1426:	0e 94 9a 07 	call	0xf34	; 0xf34 <_ZN14SoftwareSerialC1Ehhb>
 	
 	GsmCommunicationClass GsmCommunication(&GsmSerial);
-    1544:	be 01       	movw	r22, r28
-    1546:	6f 5f       	subi	r22, 0xFF	; 255
-    1548:	7f 4f       	sbci	r23, 0xFF	; 255
-    154a:	ce 01       	movw	r24, r28
-    154c:	80 96       	adiw	r24, 0x20	; 32
-    154e:	0e 94 bb 08 	call	0x1176	; 0x1176 <_ZN21GsmCommunicationClassC1EP14SoftwareSerial>
+    142a:	be 01       	movw	r22, r28
+    142c:	6f 5f       	subi	r22, 0xFF	; 255
+    142e:	7f 4f       	sbci	r23, 0xFF	; 255
+    1430:	ce 01       	movw	r24, r28
+    1432:	80 96       	adiw	r24, 0x20	; 32
+    1434:	0e 94 bb 08 	call	0x1176	; 0x1176 <_ZN21GsmCommunicationClassC1EP14SoftwareSerial>
+	SmsHandlerClass SmsHandler(&GsmCommunication);
+    1438:	be 01       	movw	r22, r28
+    143a:	60 5e       	subi	r22, 0xE0	; 224
+    143c:	7f 4f       	sbci	r23, 0xFF	; 255
+    143e:	ce 01       	movw	r24, r28
+    1440:	89 5d       	subi	r24, 0xD9	; 217
+    1442:	9e 4f       	sbci	r25, 0xFE	; 254
+    1444:	0e 94 68 0a 	call	0x14d0	; 0x14d0 <_ZN15SmsHandlerClassC1EP21GsmCommunicationClass>
 	
     DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
-    1552:	80 e2       	ldi	r24, 0x20	; 32
-    1554:	84 b9       	out	0x04, r24	; 4
+    1448:	80 e2       	ldi	r24, 0x20	; 32
+    144a:	84 b9       	out	0x04, r24	; 4
 	LedManagerClass LedManager;
-    1556:	65 e2       	ldi	r22, 0x25	; 37
-    1558:	ce 01       	movw	r24, r28
-    155a:	85 5c       	subi	r24, 0xC5	; 197
-    155c:	9e 4f       	sbci	r25, 0xFE	; 254
-    155e:	0e 94 51 0a 	call	0x14a2	; 0x14a2 <_ZN15LedManagerClassC1Eh>
+    144c:	65 e2       	ldi	r22, 0x25	; 37
+    144e:	ce 01       	movw	r24, r28
+    1450:	83 5c       	subi	r24, 0xC3	; 195
+    1452:	9d 4f       	sbci	r25, 0xFD	; 253
+    1454:	0e 94 c4 09 	call	0x1388	; 0x1388 <_ZN15LedManagerClassC1Eh>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-    1562:	2f ef       	ldi	r18, 0xFF	; 255
-    1564:	83 ed       	ldi	r24, 0xD3	; 211
-    1566:	90 e3       	ldi	r25, 0x30	; 48
-    1568:	21 50       	subi	r18, 0x01	; 1
-    156a:	80 40       	sbci	r24, 0x00	; 0
-    156c:	90 40       	sbci	r25, 0x00	; 0
-    156e:	e1 f7       	brne	.-8      	; 0x1568 <main_ArduinoLockOpener+0x48>
-    1570:	00 c0       	rjmp	.+0      	; 0x1572 <main_ArduinoLockOpener+0x52>
-    1572:	00 00       	nop
-    1574:	e0 91 2e 02 	lds	r30, 0x022E	; 0x80022e <__data_end>
-    1578:	f0 91 2f 02 	lds	r31, 0x022F	; 0x80022f <__data_end+0x1>
-    157c:	02 80       	ldd	r0, Z+2	; 0x02
-    157e:	f3 81       	ldd	r31, Z+3	; 0x03
-    1580:	e0 2d       	mov	r30, r0
-    1582:	46 e0       	ldi	r20, 0x06	; 6
-    1584:	50 e0       	ldi	r21, 0x00	; 0
-    1586:	67 e2       	ldi	r22, 0x27	; 39
-    1588:	72 e0       	ldi	r23, 0x02	; 2
-    158a:	8e e2       	ldi	r24, 0x2E	; 46
-    158c:	92 e0       	ldi	r25, 0x02	; 2
-    158e:	09 95       	icall
-    1590:	2f ef       	ldi	r18, 0xFF	; 255
-    1592:	83 ed       	ldi	r24, 0xD3	; 211
-    1594:	90 e3       	ldi	r25, 0x30	; 48
-    1596:	21 50       	subi	r18, 0x01	; 1
-    1598:	80 40       	sbci	r24, 0x00	; 0
-    159a:	90 40       	sbci	r25, 0x00	; 0
-    159c:	e1 f7       	brne	.-8      	; 0x1596 <main_ArduinoLockOpener+0x76>
-    159e:	00 c0       	rjmp	.+0      	; 0x15a0 <main_ArduinoLockOpener+0x80>
-    15a0:	00 00       	nop
+    1458:	2f ef       	ldi	r18, 0xFF	; 255
+    145a:	83 ed       	ldi	r24, 0xD3	; 211
+    145c:	90 e3       	ldi	r25, 0x30	; 48
+    145e:	21 50       	subi	r18, 0x01	; 1
+    1460:	80 40       	sbci	r24, 0x00	; 0
+    1462:	90 40       	sbci	r25, 0x00	; 0
+    1464:	e1 f7       	brne	.-8      	; 0x145e <main_ArduinoLockOpener+0x58>
+    1466:	00 c0       	rjmp	.+0      	; 0x1468 <main_ArduinoLockOpener+0x62>
+    1468:	00 00       	nop
+    146a:	e0 91 4c 02 	lds	r30, 0x024C	; 0x80024c <__data_end>
+    146e:	f0 91 4d 02 	lds	r31, 0x024D	; 0x80024d <__data_end+0x1>
+    1472:	02 80       	ldd	r0, Z+2	; 0x02
+    1474:	f3 81       	ldd	r31, Z+3	; 0x03
+    1476:	e0 2d       	mov	r30, r0
+    1478:	46 e0       	ldi	r20, 0x06	; 6
+    147a:	50 e0       	ldi	r21, 0x00	; 0
+    147c:	6b ef       	ldi	r22, 0xFB	; 251
+    147e:	71 e0       	ldi	r23, 0x01	; 1
+    1480:	8c e4       	ldi	r24, 0x4C	; 76
+    1482:	92 e0       	ldi	r25, 0x02	; 2
+    1484:	09 95       	icall
+    1486:	2f ef       	ldi	r18, 0xFF	; 255
+    1488:	83 ed       	ldi	r24, 0xD3	; 211
+    148a:	90 e3       	ldi	r25, 0x30	; 48
+    148c:	21 50       	subi	r18, 0x01	; 1
+    148e:	80 40       	sbci	r24, 0x00	; 0
+    1490:	90 40       	sbci	r25, 0x00	; 0
+    1492:	e1 f7       	brne	.-8      	; 0x148c <main_ArduinoLockOpener+0x86>
+    1494:	00 c0       	rjmp	.+0      	; 0x1496 <main_ArduinoLockOpener+0x90>
+    1496:	00 00       	nop
 	Serial.write("Start\n");
 	_delay_ms(1000);
 	
 
     for(;;){
 		GsmCommunication.checkConnection();	
-    15a2:	ce 01       	movw	r24, r28
-    15a4:	80 96       	adiw	r24, 0x20	; 32
-    15a6:	0e 94 ee 09 	call	0x13dc	; 0x13dc <_ZN21GsmCommunicationClass15checkConnectionEv>
+    1498:	ce 01       	movw	r24, r28
+    149a:	80 96       	adiw	r24, 0x20	; 32
+    149c:	0e 94 61 09 	call	0x12c2	; 0x12c2 <_ZN21GsmCommunicationClass15checkConnectionEv>
 		GsmCommunication.readSerial();	
-    15aa:	ce 01       	movw	r24, r28
-    15ac:	80 96       	adiw	r24, 0x20	; 32
-    15ae:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
-		GsmCommunication.handleReceivedSms();
-    15b2:	ce 01       	movw	r24, r28
-    15b4:	80 96       	adiw	r24, 0x20	; 32
-    15b6:	0e 94 68 09 	call	0x12d0	; 0x12d0 <_ZN21GsmCommunicationClass17handleReceivedSmsEv>
+    14a0:	ce 01       	movw	r24, r28
+    14a2:	80 96       	adiw	r24, 0x20	; 32
+    14a4:	0e 94 72 08 	call	0x10e4	; 0x10e4 <_ZN21GsmCommunicationClass10readSerialEv>
+		SmsHandler.handleReceivedSms();
+    14a8:	ce 01       	movw	r24, r28
+    14aa:	89 5d       	subi	r24, 0xD9	; 217
+    14ac:	9e 4f       	sbci	r25, 0xFE	; 254
+    14ae:	0e 94 f3 0a 	call	0x15e6	; 0x15e6 <_ZN15SmsHandlerClass17handleReceivedSmsEv>
 	   
 	   public:
       PortClass(LedManagerClass *Parent, int LedNumber) : MyParent(Parent), MyLed(LedNumber) {};
       void On()    {MyParent->SetLed(MyLed, LedManagerClass::ON);};
       void Off()   {MyParent->SetLed(MyLed, LedManagerClass::OFF);};
       void Toggle(){MyParent->ToggleLed(MyLed);};
-    15ba:	60 e0       	ldi	r22, 0x00	; 0
-    15bc:	70 e0       	ldi	r23, 0x00	; 0
-    15be:	ce 01       	movw	r24, r28
-    15c0:	85 5c       	subi	r24, 0xC5	; 197
-    15c2:	9e 4f       	sbci	r25, 0xFE	; 254
-    15c4:	0e 94 65 0a 	call	0x14ca	; 0x14ca <_ZN15LedManagerClass9ToggleLedEi>
-    15c8:	65 e0       	ldi	r22, 0x05	; 5
-    15ca:	70 e0       	ldi	r23, 0x00	; 0
-    15cc:	ce 01       	movw	r24, r28
-    15ce:	85 5c       	subi	r24, 0xC5	; 197
-    15d0:	9e 4f       	sbci	r25, 0xFE	; 254
-    15d2:	0e 94 65 0a 	call	0x14ca	; 0x14ca <_ZN15LedManagerClass9ToggleLedEi>
-    15d6:	2f ef       	ldi	r18, 0xFF	; 255
-    15d8:	81 ee       	ldi	r24, 0xE1	; 225
-    15da:	94 e0       	ldi	r25, 0x04	; 4
-    15dc:	21 50       	subi	r18, 0x01	; 1
-    15de:	80 40       	sbci	r24, 0x00	; 0
-    15e0:	90 40       	sbci	r25, 0x00	; 0
-    15e2:	e1 f7       	brne	.-8      	; 0x15dc <main_ArduinoLockOpener+0xbc>
-    15e4:	00 c0       	rjmp	.+0      	; 0x15e6 <main_ArduinoLockOpener+0xc6>
-    15e6:	00 00       	nop
-    15e8:	dc cf       	rjmp	.-72     	; 0x15a2 <main_ArduinoLockOpener+0x82>
+    14b2:	60 e0       	ldi	r22, 0x00	; 0
+    14b4:	70 e0       	ldi	r23, 0x00	; 0
+    14b6:	ce 01       	movw	r24, r28
+    14b8:	83 5c       	subi	r24, 0xC3	; 195
+    14ba:	9d 4f       	sbci	r25, 0xFD	; 253
+    14bc:	0e 94 d8 09 	call	0x13b0	; 0x13b0 <_ZN15LedManagerClass9ToggleLedEi>
+    14c0:	65 e0       	ldi	r22, 0x05	; 5
+    14c2:	70 e0       	ldi	r23, 0x00	; 0
+    14c4:	ce 01       	movw	r24, r28
+    14c6:	83 5c       	subi	r24, 0xC3	; 195
+    14c8:	9d 4f       	sbci	r25, 0xFD	; 253
+    14ca:	0e 94 d8 09 	call	0x13b0	; 0x13b0 <_ZN15LedManagerClass9ToggleLedEi>
+    14ce:	e4 cf       	rjmp	.-56     	; 0x1498 <main_ArduinoLockOpener+0x92>
 
-000015ea <__udivmodsi4>:
-    15ea:	a1 e2       	ldi	r26, 0x21	; 33
-    15ec:	1a 2e       	mov	r1, r26
-    15ee:	aa 1b       	sub	r26, r26
-    15f0:	bb 1b       	sub	r27, r27
-    15f2:	fd 01       	movw	r30, r26
-    15f4:	0d c0       	rjmp	.+26     	; 0x1610 <__udivmodsi4_ep>
+000014d0 <_ZN15SmsHandlerClassC1EP21GsmCommunicationClass>:
+{
+	GsmCommunication = NewGsmCommunication;
+} //SmsHandlerClass
 
-000015f6 <__udivmodsi4_loop>:
-    15f6:	aa 1f       	adc	r26, r26
-    15f8:	bb 1f       	adc	r27, r27
-    15fa:	ee 1f       	adc	r30, r30
-    15fc:	ff 1f       	adc	r31, r31
-    15fe:	a2 17       	cp	r26, r18
-    1600:	b3 07       	cpc	r27, r19
-    1602:	e4 07       	cpc	r30, r20
-    1604:	f5 07       	cpc	r31, r21
-    1606:	20 f0       	brcs	.+8      	; 0x1610 <__udivmodsi4_ep>
-    1608:	a2 1b       	sub	r26, r18
-    160a:	b3 0b       	sbc	r27, r19
-    160c:	e4 0b       	sbc	r30, r20
-    160e:	f5 0b       	sbc	r31, r21
+// default destructor
+SmsHandlerClass::~SmsHandlerClass()
+    14d0:	fc 01       	movw	r30, r24
+    14d2:	32 96       	adiw	r30, 0x02	; 2
+    14d4:	24 e1       	ldi	r18, 0x14	; 20
+    14d6:	df 01       	movw	r26, r30
+    14d8:	1d 92       	st	X+, r1
+    14da:	2a 95       	dec	r18
+    14dc:	e9 f7       	brne	.-6      	; 0x14d8 <_ZN15SmsHandlerClassC1EP21GsmCommunicationClass+0x8>
+    14de:	74 96       	adiw	r30, 0x14	; 20
+    14e0:	20 e0       	ldi	r18, 0x00	; 0
+    14e2:	31 e0       	ldi	r19, 0x01	; 1
+    14e4:	df 01       	movw	r26, r30
+    14e6:	a9 01       	movw	r20, r18
+    14e8:	1d 92       	st	X+, r1
+    14ea:	41 50       	subi	r20, 0x01	; 1
+    14ec:	50 40       	sbci	r21, 0x00	; 0
+    14ee:	e1 f7       	brne	.-8      	; 0x14e8 <_ZN15SmsHandlerClassC1EP21GsmCommunicationClass+0x18>
+    14f0:	dc 01       	movw	r26, r24
+    14f2:	6d 93       	st	X+, r22
+    14f4:	7c 93       	st	X, r23
+    14f6:	08 95       	ret
 
-00001610 <__udivmodsi4_ep>:
-    1610:	66 1f       	adc	r22, r22
-    1612:	77 1f       	adc	r23, r23
-    1614:	88 1f       	adc	r24, r24
-    1616:	99 1f       	adc	r25, r25
-    1618:	1a 94       	dec	r1
-    161a:	69 f7       	brne	.-38     	; 0x15f6 <__udivmodsi4_loop>
-    161c:	60 95       	com	r22
-    161e:	70 95       	com	r23
-    1620:	80 95       	com	r24
-    1622:	90 95       	com	r25
-    1624:	9b 01       	movw	r18, r22
-    1626:	ac 01       	movw	r20, r24
-    1628:	bd 01       	movw	r22, r26
-    162a:	cf 01       	movw	r24, r30
-    162c:	08 95       	ret
+000014f8 <_ZN15SmsHandlerClass7readSmsEPc>:
+			}
+		}
+	}
+}
 
-0000162e <__tablejump2__>:
-    162e:	ee 0f       	add	r30, r30
-    1630:	ff 1f       	adc	r31, r31
-    1632:	05 90       	lpm	r0, Z+
-    1634:	f4 91       	lpm	r31, Z
-    1636:	e0 2d       	mov	r30, r0
-    1638:	09 94       	ijmp
+void SmsHandlerClass::readSms(char *buffer){
+    14f8:	cf 93       	push	r28
+    14fa:	df 93       	push	r29
+    14fc:	ec 01       	movw	r28, r24
+    14fe:	fb 01       	movw	r30, r22
+    1500:	33 97       	sbiw	r30, 0x03	; 3
+	int textStart = 0;
+	int i = 0;
+    1502:	60 e0       	ldi	r22, 0x00	; 0
+    1504:	70 e0       	ldi	r23, 0x00	; 0
+		}
+	}
+}
 
-0000163a <strstr>:
-    163a:	fb 01       	movw	r30, r22
-    163c:	51 91       	ld	r21, Z+
-    163e:	55 23       	and	r21, r21
-    1640:	a9 f0       	breq	.+42     	; 0x166c <strstr+0x32>
-    1642:	bf 01       	movw	r22, r30
-    1644:	dc 01       	movw	r26, r24
-    1646:	4d 91       	ld	r20, X+
-    1648:	45 17       	cp	r20, r21
-    164a:	41 11       	cpse	r20, r1
-    164c:	e1 f7       	brne	.-8      	; 0x1646 <strstr+0xc>
-    164e:	59 f4       	brne	.+22     	; 0x1666 <strstr+0x2c>
-    1650:	cd 01       	movw	r24, r26
-    1652:	01 90       	ld	r0, Z+
-    1654:	00 20       	and	r0, r0
-    1656:	49 f0       	breq	.+18     	; 0x166a <strstr+0x30>
-    1658:	4d 91       	ld	r20, X+
-    165a:	40 15       	cp	r20, r0
-    165c:	41 11       	cpse	r20, r1
-    165e:	c9 f3       	breq	.-14     	; 0x1652 <strstr+0x18>
-    1660:	fb 01       	movw	r30, r22
-    1662:	41 11       	cpse	r20, r1
-    1664:	ef cf       	rjmp	.-34     	; 0x1644 <strstr+0xa>
-    1666:	81 e0       	ldi	r24, 0x01	; 1
-    1668:	90 e0       	ldi	r25, 0x00	; 0
-    166a:	01 97       	sbiw	r24, 0x01	; 1
-    166c:	08 95       	ret
+void SmsHandlerClass::readSms(char *buffer){
+	int textStart = 0;
+    1506:	40 e0       	ldi	r20, 0x00	; 0
+    1508:	50 e0       	ldi	r21, 0x00	; 0
+	int i = 0;
+	
+	for(int u=0;(buffer[u]!='\0')||((buffer[u]=='A')&&(buffer[u+1]=='T')&&(buffer[u+2]=='+')); u++){
+		// trigger start of SMS message
+		if(((buffer[u-3]=='"')&&(buffer[u-2]==13)&&(buffer[u-1]==10))|| (textStart == 1)){
+			textStart = 1;
+    150a:	31 e0       	ldi	r19, 0x01	; 1
+    150c:	80 e0       	ldi	r24, 0x00	; 0
+    150e:	df 01       	movw	r26, r30
 
-0000166e <_exit>:
-    166e:	f8 94       	cli
+void SmsHandlerClass::readSms(char *buffer){
+	int textStart = 0;
+	int i = 0;
+	
+	for(int u=0;(buffer[u]!='\0')||((buffer[u]=='A')&&(buffer[u+1]=='T')&&(buffer[u+2]=='+')); u++){
+    1510:	93 81       	ldd	r25, Z+3	; 0x03
+    1512:	99 23       	and	r25, r25
+    1514:	b9 f0       	breq	.+46     	; 0x1544 <_ZN15SmsHandlerClass7readSmsEPc+0x4c>
+    1516:	31 96       	adiw	r30, 0x01	; 1
+		// trigger start of SMS message
+		if(((buffer[u-3]=='"')&&(buffer[u-2]==13)&&(buffer[u-1]==10))|| (textStart == 1)){
+    1518:	2c 91       	ld	r18, X
+    151a:	22 32       	cpi	r18, 0x22	; 34
+    151c:	31 f4       	brne	.+12     	; 0x152a <_ZN15SmsHandlerClass7readSmsEPc+0x32>
+    151e:	20 81       	ld	r18, Z
+    1520:	2d 30       	cpi	r18, 0x0D	; 13
+    1522:	19 f4       	brne	.+6      	; 0x152a <_ZN15SmsHandlerClass7readSmsEPc+0x32>
+    1524:	21 81       	ldd	r18, Z+1	; 0x01
+    1526:	2a 30       	cpi	r18, 0x0A	; 10
+    1528:	19 f0       	breq	.+6      	; 0x1530 <_ZN15SmsHandlerClass7readSmsEPc+0x38>
+    152a:	41 30       	cpi	r20, 0x01	; 1
+    152c:	51 05       	cpc	r21, r1
+    152e:	79 f7       	brne	.-34     	; 0x150e <_ZN15SmsHandlerClass7readSmsEPc+0x16>
+			textStart = 1;
+			smsMsg[i]=buffer[u];
+    1530:	de 01       	movw	r26, r28
+    1532:	a6 0f       	add	r26, r22
+    1534:	b7 1f       	adc	r27, r23
+    1536:	56 96       	adiw	r26, 0x16	; 22
+    1538:	9c 93       	st	X, r25
+			i++;
+    153a:	6f 5f       	subi	r22, 0xFF	; 255
+    153c:	7f 4f       	sbci	r23, 0xFF	; 255
+	int i = 0;
+	
+	for(int u=0;(buffer[u]!='\0')||((buffer[u]=='A')&&(buffer[u+1]=='T')&&(buffer[u+2]=='+')); u++){
+		// trigger start of SMS message
+		if(((buffer[u-3]=='"')&&(buffer[u-2]==13)&&(buffer[u-1]==10))|| (textStart == 1)){
+			textStart = 1;
+    153e:	43 2f       	mov	r20, r19
+    1540:	58 2f       	mov	r21, r24
 
-00001670 <__stop_program>:
-    1670:	ff cf       	rjmp	.-2      	; 0x1670 <__stop_program>
+void SmsHandlerClass::readSms(char *buffer){
+	int textStart = 0;
+	int i = 0;
+	
+	for(int u=0;(buffer[u]!='\0')||((buffer[u]=='A')&&(buffer[u+1]=='T')&&(buffer[u+2]=='+')); u++){
+    1542:	e5 cf       	rjmp	.-54     	; 0x150e <_ZN15SmsHandlerClass7readSmsEPc+0x16>
+			textStart = 1;
+			smsMsg[i]=buffer[u];
+			i++;
+		}
+	}
+	smsMsg[i]='\0';	
+    1544:	fe 01       	movw	r30, r28
+    1546:	e6 0f       	add	r30, r22
+    1548:	f7 1f       	adc	r31, r23
+    154a:	16 8a       	std	Z+22, r1	; 0x16
+}
+    154c:	df 91       	pop	r29
+    154e:	cf 91       	pop	r28
+    1550:	08 95       	ret
+
+00001552 <_ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc>:
+
+void SmsHandlerClass::isolateSmsSenderPhoneNr(char *buffer){
+    1552:	0f 93       	push	r16
+    1554:	1f 93       	push	r17
+    1556:	cf 93       	push	r28
+    1558:	df 93       	push	r29
+    155a:	ec 01       	movw	r28, r24
+    155c:	cb 01       	movw	r24, r22
+    char *retBuf;
+    int u = 0;
+    retBuf = strstr(buffer,"+CMT:");		// find beginning of sms sender
+    155e:	62 e0       	ldi	r22, 0x02	; 2
+    1560:	72 e0       	ldi	r23, 0x02	; 2
+    1562:	0e 94 68 0b 	call	0x16d0	; 0x16d0 <strstr>
+    1566:	fc 01       	movw	r30, r24
+    if(retBuf != NULL){						// if SMS sender Nr received
+    1568:	89 2b       	or	r24, r25
+    156a:	b1 f0       	breq	.+44     	; 0x1598 <_ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc+0x46>
+        for(u=0; retBuf[u+7] !='\"';u++){	// fill Nr into variable until end of Nr reached
+    156c:	97 81       	ldd	r25, Z+7	; 0x07
+    156e:	92 32       	cpi	r25, 0x22	; 34
+    1570:	61 f0       	breq	.+24     	; 0x158a <_ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc+0x38>
+    1572:	de 01       	movw	r26, r28
+    1574:	12 96       	adiw	r26, 0x02	; 2
+    1576:	38 96       	adiw	r30, 0x08	; 8
+    1578:	20 e0       	ldi	r18, 0x00	; 0
+    157a:	30 e0       	ldi	r19, 0x00	; 0
+            smsSenderNr[u] = retBuf[u+7];
+    157c:	9d 93       	st	X+, r25
+void SmsHandlerClass::isolateSmsSenderPhoneNr(char *buffer){
+    char *retBuf;
+    int u = 0;
+    retBuf = strstr(buffer,"+CMT:");		// find beginning of sms sender
+    if(retBuf != NULL){						// if SMS sender Nr received
+        for(u=0; retBuf[u+7] !='\"';u++){	// fill Nr into variable until end of Nr reached
+    157e:	2f 5f       	subi	r18, 0xFF	; 255
+    1580:	3f 4f       	sbci	r19, 0xFF	; 255
+    1582:	91 91       	ld	r25, Z+
+    1584:	92 32       	cpi	r25, 0x22	; 34
+    1586:	d1 f7       	brne	.-12     	; 0x157c <_ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc+0x2a>
+    1588:	02 c0       	rjmp	.+4      	; 0x158e <_ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc+0x3c>
+    158a:	20 e0       	ldi	r18, 0x00	; 0
+    158c:	30 e0       	ldi	r19, 0x00	; 0
+            smsSenderNr[u] = retBuf[u+7];
+        }
+        smsSenderNr[u]='\0';
+    158e:	fe 01       	movw	r30, r28
+    1590:	e2 0f       	add	r30, r18
+    1592:	f3 1f       	adc	r31, r19
+    1594:	12 82       	std	Z+2, r1	; 0x02
+    1596:	01 c0       	rjmp	.+2      	; 0x159a <_ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc+0x48>
+    }else{
+        smsSenderNr[u]='\0';
+    1598:	1a 82       	std	Y+2, r1	; 0x02
+    159a:	0c e4       	ldi	r16, 0x4C	; 76
+    159c:	12 e0       	ldi	r17, 0x02	; 2
+    159e:	d8 01       	movw	r26, r16
+    15a0:	ed 91       	ld	r30, X+
+    15a2:	fc 91       	ld	r31, X
+    15a4:	02 80       	ldd	r0, Z+2	; 0x02
+    15a6:	f3 81       	ldd	r31, Z+3	; 0x03
+    15a8:	e0 2d       	mov	r30, r0
+    15aa:	4c e0       	ldi	r20, 0x0C	; 12
+    15ac:	50 e0       	ldi	r21, 0x00	; 0
+    15ae:	68 e0       	ldi	r22, 0x08	; 8
+    15b0:	72 e0       	ldi	r23, 0x02	; 2
+    15b2:	c8 01       	movw	r24, r16
+    15b4:	09 95       	icall
+    }
+	
+	// Display SMS sender
+	Serial.write("SMS sender: ");
+	GsmCommunication->displayString(smsSenderNr);
+    15b6:	be 01       	movw	r22, r28
+    15b8:	6e 5f       	subi	r22, 0xFE	; 254
+    15ba:	7f 4f       	sbci	r23, 0xFF	; 255
+    15bc:	88 81       	ld	r24, Y
+    15be:	99 81       	ldd	r25, Y+1	; 0x01
+    15c0:	0e 94 58 08 	call	0x10b0	; 0x10b0 <_ZN21GsmCommunicationClass13displayStringEPc>
+    15c4:	d8 01       	movw	r26, r16
+    15c6:	ed 91       	ld	r30, X+
+    15c8:	fc 91       	ld	r31, X
+    15ca:	02 80       	ldd	r0, Z+2	; 0x02
+    15cc:	f3 81       	ldd	r31, Z+3	; 0x03
+    15ce:	e0 2d       	mov	r30, r0
+    15d0:	42 e0       	ldi	r20, 0x02	; 2
+    15d2:	50 e0       	ldi	r21, 0x00	; 0
+    15d4:	68 ef       	ldi	r22, 0xF8	; 248
+    15d6:	71 e0       	ldi	r23, 0x01	; 1
+    15d8:	c8 01       	movw	r24, r16
+    15da:	09 95       	icall
+	Serial.write("\n\n");	
+    15dc:	df 91       	pop	r29
+    15de:	cf 91       	pop	r28
+    15e0:	1f 91       	pop	r17
+    15e2:	0f 91       	pop	r16
+    15e4:	08 95       	ret
+
+000015e6 <_ZN15SmsHandlerClass17handleReceivedSmsEv>:
+/*                                                                           */
+/*  History     : 30.03.2021  IO  Created                                    */
+/*                                                                           */
+/*****************************************************************************/
+
+void SmsHandlerClass::handleReceivedSms(){
+    15e6:	0f 93       	push	r16
+    15e8:	1f 93       	push	r17
+    15ea:	cf 93       	push	r28
+    15ec:	df 93       	push	r29
+    15ee:	ec 01       	movw	r28, r24
+	if(strstr(GsmCommunication->receiveBuffer,"+CMT:") != NULL){	// if SMS received
+    15f0:	08 81       	ld	r16, Y
+    15f2:	19 81       	ldd	r17, Y+1	; 0x01
+    15f4:	0c 5f       	subi	r16, 0xFC	; 252
+    15f6:	1f 4f       	sbci	r17, 0xFF	; 255
+    15f8:	62 e0       	ldi	r22, 0x02	; 2
+    15fa:	72 e0       	ldi	r23, 0x02	; 2
+    15fc:	c8 01       	movw	r24, r16
+    15fe:	0e 94 68 0b 	call	0x16d0	; 0x16d0 <strstr>
+    1602:	89 2b       	or	r24, r25
+    1604:	c1 f1       	breq	.+112    	; 0x1676 <_ZN15SmsHandlerClass17handleReceivedSmsEv+0x90>
+		
+		isolateSmsSenderPhoneNr(&(GsmCommunication->receiveBuffer[0]));
+    1606:	b8 01       	movw	r22, r16
+    1608:	ce 01       	movw	r24, r28
+    160a:	0e 94 a9 0a 	call	0x1552	; 0x1552 <_ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc>
+		
+		// check Authorization
+		if(GsmCommunication->checkAuthorization(&smsSenderNr[0]) == 1){
+    160e:	be 01       	movw	r22, r28
+    1610:	6e 5f       	subi	r22, 0xFE	; 254
+    1612:	7f 4f       	sbci	r23, 0xFF	; 255
+    1614:	88 81       	ld	r24, Y
+    1616:	99 81       	ldd	r25, Y+1	; 0x01
+    1618:	0e 94 f0 08 	call	0x11e0	; 0x11e0 <_ZN21GsmCommunicationClass18checkAuthorizationEPc>
+    161c:	01 97       	sbiw	r24, 0x01	; 1
+    161e:	59 f5       	brne	.+86     	; 0x1676 <_ZN15SmsHandlerClass17handleReceivedSmsEv+0x90>
+    1620:	e0 91 4c 02 	lds	r30, 0x024C	; 0x80024c <__data_end>
+    1624:	f0 91 4d 02 	lds	r31, 0x024D	; 0x80024d <__data_end+0x1>
+    1628:	02 80       	ldd	r0, Z+2	; 0x02
+    162a:	f3 81       	ldd	r31, Z+3	; 0x03
+    162c:	e0 2d       	mov	r30, r0
+    162e:	48 e1       	ldi	r20, 0x18	; 24
+    1630:	50 e0       	ldi	r21, 0x00	; 0
+    1632:	65 e1       	ldi	r22, 0x15	; 21
+    1634:	72 e0       	ldi	r23, 0x02	; 2
+    1636:	8c e4       	ldi	r24, 0x4C	; 76
+    1638:	92 e0       	ldi	r25, 0x02	; 2
+    163a:	09 95       	icall
+			Serial.write("SMS sender AUTHORIZED !\n");
+			
+			// read sms Msg out of the receive Buffer
+			readSms(&(GsmCommunication->receiveBuffer[0]));
+    163c:	68 81       	ld	r22, Y
+    163e:	79 81       	ldd	r23, Y+1	; 0x01
+    1640:	6c 5f       	subi	r22, 0xFC	; 252
+    1642:	7f 4f       	sbci	r23, 0xFF	; 255
+    1644:	ce 01       	movw	r24, r28
+    1646:	0e 94 7c 0a 	call	0x14f8	; 0x14f8 <_ZN15SmsHandlerClass7readSmsEPc>
+			
+			// handle sms commands
+			//GsmCommunication->displayString(smsMsg);		// for debbuging
+			if(strstr(smsMsg,"Globi 18") != NULL){
+    164a:	6e e2       	ldi	r22, 0x2E	; 46
+    164c:	72 e0       	ldi	r23, 0x02	; 2
+    164e:	ce 01       	movw	r24, r28
+    1650:	46 96       	adiw	r24, 0x16	; 22
+    1652:	0e 94 68 0b 	call	0x16d0	; 0x16d0 <strstr>
+    1656:	89 2b       	or	r24, r25
+    1658:	71 f0       	breq	.+28     	; 0x1676 <_ZN15SmsHandlerClass17handleReceivedSmsEv+0x90>
+    165a:	e0 91 4c 02 	lds	r30, 0x024C	; 0x80024c <__data_end>
+    165e:	f0 91 4d 02 	lds	r31, 0x024D	; 0x80024d <__data_end+0x1>
+    1662:	02 80       	ldd	r0, Z+2	; 0x02
+    1664:	f3 81       	ldd	r31, Z+3	; 0x03
+    1666:	e0 2d       	mov	r30, r0
+    1668:	43 e1       	ldi	r20, 0x13	; 19
+    166a:	50 e0       	ldi	r21, 0x00	; 0
+    166c:	67 e3       	ldi	r22, 0x37	; 55
+    166e:	72 e0       	ldi	r23, 0x02	; 2
+    1670:	8c e4       	ldi	r24, 0x4C	; 76
+    1672:	92 e0       	ldi	r25, 0x02	; 2
+    1674:	09 95       	icall
+				Serial.write("Msg Globi received\n");
+			}
+		}
+	}
+}
+    1676:	df 91       	pop	r29
+    1678:	cf 91       	pop	r28
+    167a:	1f 91       	pop	r17
+    167c:	0f 91       	pop	r16
+    167e:	08 95       	ret
+
+00001680 <__udivmodsi4>:
+    1680:	a1 e2       	ldi	r26, 0x21	; 33
+    1682:	1a 2e       	mov	r1, r26
+    1684:	aa 1b       	sub	r26, r26
+    1686:	bb 1b       	sub	r27, r27
+    1688:	fd 01       	movw	r30, r26
+    168a:	0d c0       	rjmp	.+26     	; 0x16a6 <__udivmodsi4_ep>
+
+0000168c <__udivmodsi4_loop>:
+    168c:	aa 1f       	adc	r26, r26
+    168e:	bb 1f       	adc	r27, r27
+    1690:	ee 1f       	adc	r30, r30
+    1692:	ff 1f       	adc	r31, r31
+    1694:	a2 17       	cp	r26, r18
+    1696:	b3 07       	cpc	r27, r19
+    1698:	e4 07       	cpc	r30, r20
+    169a:	f5 07       	cpc	r31, r21
+    169c:	20 f0       	brcs	.+8      	; 0x16a6 <__udivmodsi4_ep>
+    169e:	a2 1b       	sub	r26, r18
+    16a0:	b3 0b       	sbc	r27, r19
+    16a2:	e4 0b       	sbc	r30, r20
+    16a4:	f5 0b       	sbc	r31, r21
+
+000016a6 <__udivmodsi4_ep>:
+    16a6:	66 1f       	adc	r22, r22
+    16a8:	77 1f       	adc	r23, r23
+    16aa:	88 1f       	adc	r24, r24
+    16ac:	99 1f       	adc	r25, r25
+    16ae:	1a 94       	dec	r1
+    16b0:	69 f7       	brne	.-38     	; 0x168c <__udivmodsi4_loop>
+    16b2:	60 95       	com	r22
+    16b4:	70 95       	com	r23
+    16b6:	80 95       	com	r24
+    16b8:	90 95       	com	r25
+    16ba:	9b 01       	movw	r18, r22
+    16bc:	ac 01       	movw	r20, r24
+    16be:	bd 01       	movw	r22, r26
+    16c0:	cf 01       	movw	r24, r30
+    16c2:	08 95       	ret
+
+000016c4 <__tablejump2__>:
+    16c4:	ee 0f       	add	r30, r30
+    16c6:	ff 1f       	adc	r31, r31
+    16c8:	05 90       	lpm	r0, Z+
+    16ca:	f4 91       	lpm	r31, Z
+    16cc:	e0 2d       	mov	r30, r0
+    16ce:	09 94       	ijmp
+
+000016d0 <strstr>:
+    16d0:	fb 01       	movw	r30, r22
+    16d2:	51 91       	ld	r21, Z+
+    16d4:	55 23       	and	r21, r21
+    16d6:	a9 f0       	breq	.+42     	; 0x1702 <strstr+0x32>
+    16d8:	bf 01       	movw	r22, r30
+    16da:	dc 01       	movw	r26, r24
+    16dc:	4d 91       	ld	r20, X+
+    16de:	45 17       	cp	r20, r21
+    16e0:	41 11       	cpse	r20, r1
+    16e2:	e1 f7       	brne	.-8      	; 0x16dc <strstr+0xc>
+    16e4:	59 f4       	brne	.+22     	; 0x16fc <strstr+0x2c>
+    16e6:	cd 01       	movw	r24, r26
+    16e8:	01 90       	ld	r0, Z+
+    16ea:	00 20       	and	r0, r0
+    16ec:	49 f0       	breq	.+18     	; 0x1700 <strstr+0x30>
+    16ee:	4d 91       	ld	r20, X+
+    16f0:	40 15       	cp	r20, r0
+    16f2:	41 11       	cpse	r20, r1
+    16f4:	c9 f3       	breq	.-14     	; 0x16e8 <strstr+0x18>
+    16f6:	fb 01       	movw	r30, r22
+    16f8:	41 11       	cpse	r20, r1
+    16fa:	ef cf       	rjmp	.-34     	; 0x16da <strstr+0xa>
+    16fc:	81 e0       	ldi	r24, 0x01	; 1
+    16fe:	90 e0       	ldi	r25, 0x00	; 0
+    1700:	01 97       	sbiw	r24, 0x01	; 1
+    1702:	08 95       	ret
+
+00001704 <_exit>:
+    1704:	f8 94       	cli
+
+00001706 <__stop_program>:
+    1706:	ff cf       	rjmp	.-2      	; 0x1706 <__stop_program>

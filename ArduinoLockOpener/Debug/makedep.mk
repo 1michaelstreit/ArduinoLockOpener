@@ -58,5 +58,7 @@ src\Leds.cpp
 
 src\main_LockOpener.cpp
 
+src\SmsHandlerClass.cpp
+
 src\TimerManager.cpp
 

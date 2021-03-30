@@ -89,7 +89,7 @@ void LedManagerClass::SetLed(int LedNumber, LedState State)
 
 void LedManagerClass::ToggleLed(int LedNumber)
 {
-	if(toggleTime > 5){
+	if(toggleTime > 1){
 		toggleTime = 0;
 	if ((LedNumber >= 0) && (LedNumber <= MAX_LED-1)) {
 

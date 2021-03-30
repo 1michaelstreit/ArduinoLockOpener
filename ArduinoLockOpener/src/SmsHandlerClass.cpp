@@ -1,5 +1,5 @@
 /*****************************************************************************/
-/*  Class      : GsmCommunicationClass                          Version 1.0  */
+/*  Class      : SmsHandlerClass		                        Version 1.0  */
 /*****************************************************************************/
 /*                                                                           */
 /*  Function   :                                    */
@@ -10,26 +10,23 @@
 /*                                                                           */
 /*  Author     : Michael Streit                                              */
 /*                                                                           */
-/*  History    : 23.03.2021  IO Created                                      */
+/*  History    : 30.03.2021  IO Created                                      */
 /*                                                                           */
-/*  File       : GsmCommunicationClass.cpp                                   */
+/*  File       : SmsHandlerClass.cpp                                         */
 /*                                                                           */
 /*****************************************************************************/
 /* HTA Burgdorf                                                              */
 /*****************************************************************************/
 
+
 /* imports */
 #include <string.h>
-#include "GsmCommunicationClass.h"
 #include "Arduino.h"
-#include "SoftwareSerial.h"
+#include "SmsHandlerClass.h"
+#include "GsmCommunicationClass.h"
 
-
-using namespace std;
 
 /* Class constant declaration  */
-#define BAUDRATE_DEBUG_SERIAL	( 9600 )
-#define BAUDRATE_GSM_SERIAL		( 9600 )
 
 /* Class Type declaration      */
 
@@ -38,7 +35,7 @@ using namespace std;
 /* Class procedure declaration */
 
 /*****************************************************************************/
-/*  Method      : GsmCommunicationClass                                      */
+/*  Method      : SmsHandlerClass		                                     */
 /*****************************************************************************/
 /*                                                                           */
 /*  Function    :                                                            */
@@ -51,28 +48,18 @@ using namespace std;
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
-/*  History     : 05.03.2021  IO  Created                                    */
+/*  History     : 30.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-GsmCommunicationClass::GsmCommunicationClass(SoftwareSerial *NewGsmSerial)
+SmsHandlerClass::SmsHandlerClass(GsmCommunicationClass *NewGsmCommunication)
 {
-	GsmSerial = NewGsmSerial;
-	
-	// begin serial communication
-	Serial.begin(BAUDRATE_DEBUG_SERIAL);		// for debugging with USB
-	GsmSerial->begin(BAUDRATE_GSM_SERIAL);		// for GSM communication
+	GsmCommunication = NewGsmCommunication;
+} //SmsHandlerClass
 
-	_delay_ms(1000);
-	
-	GsmSerial->println("AT");	// AT Handshake with GSM
-	readSerial();
-	
-} //GsmCommunicationClass
-
-// destructor
-GsmCommunicationClass::~GsmCommunicationClass()
+// default destructor
+SmsHandlerClass::~SmsHandlerClass()
 {
-} //~GsmCommunicationClass
+} //~SmsHandlerClass
 
 /*****************************************************************************/
 /*  Method      : 		                                     */
@@ -88,90 +75,61 @@ GsmCommunicationClass::~GsmCommunicationClass()
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
-/*  History     : 23.03.2021  IO  Created                                    */
+/*  History     : 30.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-void GsmCommunicationClass::checkConnection()
-{	
-	if(checkConnectionTime > 10){	// check connection loop rate
-		checkConnectionTime = 0;
-	if (GsmSerial->available()==0){
-		GsmSerial->println("AT+CREG?");		// ask if connected to cellular Network
-	}
-	readSerial();		// read Answer
-	
-	if(strstr(receiveBuffer, "+CREG: 0,1") != NULL){ // check if connection was successful
-		gsmIsConnected = true;
-		Serial.write("GSM Connected\n\n\n");
-		if(gsmIsConnected == true && gsmIsConnectedOld == false){
-			setUpSmsMode();		// set up Sms Mode if connected
+
+void SmsHandlerClass::handleReceivedSms(){
+	if(strstr(GsmCommunication->receiveBuffer,"+CMT:") != NULL){	// if SMS received
+		
+		isolateSmsSenderPhoneNr(&(GsmCommunication->receiveBuffer[0]));
+		
+		// check Authorization
+		if(GsmCommunication->checkAuthorization(&smsSenderNr[0]) == 1){
+			Serial.write("SMS sender AUTHORIZED !\n");
+			
+			// read sms Msg out of the receive Buffer
+			readSms(&(GsmCommunication->receiveBuffer[0]));
+			
+			// handle sms commands
+			//GsmCommunication->displayString(smsMsg);		// for debbuging
+			if(strstr(smsMsg,"Globi 18") != NULL){
+				Serial.write("Msg Globi received\n");
+			}
 		}
-		gsmIsConnectedOld = gsmIsConnected;
-		}else{
-		gsmIsConnected = false;
-	}
-	}else{
-		checkConnectionTime++;
 	}
 }
 
-void GsmCommunicationClass::readSerial(){
+void SmsHandlerClass::readSms(char *buffer){
+	int textStart = 0;
 	int i = 0;
 	
-	_delay_ms(500);
-	
-	// clear Buffer
-	for(int u=0; u<bufferSize; u++){
-		receiveBuffer[u] = '\0';
-	}
-	
-	// fill Buffer
-	while(GsmSerial->available()){
-		receiveBuffer[i] = GsmSerial->read();
-		i++;
-	}
-	
-	// set end of string
-	receiveBuffer[i] = '\0';
-	
-	// print received Buffer
-	displayString(receiveBuffer);
-}
-
-void GsmCommunicationClass::displayString(char *dString){
-	if(dString!=0){
-		for(int i=0; dString[i]!='\0';i++){
-			Serial.print(dString[i]);
+	for(int u=0;(buffer[u]!='\0')||((buffer[u]=='A')&&(buffer[u+1]=='T')&&(buffer[u+2]=='+')); u++){
+		// trigger start of SMS message
+		if(((buffer[u-3]=='"')&&(buffer[u-2]==13)&&(buffer[u-1]==10))|| (textStart == 1)){
+			textStart = 1;
+			smsMsg[i]=buffer[u];
+			i++;
 		}
-		Serial.print("\n");
 	}
+	smsMsg[i]='\0';	
 }
 
-void GsmCommunicationClass::checkReceivedData(){
-}
-
-
-int GsmCommunicationClass::checkAuthorization(char *nrToCheck){
-	Serial.write("CheckAuthorization\n");
-	//displayString(nrToCheck);
-	return(1);
-}
+void SmsHandlerClass::isolateSmsSenderPhoneNr(char *buffer){
+    char *retBuf;
+    int u = 0;
+    retBuf = strstr(buffer,"+CMT:");		// find beginning of sms sender
+    if(retBuf != NULL){						// if SMS sender Nr received
+        for(u=0; retBuf[u+7] !='\"';u++){	// fill Nr into variable until end of Nr reached
+            smsSenderNr[u] = retBuf[u+7];
+        }
+        smsSenderNr[u]='\0';
+    }else{
+        smsSenderNr[u]='\0';
+    }
 	
-
-void GsmCommunicationClass::setUpSmsMode(){
-	GsmSerial->println("AT+CMGF=1");	// Configure TEXT mode
-	readSerial();
-	
-	GsmSerial->println("AT+CNMI=1,2,0,0,0");	// define how newly arrived SMS Msg. should be handled
-	readSerial();
-	// check Answer
-	if(strstr(receiveBuffer, "OK") != NULL){ // check if configured
-		Serial.write("SMS Mode is configured\n\n");
-		gsmIsConnectedOld = gsmIsConnected;
-	}else if(strstr(receiveBuffer, "ERROR")){
-		Serial.write("ERROR in SMS mode configuration\n");
-	}else{
-		Serial.write("No response in SMS configuration\n");
-	}
+	// Display SMS sender
+	Serial.write("SMS sender: ");
+	GsmCommunication->displayString(smsSenderNr);
+	Serial.write("\n\n");	
 }
-

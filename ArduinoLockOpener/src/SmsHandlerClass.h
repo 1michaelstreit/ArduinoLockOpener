@@ -1,7 +1,7 @@
-#ifndef __GSMCOMMUNICATIONCLASS_H__
-#define __GSMCOMMUNICATIONCLASS_H__
+#ifndef __SMSHANDLERCLASS_H__
+#define __SMSHANDLERCLASS_H__
 /****************************************************************************/
-/*  Header     : GsmCommunicationClass                          Version 1.0 */
+/*  Header     : SmsHandlerClass                                Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
 /*  Function   :          */
@@ -11,23 +11,18 @@
 /*                                                                          */
 /*  Author     : M. Streit                                                  */
 /*                                                                          */
-/*  History    : 23.03.2021  IO Created                                     */
+/*  History    : 30.03.2021  IO Created                                     */
 /*                                                                          */
-/*  File       : GsmCommunicationClass.hpp                                  */
+/*  File       : SmsHandlerClass.hpp										*/
 /*                                                                          */
 /****************************************************************************/
 /* HTA Burgdorf                                                             */
 /****************************************************************************/
 
 /* imports */
-#include "SoftwareSerial.h"
-
+#include "GsmCommunicationClass.h"
 
 /* Class constant declaration  */
-
-// for software serial
-#define RX	3 		// RX pin 3 on Arduino
-#define TX	2 		// TX pin 2 on Arduino
 
 /* Class Type declaration      */
 
@@ -35,42 +30,32 @@
 
 /* Class definition            */
 
-class GsmCommunicationClass
+class SmsHandlerClass
 {
 // Data
 public:
-static const int bufferSize = 256;
-SoftwareSerial *GsmSerial;
-int checkConnectionTime = 0;
-char receiveBuffer[bufferSize];
-
+GsmCommunicationClass *GsmCommunication;
+protected:
 private:
-bool gsmIsConnected = false;
-bool gsmIsConnectedOld = false;
-bool answerReceived = false;
-
-
-
+static const int bufferSize = 256;
+char smsSenderNr[20] = {0};
+char smsMsg[bufferSize] = {0};
 
 // Methods
 public:
-	GsmCommunicationClass(SoftwareSerial *NewGsmSerial);
-	~GsmCommunicationClass();
+	SmsHandlerClass(GsmCommunicationClass *GsmCommunication);
+	~SmsHandlerClass();
 	
-	void checkConnection();
-	void readSerial();
-	void displayString(char *dString);
-	int  checkAuthorization(char *nrToCheck);
-
-	
+	void readSms(char *buffer);
+	void isolateSmsSenderPhoneNr(char *buffer);
+	void handleReceivedSms();
+protected:
 private:
+	
 
-	void checkReceivedData();	
-	void setUpSmsMode();
-	
-	
 };
 /*****************************************************************************/
-/*  End Header  : GsmCommunicationClass                                      */
+/*  End Header  : SmsHandlerClass		                                     */
 /*****************************************************************************/
-#endif //__GSMCOMMUNICATIONCLASS_H__
+
+#endif //__SMSHANDLERCLASS_H__
