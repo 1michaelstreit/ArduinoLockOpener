@@ -1,7 +1,7 @@
-#ifndef __SMSHANDLERCLASS_H__
-#define __SMSHANDLERCLASS_H__
+#ifndef __AUTHORIZATIONHANDLERCLASS_H__
+#define __AUTHORIZATIONHANDLERCLASS_H__
 /****************************************************************************/
-/*  Header     : SmsHandlerClass                                Version 1.0 */
+/*  Header     : AuthorizationHandlerClass                      Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
 /*  Function   :          */
@@ -13,15 +13,16 @@
 /*                                                                          */
 /*  History    : 30.03.2021  IO Created                                     */
 /*                                                                          */
-/*  File       : SmsHandlerClass.hpp										*/
+/*  File       : AuthorizationHandlerClass.hpp								*/
 /*                                                                          */
 /****************************************************************************/
 /* HTA Burgdorf                                                             */
 /****************************************************************************/
 
 /* imports */
-#include "GsmCommunicationClass.h"
 #include "AuthorizationHandlerClass.h"
+#include "GsmCommunicationClass.h"
+
 
 /* Class constant declaration  */
 
@@ -31,33 +32,28 @@
 
 /* Class definition            */
 
-class SmsHandlerClass
+class AuthorizationHandlerClass
 {
 // Data
 public:
 GsmCommunicationClass *GsmCommunication;
-AuthorizationHandlerClass *AuthorizationHandler;
 protected:
 private:
-static const int bufferSize = 256;
-char smsSenderNr[20] = {0};
-char smsMsg[bufferSize] = {0};
 
 // Methods
 public:
-	SmsHandlerClass(GsmCommunicationClass *GsmCommunication, AuthorizationHandlerClass *NewAuthorizationHandler);
-	~SmsHandlerClass();
+	AuthorizationHandlerClass(GsmCommunicationClass *NewGsmCommunication);
+	~AuthorizationHandlerClass();
 	
-	void readSms(char *buffer);
-	void isolateSmsSenderPhoneNr(char *buffer);
-	void handleReceivedSms();
+	void handleReceivedCall();
+	int  checkAuthorization(char *nrToCheck);
+	void answerCall();
 protected:
 private:
 	
-
 };
 /*****************************************************************************/
-/*  End Header  : SmsHandlerClass		                                     */
+/*  End Header  : AuthorizationHandlerClass                                  */
 /*****************************************************************************/
 
-#endif //__SMSHANDLERCLASS_H__
+#endif //__AUTHORIZATIONHANDLERCLASS_H__

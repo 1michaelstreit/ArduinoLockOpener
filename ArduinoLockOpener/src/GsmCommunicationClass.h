@@ -60,7 +60,8 @@ public:
 	void checkConnection();
 	void readSerial();
 	void displayString(char *dString);
-	int  checkAuthorization(char *nrToCheck);
+	void sendAtCmd(char atCmd[256]);
+	
 
 	
 private:

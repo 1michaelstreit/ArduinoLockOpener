@@ -698,6 +698,11 @@ Discarded input sections
                 0x00000000       0x12 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
  .text._ZN14SoftwareSerial3endEv
                 0x00000000        0x6 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .text          0x00000000        0x0 src/AuthorizationHandlerClass.o
+ .data          0x00000000        0x0 src/AuthorizationHandlerClass.o
+ .bss           0x00000000        0x0 src/AuthorizationHandlerClass.o
+ .text._ZN25AuthorizationHandlerClassD2Ev
+                0x00000000        0x2 src/AuthorizationHandlerClass.o
  .text          0x00000000        0x0 src/GsmCommunicationClass.o
  .data          0x00000000        0x0 src/GsmCommunicationClass.o
  .bss           0x00000000        0x0 src/GsmCommunicationClass.o
@@ -708,9 +713,9 @@ Discarded input sections
  .text          0x00000000        0x0 src/Leds.o
  .data          0x00000000        0x0 src/Leds.o
  .bss           0x00000000        0x0 src/Leds.o
- .text._ZN15LedManagerClassD2Ev
+ .text._ZN13GpioPortClassD2Ev
                 0x00000000        0xe src/Leds.o
- .text._ZN15LedManagerClass6SetLedEiNS_8LedStateE
+ .text._ZN13GpioPortClass6SetLedEiNS_8LedStateE
                 0x00000000       0x6e src/Leds.o
  .text          0x00000000        0x0 src/main_LockOpener.o
  .data          0x00000000        0x0 src/main_LockOpener.o
@@ -1291,6 +1296,7 @@ LOAD Arduino/hardware/avr/cores/arduino/wiring_shift.o
 LOAD Arduino/hardware/avr/cores/arduino/WMath.o
 LOAD Arduino/hardware/avr/cores/arduino/WString.o
 LOAD Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+LOAD src/AuthorizationHandlerClass.o
 LOAD src/GsmCommunicationClass.o
 LOAD src/Leds.o
 LOAD src/main_LockOpener.o
@@ -1407,7 +1413,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1708
+.text           0x00000000     0x1834
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -1652,61 +1658,74 @@ END GROUP
  .text._ZN14SoftwareSerial5beginEl
                 0x00000f8c      0x124 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
                 0x00000f8c                _ZN14SoftwareSerial5beginEl
+ .text._ZN25AuthorizationHandlerClassC2EP21GsmCommunicationClass
+                0x000010b0        0x8 src/AuthorizationHandlerClass.o
+                0x000010b0                _ZN25AuthorizationHandlerClassC1EP21GsmCommunicationClass
+                0x000010b0                _ZN25AuthorizationHandlerClassC2EP21GsmCommunicationClass
+ .text._ZN25AuthorizationHandlerClass18checkAuthorizationEPc
+                0x000010b8       0x22 src/AuthorizationHandlerClass.o
+                0x000010b8                _ZN25AuthorizationHandlerClass18checkAuthorizationEPc
+ .text._ZN25AuthorizationHandlerClass10answerCallEv
+                0x000010da       0x48 src/AuthorizationHandlerClass.o
+                0x000010da                _ZN25AuthorizationHandlerClass10answerCallEv
+ .text._ZN25AuthorizationHandlerClass18handleReceivedCallEv
+                0x00001122       0x8c src/AuthorizationHandlerClass.o
+                0x00001122                _ZN25AuthorizationHandlerClass18handleReceivedCallEv
  .text._ZN21GsmCommunicationClass13displayStringEPc
-                0x000010b0       0x34 src/GsmCommunicationClass.o
-                0x000010b0                _ZN21GsmCommunicationClass13displayStringEPc
+                0x000011ae       0x34 src/GsmCommunicationClass.o
+                0x000011ae                _ZN21GsmCommunicationClass13displayStringEPc
  .text._ZN21GsmCommunicationClass10readSerialEv
-                0x000010e4       0x92 src/GsmCommunicationClass.o
-                0x000010e4                _ZN21GsmCommunicationClass10readSerialEv
+                0x000011e2       0x92 src/GsmCommunicationClass.o
+                0x000011e2                _ZN21GsmCommunicationClass10readSerialEv
  .text._ZN21GsmCommunicationClassC2EP14SoftwareSerial
-                0x00001176       0x6a src/GsmCommunicationClass.o
-                0x00001176                _ZN21GsmCommunicationClassC1EP14SoftwareSerial
-                0x00001176                _ZN21GsmCommunicationClassC2EP14SoftwareSerial
- .text._ZN21GsmCommunicationClass18checkAuthorizationEPc
-                0x000011e0       0x22 src/GsmCommunicationClass.o
-                0x000011e0                _ZN21GsmCommunicationClass18checkAuthorizationEPc
+                0x00001274       0x6a src/GsmCommunicationClass.o
+                0x00001274                _ZN21GsmCommunicationClassC1EP14SoftwareSerial
+                0x00001274                _ZN21GsmCommunicationClassC2EP14SoftwareSerial
  .text._ZN21GsmCommunicationClass12setUpSmsModeEv
-                0x00001202       0xc0 src/GsmCommunicationClass.o
-                0x00001202                _ZN21GsmCommunicationClass12setUpSmsModeEv
+                0x000012de       0xc0 src/GsmCommunicationClass.o
+                0x000012de                _ZN21GsmCommunicationClass12setUpSmsModeEv
  .text._ZN21GsmCommunicationClass15checkConnectionEv
-                0x000012c2       0xc6 src/GsmCommunicationClass.o
-                0x000012c2                _ZN21GsmCommunicationClass15checkConnectionEv
- .text._ZN15LedManagerClassC2Eh
-                0x00001388       0x28 src/Leds.o
-                0x00001388                _ZN15LedManagerClassC2Eh
-                0x00001388                _ZN15LedManagerClassC1Eh
- .text._ZN15LedManagerClass9ToggleLedEi
-                0x000013b0       0x56 src/Leds.o
-                0x000013b0                _ZN15LedManagerClass9ToggleLedEi
+                0x0000139e       0xc6 src/GsmCommunicationClass.o
+                0x0000139e                _ZN21GsmCommunicationClass15checkConnectionEv
+ .text._ZN21GsmCommunicationClass9sendAtCmdEPc
+                0x00001464        0xc src/GsmCommunicationClass.o
+                0x00001464                _ZN21GsmCommunicationClass9sendAtCmdEPc
+ .text._ZN13GpioPortClassC2EPh
+                0x00001470       0x20 src/Leds.o
+                0x00001470                _ZN13GpioPortClassC1EPh
+                0x00001470                _ZN13GpioPortClassC2EPh
+ .text._ZN13GpioPortClass9ToggleLedEi
+                0x00001490       0x56 src/Leds.o
+                0x00001490                _ZN13GpioPortClass9ToggleLedEi
  .text.main_ArduinoLockOpener
-                0x00001406       0xca src/main_LockOpener.o
-                0x00001406                main_ArduinoLockOpener
- .text._ZN15SmsHandlerClassC2EP21GsmCommunicationClass
-                0x000014d0       0x28 src/SmsHandlerClass.o
-                0x000014d0                _ZN15SmsHandlerClassC1EP21GsmCommunicationClass
-                0x000014d0                _ZN15SmsHandlerClassC2EP21GsmCommunicationClass
+                0x000014e6      0x10c src/main_LockOpener.o
+                0x000014e6                main_ArduinoLockOpener
+ .text._ZN15SmsHandlerClassC2EP21GsmCommunicationClassP25AuthorizationHandlerClass
+                0x000015f2       0x32 src/SmsHandlerClass.o
+                0x000015f2                _ZN15SmsHandlerClassC1EP21GsmCommunicationClassP25AuthorizationHandlerClass
+                0x000015f2                _ZN15SmsHandlerClassC2EP21GsmCommunicationClassP25AuthorizationHandlerClass
  .text._ZN15SmsHandlerClass7readSmsEPc
-                0x000014f8       0x5a src/SmsHandlerClass.o
-                0x000014f8                _ZN15SmsHandlerClass7readSmsEPc
+                0x00001624       0x5a src/SmsHandlerClass.o
+                0x00001624                _ZN15SmsHandlerClass7readSmsEPc
  .text._ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc
-                0x00001552       0x94 src/SmsHandlerClass.o
-                0x00001552                _ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc
+                0x0000167e       0x94 src/SmsHandlerClass.o
+                0x0000167e                _ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc
  .text._ZN15SmsHandlerClass17handleReceivedSmsEv
-                0x000015e6       0x9a src/SmsHandlerClass.o
-                0x000015e6                _ZN15SmsHandlerClass17handleReceivedSmsEv
+                0x00001712       0x9a src/SmsHandlerClass.o
+                0x00001712                _ZN15SmsHandlerClass17handleReceivedSmsEv
  .text.libgcc.div
-                0x00001680       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00001680                __udivmodsi4
- .text.libgcc   0x000016c4        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x000016c4                __tablejump2__
+                0x000017ac       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x000017ac                __udivmodsi4
+ .text.libgcc   0x000017f0        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x000017f0                __tablejump2__
  .text.avr-libc
-                0x000016d0       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strstr.o)
-                0x000016d0                strstr
-                0x00001704                . = ALIGN (0x2)
+                0x000017fc       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strstr.o)
+                0x000017fc                strstr
+                0x00001830                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001704        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00001704                _exit
-                0x00001704                exit
+ .fini9         0x00001830        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00001830                _exit
+                0x00001830                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -1725,11 +1744,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001704        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001830        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001708                _etext = .
+                0x00001834                _etext = .
 
-.data           0x00800100      0x14c load address 0x00001708
+.data           0x00800100      0x1a0 load address 0x00001834
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1751,67 +1770,69 @@ END GROUP
                 0x0080012c       0x12 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
                 0x0080012c                _ZTV14SoftwareSerial
  .rodata.str1.1
-                0x0080013e       0xbd src/GsmCommunicationClass.o
-                                 0xbf (size before relaxing)
+                0x0080013e       0x68 src/AuthorizationHandlerClass.o
  .rodata.str1.1
-                0x008001fb        0x7 src/main_LockOpener.o
+                0x008001a6       0xa9 src/GsmCommunicationClass.o
+                                 0xab (size before relaxing)
  .rodata.str1.1
-                0x00800202       0x49 src/SmsHandlerClass.o
+                0x0080024f        0x7 src/main_LockOpener.o
+ .rodata.str1.1
+                0x00800256       0x49 src/SmsHandlerClass.o
                                  0x4c (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x0080024c                . = ALIGN (0x2)
- *fill*         0x0080024b        0x1 
-                0x0080024c                _edata = .
-                0x0080024c                PROVIDE (__data_end, .)
+                0x008002a0                . = ALIGN (0x2)
+ *fill*         0x0080029f        0x1 
+                0x008002a0                _edata = .
+                0x008002a0                PROVIDE (__data_end, .)
 
-.bss            0x0080024c      0x1b7
-                0x0080024c                PROVIDE (__bss_start, .)
+.bss            0x008002a0      0x1b7
+                0x008002a0                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.Serial    0x0080024c       0x9d Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
-                0x0080024c                Serial
+ .bss.Serial    0x008002a0       0x9d Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
+                0x008002a0                Serial
  .bss._ZL11INADDR_NONE
-                0x008002e9        0x6 Arduino/hardware/avr/cores/arduino/IPAddress.o
+                0x0080033d        0x6 Arduino/hardware/avr/cores/arduino/IPAddress.o
  .bss.timer2_pin_mask
-                0x008002ef        0x1 Arduino/hardware/avr/cores/arduino/Tone.o
-                0x008002ef                timer2_pin_mask
+                0x00800343        0x1 Arduino/hardware/avr/cores/arduino/Tone.o
+                0x00800343                timer2_pin_mask
  .bss.timer2_pin_port
-                0x008002f0        0x2 Arduino/hardware/avr/cores/arduino/Tone.o
-                0x008002f0                timer2_pin_port
+                0x00800344        0x2 Arduino/hardware/avr/cores/arduino/Tone.o
+                0x00800344                timer2_pin_port
  .bss.timer2_toggle_count
-                0x008002f2        0x4 Arduino/hardware/avr/cores/arduino/Tone.o
-                0x008002f2                timer2_toggle_count
+                0x00800346        0x4 Arduino/hardware/avr/cores/arduino/Tone.o
+                0x00800346                timer2_toggle_count
  .bss.timer0_fract
-                0x008002f6        0x1 Arduino/hardware/avr/cores/arduino/wiring.o
+                0x0080034a        0x1 Arduino/hardware/avr/cores/arduino/wiring.o
  .bss.timer0_millis
-                0x008002f7        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
-                0x008002f7                timer0_millis
+                0x0080034b        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
+                0x0080034b                timer0_millis
  .bss.timer0_overflow_count
-                0x008002fb        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
-                0x008002fb                timer0_overflow_count
+                0x0080034f        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
+                0x0080034f                timer0_overflow_count
  .bss._ZN14SoftwareSerial20_receive_buffer_headE
-                0x008002ff        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x008002ff                _ZN14SoftwareSerial20_receive_buffer_headE
+                0x00800353        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800353                _ZN14SoftwareSerial20_receive_buffer_headE
  .bss._ZN14SoftwareSerial20_receive_buffer_tailE
-                0x00800300        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800300                _ZN14SoftwareSerial20_receive_buffer_tailE
+                0x00800354        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800354                _ZN14SoftwareSerial20_receive_buffer_tailE
  .bss._ZN14SoftwareSerial15_receive_bufferE
-                0x00800301      0x100 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800301                _ZN14SoftwareSerial15_receive_bufferE
+                0x00800355      0x100 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800355                _ZN14SoftwareSerial15_receive_bufferE
  .bss._ZN14SoftwareSerial13active_objectE
-                0x00800401        0x2 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800401                _ZN14SoftwareSerial13active_objectE
+                0x00800455        0x2 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800455                _ZN14SoftwareSerial13active_objectE
  *(COMMON)
-                0x00800403                PROVIDE (__bss_end, .)
-                0x00001708                __data_load_start = LOADADDR (.data)
-                0x00001854                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800457                PROVIDE (__bss_end, .)
+                0x00001834                __data_load_start = LOADADDR (.data)
+                0x000019d4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800403        0x0
+.noinit         0x00800457        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800403                _end = .
-                0x00800403                PROVIDE (__heap_start, .)
+                0x00800457                _end = .
+                0x00800457                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -1863,6 +1884,7 @@ END GROUP
  .comment       0x00000030       0x31 Arduino/hardware/avr/cores/arduino/wiring.o
  .comment       0x00000030       0x31 Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .comment       0x00000030       0x31 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .comment       0x00000030       0x31 src/AuthorizationHandlerClass.o
  .comment       0x00000030       0x31 src/GsmCommunicationClass.o
  .comment       0x00000030       0x31 src/Leds.o
  .comment       0x00000030       0x31 src/main_LockOpener.o
@@ -1888,7 +1910,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x4d8
+.debug_aranges  0x00000000      0x518
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x68 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -1911,18 +1933,20 @@ END GROUP
  .debug_aranges
                 0x00000340       0xa8 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
  .debug_aranges
-                0x000003e8       0x58 src/GsmCommunicationClass.o
+                0x000003e8       0x40 src/AuthorizationHandlerClass.o
  .debug_aranges
-                0x00000440       0x38 src/Leds.o
+                0x00000428       0x58 src/GsmCommunicationClass.o
  .debug_aranges
-                0x00000478       0x20 src/main_LockOpener.o
+                0x00000480       0x38 src/Leds.o
  .debug_aranges
-                0x00000498       0x40 src/SmsHandlerClass.o
+                0x000004b8       0x20 src/main_LockOpener.o
+ .debug_aranges
+                0x000004d8       0x40 src/SmsHandlerClass.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0xd4e4
+.debug_info     0x00000000     0xdedc
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4     0x1c39 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -1935,12 +1959,13 @@ END GROUP
  .debug_info    0x00008473      0x2d2 Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_info    0x00008745      0x5db Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_info    0x00008d20     0x2600 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_info    0x0000b320      0xa91 src/GsmCommunicationClass.o
- .debug_info    0x0000bdb1      0x3cb src/Leds.o
- .debug_info    0x0000c17c      0xb0d src/main_LockOpener.o
- .debug_info    0x0000cc89      0x85b src/SmsHandlerClass.o
+ .debug_info    0x0000b320      0x77b src/AuthorizationHandlerClass.o
+ .debug_info    0x0000ba9b      0xa6b src/GsmCommunicationClass.o
+ .debug_info    0x0000c506      0x3e4 src/Leds.o
+ .debug_info    0x0000c8ea      0xcb4 src/main_LockOpener.o
+ .debug_info    0x0000d59e      0x93e src/SmsHandlerClass.o
 
-.debug_abbrev   0x00000000     0x2dfe
+.debug_abbrev   0x00000000     0x30d1
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2      0x417 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -1953,12 +1978,13 @@ END GROUP
  .debug_abbrev  0x000019d3      0x146 Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_abbrev  0x00001b19      0x149 Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_abbrev  0x00001c62      0x5c9 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_abbrev  0x0000222b      0x37c src/GsmCommunicationClass.o
- .debug_abbrev  0x000025a7      0x1d9 src/Leds.o
- .debug_abbrev  0x00002780      0x3af src/main_LockOpener.o
- .debug_abbrev  0x00002b2f      0x2cf src/SmsHandlerClass.o
+ .debug_abbrev  0x0000222b      0x2d4 src/AuthorizationHandlerClass.o
+ .debug_abbrev  0x000024ff      0x36d src/GsmCommunicationClass.o
+ .debug_abbrev  0x0000286c      0x1d9 src/Leds.o
+ .debug_abbrev  0x00002a45      0x397 src/main_LockOpener.o
+ .debug_abbrev  0x00002ddc      0x2f5 src/SmsHandlerClass.o
 
-.debug_line     0x00000000     0x3497
+.debug_line     0x00000000     0x3811
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000133      0x50f Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -1971,12 +1997,13 @@ END GROUP
  .debug_line    0x00001abb      0x2be Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_line    0x00001d79      0x279 Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_line    0x00001ff2      0x7d9 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_line    0x000027cb      0x47f src/GsmCommunicationClass.o
- .debug_line    0x00002c4a      0x1cc src/Leds.o
- .debug_line    0x00002e16      0x2f8 src/main_LockOpener.o
- .debug_line    0x0000310e      0x389 src/SmsHandlerClass.o
+ .debug_line    0x000027cb      0x2fb src/AuthorizationHandlerClass.o
+ .debug_line    0x00002ac6      0x479 src/GsmCommunicationClass.o
+ .debug_line    0x00002f3f      0x1e4 src/Leds.o
+ .debug_line    0x00003123      0x33a src/main_LockOpener.o
+ .debug_line    0x0000345d      0x3b4 src/SmsHandlerClass.o
 
-.debug_frame    0x00000000      0xe1c
+.debug_frame    0x00000000      0xeac
  *(.debug_frame)
  .debug_frame   0x00000000      0x104 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
  .debug_frame   0x00000104       0xec Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
@@ -1988,12 +2015,13 @@ END GROUP
  .debug_frame   0x000008dc       0xc4 Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_frame   0x000009a0       0x7c Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_frame   0x00000a1c      0x1dc Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_frame   0x00000bf8       0xf4 src/GsmCommunicationClass.o
- .debug_frame   0x00000cec       0x60 src/Leds.o
- .debug_frame   0x00000d4c       0x38 src/main_LockOpener.o
- .debug_frame   0x00000d84       0x98 src/SmsHandlerClass.o
+ .debug_frame   0x00000bf8       0x84 src/AuthorizationHandlerClass.o
+ .debug_frame   0x00000c7c       0xf4 src/GsmCommunicationClass.o
+ .debug_frame   0x00000d70       0x60 src/Leds.o
+ .debug_frame   0x00000dd0       0x38 src/main_LockOpener.o
+ .debug_frame   0x00000e08       0xa4 src/SmsHandlerClass.o
 
-.debug_str      0x00000000     0x2f3e
+.debug_str      0x00000000     0x316c
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208     0x1383 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -2004,28 +2032,30 @@ END GROUP
                                 0xfea (size before relaxing)
  .debug_str     0x000019d7       0x74 Arduino/hardware/avr/cores/arduino/main.o
                                 0x28d (size before relaxing)
- .debug_str     0x00001a4b      0x3ab Arduino/hardware/avr/cores/arduino/Print.o
+ .debug_str     0x00001a4b      0x3a6 Arduino/hardware/avr/cores/arduino/Print.o
                                0x104f (size before relaxing)
- .debug_str     0x00001df6      0x1ca Arduino/hardware/avr/cores/arduino/Tone.o
+ .debug_str     0x00001df1      0x1ca Arduino/hardware/avr/cores/arduino/Tone.o
                                 0x3fc (size before relaxing)
- .debug_str     0x00001fc0      0x152 Arduino/hardware/avr/cores/arduino/WInterrupts.o
+ .debug_str     0x00001fbb      0x152 Arduino/hardware/avr/cores/arduino/WInterrupts.o
                                 0x21a (size before relaxing)
- .debug_str     0x00002112       0x99 Arduino/hardware/avr/cores/arduino/wiring.o
+ .debug_str     0x0000210d       0x99 Arduino/hardware/avr/cores/arduino/wiring.o
                                 0x22d (size before relaxing)
- .debug_str     0x000021ab       0x8a Arduino/hardware/avr/cores/arduino/wiring_digital.o
+ .debug_str     0x000021a6       0x8a Arduino/hardware/avr/cores/arduino/wiring_digital.o
                                 0x292 (size before relaxing)
- .debug_str     0x00002235      0x5db Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+ .debug_str     0x00002230      0x5db Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
                                0x172b (size before relaxing)
- .debug_str     0x00002810      0x2f6 src/GsmCommunicationClass.o
-                                0x649 (size before relaxing)
- .debug_str     0x00002b06      0x12d src/Leds.o
-                                0x348 (size before relaxing)
- .debug_str     0x00002c33      0x282 src/main_LockOpener.o
-                                0x8c2 (size before relaxing)
- .debug_str     0x00002eb5       0x89 src/SmsHandlerClass.o
-                                0x698 (size before relaxing)
+ .debug_str     0x0000280b      0x400 src/AuthorizationHandlerClass.o
+                                0x6c3 (size before relaxing)
+ .debug_str     0x00002c0b       0xbd src/GsmCommunicationClass.o
+                                0x632 (size before relaxing)
+ .debug_str     0x00002cc8      0x12e src/Leds.o
+                                0x347 (size before relaxing)
+ .debug_str     0x00002df6      0x2b9 src/main_LockOpener.o
+                                0xa55 (size before relaxing)
+ .debug_str     0x000030af       0xbd src/SmsHandlerClass.o
+                                0x845 (size before relaxing)
 
-.debug_loc      0x00000000     0x531b
+.debug_loc      0x00000000     0x54a2
  *(.debug_loc)
  .debug_loc     0x00000000      0x4e0 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
  .debug_loc     0x000004e0      0x1ca Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
@@ -2036,10 +2066,11 @@ END GROUP
  .debug_loc     0x00003428      0x24a Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_loc     0x00003672      0x5c4 Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_loc     0x00003c36      0xd72 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_loc     0x000049a8      0x4a9 src/GsmCommunicationClass.o
- .debug_loc     0x00004e51      0x12b src/Leds.o
- .debug_loc     0x00004f7c       0xa8 src/main_LockOpener.o
- .debug_loc     0x00005024      0x2f7 src/SmsHandlerClass.o
+ .debug_loc     0x000049a8      0x130 src/AuthorizationHandlerClass.o
+ .debug_loc     0x00004ad8      0x4b9 src/GsmCommunicationClass.o
+ .debug_loc     0x00004f91      0x12b src/Leds.o
+ .debug_loc     0x000050bc       0xc0 src/main_LockOpener.o
+ .debug_loc     0x0000517c      0x326 src/SmsHandlerClass.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -2059,7 +2090,7 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x4f0
+.debug_ranges   0x00000000      0x520
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x58 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
  .debug_ranges  0x00000058       0x38 Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
@@ -2071,10 +2102,11 @@ END GROUP
  .debug_ranges  0x000002e8       0x38 Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_ranges  0x00000320       0x28 Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_ranges  0x00000348       0xf8 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_ranges  0x00000440       0x48 src/GsmCommunicationClass.o
- .debug_ranges  0x00000488       0x28 src/Leds.o
- .debug_ranges  0x000004b0       0x10 src/main_LockOpener.o
- .debug_ranges  0x000004c0       0x30 src/SmsHandlerClass.o
+ .debug_ranges  0x00000440       0x30 src/AuthorizationHandlerClass.o
+ .debug_ranges  0x00000470       0x48 src/GsmCommunicationClass.o
+ .debug_ranges  0x000004b8       0x28 src/Leds.o
+ .debug_ranges  0x000004e0       0x10 src/main_LockOpener.o
+ .debug_ranges  0x000004f0       0x30 src/SmsHandlerClass.o
 
 .debug_macro
  *(.debug_macro)

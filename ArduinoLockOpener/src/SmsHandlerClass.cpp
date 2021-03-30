@@ -23,7 +23,6 @@
 #include <string.h>
 #include "Arduino.h"
 #include "SmsHandlerClass.h"
-#include "GsmCommunicationClass.h"
 
 
 /* Class constant declaration  */
@@ -51,9 +50,10 @@
 /*  History     : 30.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-SmsHandlerClass::SmsHandlerClass(GsmCommunicationClass *NewGsmCommunication)
+SmsHandlerClass::SmsHandlerClass(GsmCommunicationClass *NewGsmCommunication, AuthorizationHandlerClass *NewAuthorizationHandler)
 {
 	GsmCommunication = NewGsmCommunication;
+	AuthorizationHandler = NewAuthorizationHandler;
 } //SmsHandlerClass
 
 // default destructor
@@ -85,7 +85,7 @@ void SmsHandlerClass::handleReceivedSms(){
 		isolateSmsSenderPhoneNr(&(GsmCommunication->receiveBuffer[0]));
 		
 		// check Authorization
-		if(GsmCommunication->checkAuthorization(&smsSenderNr[0]) == 1){
+		if(AuthorizationHandler->checkAuthorization(&smsSenderNr[0]) == 1){
 			Serial.write("SMS sender AUTHORIZED !\n");
 			
 			// read sms Msg out of the receive Buffer

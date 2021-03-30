@@ -53,23 +53,30 @@ using namespace std;
 /*                                                                           */
 /*****************************************************************************/
 
-LedManagerClass::LedManagerClass(uint8_t BaseAdress) : LedBase((uint8_t*) BaseAdress){
-	   *LedBase = 0;
+GpioPortClass::GpioPortClass(uint8_t *NewBaseAdress)
+{
+	   LedBase = NewBaseAdress;
 	   ShadowLedRegister = 0;
 
 		// init GPIO
+		DDRB	|=  (1 << LED_BUILTIN);	// set GPIO as Output
+		PORTB	&= ~(1 << LED_BUILTIN);	// clear bit
 		DDRB	|=  (1 << LED_STATE);	// set GPIO as Output
 		PORTB	&= ~(1 << LED_STATE);	// clear bit
 		
+		DDRD	|= (1 << LOCK);			// set GPIO as Output
+		PORTD	&= ~(1 << LOCK);		// clear bit
+
+		
 }
 
-LedManagerClass::~LedManagerClass(void)
+GpioPortClass::~GpioPortClass(void)
 {
 	   *LedBase = 0;
 	   ShadowLedRegister = 0;
 }
 
-void LedManagerClass::SetLed(int LedNumber, LedState State)
+void GpioPortClass::SetLed(int LedNumber, LedState State)
 {
    if ((LedNumber >= 0) && (LedNumber <= MAX_LED-1)) {
 
@@ -87,9 +94,9 @@ void LedManagerClass::SetLed(int LedNumber, LedState State)
 	}
    }
 
-void LedManagerClass::ToggleLed(int LedNumber)
+void GpioPortClass::ToggleLed(int LedNumber)
 {
-	if(toggleTime > 1){
+	if(toggleTime > 15){
 		toggleTime = 0;
 	if ((LedNumber >= 0) && (LedNumber <= MAX_LED-1)) {
 

@@ -27,6 +27,7 @@
 /* Class constant declaration  */
 #define LED_STATE		0
 #define LED_BUILTIN		5
+#define LOCK			5
 
 /* Class Type declaration      */
 
@@ -34,12 +35,13 @@
 
 /* Class definition            */
 
-class LedManagerClass
+class GpioPortClass
 {
 	// Data
 	public:
 		enum {MAX_LED = 8};
-		enum {PORTB_BASE = 0x25};
+		//enum {PORTB_BASE = 0x25};
+		uint8_t port_base;
 		enum LedState{ON = 1, OFF = 0};	
 		int toggleTime = 0;	
 			
@@ -49,8 +51,8 @@ class LedManagerClass
 		  
 	// Methods
 	public:
-			LedManagerClass(uint8_t BaseAdress = PORTB_BASE);
-	        ~LedManagerClass();
+			GpioPortClass(uint8_t *NewBaseAdress);
+	        ~GpioPortClass();
 	        void SetLed(int Number, LedState State);
 	        void ToggleLed(int Number);
 
@@ -67,15 +69,15 @@ class LedClass
 	virtual void Toggle() = 0;
 };
 
-class PortClass : public LedClass
+class GPIOLedClass : public LedClass
 {
-	   LedManagerClass *MyParent;
+	   GpioPortClass *MyParent;
 	   int MyLed;
 	   
 	   public:
-      PortClass(LedManagerClass *Parent, int LedNumber) : MyParent(Parent), MyLed(LedNumber) {};
-      void On()    {MyParent->SetLed(MyLed, LedManagerClass::ON);};
-      void Off()   {MyParent->SetLed(MyLed, LedManagerClass::OFF);};
+      GPIOLedClass(GpioPortClass *Parent, int LedNumber) : MyParent(Parent), MyLed(LedNumber) {};
+      void On()    {MyParent->SetLed(MyLed, GpioPortClass::ON);};
+      void Off()   {MyParent->SetLed(MyLed, GpioPortClass::OFF);};
       void Toggle(){MyParent->ToggleLed(MyLed);};
 	
 };

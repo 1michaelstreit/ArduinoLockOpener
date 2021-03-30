@@ -315,6 +315,12 @@
     <Compile Include="Arduino\hardware\avr\variants\standard\pins_arduino.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\AuthorizationHandlerClass.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\AuthorizationHandlerClass.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\GsmCommunicationClass.cpp">
       <SubType>compile</SubType>
     </Compile>

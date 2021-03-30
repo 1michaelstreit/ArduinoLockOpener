@@ -24,6 +24,7 @@
 #include "Leds.hpp"
 #include "GsmCommunicationClass.h"
 #include "SmsHandlerClass.h"
+#include "AuthorizationHandlerClass.h"
 
 
 
@@ -34,12 +35,16 @@ void main_ArduinoLockOpener() {
 	SoftwareSerial GsmSerial(RX, TX); // RX TX
 	
 	GsmCommunicationClass GsmCommunication(&GsmSerial);
-	SmsHandlerClass SmsHandler(&GsmCommunication);
+	AuthorizationHandlerClass AuthorizationHandler(&GsmCommunication);
+	SmsHandlerClass SmsHandler(&GsmCommunication,&AuthorizationHandler);
+	
 	
     DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
-	LedManagerClass LedManager;
-	PortClass LedBuiltIn(&LedManager,LED_BUILTIN);
-	PortClass LedState(&LedManager,LED_STATE);
+	GpioPortClass GpioPortB((uint8_t*)0x25);
+	GpioPortClass GpioPortD((uint8_t*)0x2B);
+	GPIOLedClass LedBuiltIn(&GpioPortB,LED_BUILTIN);
+	GPIOLedClass LedState(&GpioPortB,LED_STATE);
+	GPIOLedClass LockLed(&GpioPortD,LOCK);
 	
 	_delay_ms(1000);
 	Serial.write("Start\n");
@@ -50,11 +55,13 @@ void main_ArduinoLockOpener() {
 		GsmCommunication.checkConnection();	
 		GsmCommunication.readSerial();	
 		SmsHandler.handleReceivedSms();
+		AuthorizationHandler.handleReceivedCall();
 		
 		
+		//LockLed.Toggle();
 		
 		LedState.Toggle();
 		LedBuiltIn.Toggle();
-		//_delay_ms(100);		
+		_delay_ms(50);		
 	}
 }
