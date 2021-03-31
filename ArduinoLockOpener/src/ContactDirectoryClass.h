@@ -20,9 +20,8 @@
 /****************************************************************************/
 
 /* imports */
-//#include <C:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/list>
-//#include <list.h>
 #include "ContactClass.h"
+
 
 /* Class constant declaration  */
 
@@ -43,6 +42,7 @@ public:
 	ContactClass *tail = NULL;
 protected:
 private:
+	
 
 
 //Methods
@@ -54,6 +54,7 @@ public:
 protected:
 private:
 	void pushFront(ContactClass *NewContact);
+	int getEepromAddress();
 
 }; 
 /*****************************************************************************/

@@ -47,7 +47,7 @@ public:
 	AuthorizationHandlerClass(GsmCommunicationClass *NewGsmCommunication);
 	~AuthorizationHandlerClass();
 	
-	void handleReceivedCall(ContactDirectoryClass *ContactDirectory);
+	void handleReceivedCall(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass* ContactDirectoryPermanent);
 	int  checkAuthorization(char *nrToCheck, ContactDirectoryClass *ContactDirectory);
 	void answerCall();
 protected:

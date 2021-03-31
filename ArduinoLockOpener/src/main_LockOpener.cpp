@@ -26,6 +26,7 @@
 #include "SmsHandlerClass.h"
 #include "AuthorizationHandlerClass.h"
 #include "ContactDirectoryClass.h"
+#include "EepromClass.h"
 
 
 
@@ -38,10 +39,15 @@ void main_ArduinoLockOpener() {
 	AuthorizationHandlerClass AuthorizationHandler(&GsmCommunication);
 	SmsHandlerClass SmsHandler(&GsmCommunication,&AuthorizationHandler);
 	
-	ContactDirectoryClass ContactDirectory;
+	ContactDirectoryClass ContactDirectoryTemporary;
+	ContactDirectoryClass ContactDirectoryPermanent;
 	
-	ContactDirectory.addContact("Michael Streit","786750902",TEMPORARY);
-	ContactDirectory.addContact("Martin Streit","564418910",TEMPORARY);
+	EepromClass Eeprom1;
+	Eeprom1.clearEeprom();
+	
+	ContactDirectoryPermanent.addContact("Anna","555555555",PERMANENT);
+	
+	ContactDirectoryTemporary.addContact("Martin Streit","564418910",TEMPORARY);
 	
 	
     DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
@@ -59,8 +65,8 @@ void main_ArduinoLockOpener() {
     for(;;){
 		GsmCommunication.checkConnection();	
 		GsmCommunication.readSerial();	
-		SmsHandler.handleReceivedSms(&ContactDirectory);
-		AuthorizationHandler.handleReceivedCall(&ContactDirectory);
+		SmsHandler.handleReceivedSms(&ContactDirectoryTemporary);
+		AuthorizationHandler.handleReceivedCall(&ContactDirectoryTemporary,&ContactDirectoryPermanent);
 		
 		
 		//LockLed.Toggle();	// makes error on PORTD for Serial communication

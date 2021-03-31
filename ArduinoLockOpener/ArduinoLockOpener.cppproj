@@ -333,6 +333,12 @@
     <Compile Include="src\ContactDirectoryClass.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\EepromClass.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\EepromClass.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\GsmCommunicationClass.cpp">
       <SubType>compile</SubType>
     </Compile>

@@ -77,6 +77,7 @@ C_SRCS +=  \
 ../src/AuthorizationHandlerClass.cpp \
 ../src/ContactClass.cpp \
 ../src/ContactDirectoryClass.cpp \
+../src/EepromClass.cpp \
 ../src/GsmCommunicationClass.cpp \
 ../src/Leds.cpp \
 ../src/main_LockOpener.cpp \
@@ -119,6 +120,7 @@ Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o \
 src/AuthorizationHandlerClass.o \
 src/ContactClass.o \
 src/ContactDirectoryClass.o \
+src/EepromClass.o \
 src/GsmCommunicationClass.o \
 src/Leds.o \
 src/main_LockOpener.o \
@@ -154,6 +156,7 @@ Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o \
 src/AuthorizationHandlerClass.o \
 src/ContactClass.o \
 src/ContactDirectoryClass.o \
+src/EepromClass.o \
 src/GsmCommunicationClass.o \
 src/Leds.o \
 src/main_LockOpener.o \
@@ -189,6 +192,7 @@ Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.d \
 src/AuthorizationHandlerClass.d \
 src/ContactClass.d \
 src/ContactDirectoryClass.d \
+src/EepromClass.d \
 src/GsmCommunicationClass.d \
 src/Leds.d \
 src/main_LockOpener.d \
@@ -224,6 +228,7 @@ Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.d \
 src/AuthorizationHandlerClass.d \
 src/ContactClass.d \
 src/ContactDirectoryClass.d \
+src/EepromClass.d \
 src/GsmCommunicationClass.d \
 src/Leds.d \
 src/main_LockOpener.d \
@@ -434,6 +439,13 @@ src/ContactClass.o: ../src/ContactClass.cpp
 	
 
 src/ContactDirectoryClass.o: ../src/ContactDirectoryClass.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\include" -I"../Arduino/hardware/avr/variants/standard" -I"../Arduino/hardware/avr/cores/arduino" -I"../Arduino/hardware/avr/libraries/SoftwareSerial/src" -I"../Arduino/hardware/avr/libraries/EEPROM/src"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+src/EepromClass.o: ../src/EepromClass.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\include" -I"../Arduino/hardware/avr/variants/standard" -I"../Arduino/hardware/avr/cores/arduino" -I"../Arduino/hardware/avr/libraries/SoftwareSerial/src" -I"../Arduino/hardware/avr/libraries/EEPROM/src"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

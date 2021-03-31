@@ -76,12 +76,13 @@ AuthorizationHandlerClass::~AuthorizationHandlerClass()
 /*                                                                           */
 /*****************************************************************************/
 
-void AuthorizationHandlerClass::handleReceivedCall( ContactDirectoryClass *ContactDirectory){
+void AuthorizationHandlerClass::handleReceivedCall(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass* ContactDirectoryPermanent){
 	if(strstr(GsmCommunication->receiveBuffer, "RING") != NULL){ // if call received
 		// check phone Number from caller
 		GsmCommunication->sendAtCmd((char*)"AT+CLCC");	
 		GsmCommunication->readSerial();
-		if(checkAuthorization((char*)&GsmCommunication->receiveBuffer, ContactDirectory) == 1){
+		if(checkAuthorization((char*)&GsmCommunication->receiveBuffer, ContactDirectoryTemporary) == 1		// check all contacts
+		|| checkAuthorization((char*)&GsmCommunication->receiveBuffer, ContactDirectoryPermanent) == 1){
 			Serial.write("Number authorized -> OPEN LOCK \n\n");
 			answerCall();		
 			// open lock
@@ -100,7 +101,7 @@ int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck, ContactDirect
 	int numberOfMatchingDigits = 0;
 	
 	// check temporary numbers
-	Serial.write("temporary phone numbers:\n");
+	Serial.write("phone numbers in Contacts:\n");
 	while(currentContact != NULL){		// until end of list reached
 		sprintf(displayString,"phone number: %s		Name: %s \n", currentContact->phoneNumber, currentContact->Name);
 		Serial.write(displayString);	// display current phone nr

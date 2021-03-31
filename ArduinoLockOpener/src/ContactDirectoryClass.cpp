@@ -20,6 +20,7 @@
 
 /* imports */
 #include "ContactDirectoryClass.h"
+#include "EepromClass.h"
 
 /* Class constant declaration  */
 
@@ -55,10 +56,18 @@ void ContactDirectoryClass::addContact(char *newName, char *newPhoneNr, int prio
 		
 		Serial.write("Added...\"");
 		Serial.write(newPhoneNr);
-		Serial.write("\" temporary \n\n");
+		Serial.write("\" to Contact \n\n");
+
 	}
 	
 	// add to EEPROM
+	
+	if(priority == PERMANENT){
+		EepromClass tempEeprom;
+		tempEeprom.addContactToEeprom(newName, newPhoneNr);
+		
+		tempEeprom.eepromToContactDirectory(this);
+	}
 }
 
 void ContactDirectoryClass::pushFront(ContactClass *newContact){

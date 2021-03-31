@@ -58,6 +58,8 @@ src\ContactClass.cpp
 
 src\ContactDirectoryClass.cpp
 
+src\EepromClass.cpp
+
 src\GsmCommunicationClass.cpp
 
 src\Leds.cpp

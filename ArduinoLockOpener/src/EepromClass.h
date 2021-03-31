@@ -1,7 +1,7 @@
-#ifndef __CONTACTCLASS_H__
-#define __CONTACTCLASS_H__
+#ifndef __EEPROMCLASS_H__
+#define __EEPROMCLASS_H__
 /****************************************************************************/
-/*  Header     : ContactClass                          Version 1.0 */
+/*  Header     : EepromClass			                        Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
 /*  Function   :          */
@@ -13,20 +13,16 @@
 /*                                                                          */
 /*  History    : 31.03.2021  IO Created                                     */
 /*                                                                          */
-/*  File       : ContactClass.hpp											*/
+/*  File       : EepromClass.hpp									*/
 /*                                                                          */
 /****************************************************************************/
 /* HTA Burgdorf                                                             */
 /****************************************************************************/
+
 /* imports */
-//#include <string>
-#include <Arduino.h>
+#include "ContactDirectoryClass.h"
 
 /* Class constant declaration  */
-#define TEMPORARY	1
-#define PERMANENT	2
-#define NAME_SIZE	50
-#define PHONE_NR_SIZE 20
 
 /* Class Type declaration      */
 
@@ -34,30 +30,29 @@
 
 /* Class definition            */
 
-class ContactClass
+class EepromClass
 {
-//Data
+//variables
 public:
-char Name[NAME_SIZE];
-char phoneNumber[PHONE_NR_SIZE]; 
-ContactClass *next;
-ContactClass *prev;
 protected:
 private:
-
-
-
-//Methods
+	int eepromAddress;
+//functions
 public:
-	ContactClass(char *NewName, char *NewphoneNumber);
-	~ContactClass();
+	EepromClass();
+	~EepromClass();
+	void addContactToEeprom(char *newName, char *newPhoneNr);
+	void eepromToContactDirectory(ContactDirectoryClass *ContactDirectory);
+	void clearEeprom();
+	void displayEeprom();
 protected:
 private:
+	int getEepromAddress();
+	
+	
 
-}; 
-
+};
 /*****************************************************************************/
-/*  End Header  : ContactClass												 */
+/*  End Header  : EepromClass												 */
 /*****************************************************************************/
-
-#endif //__CONTACTCLASS_H__
+#endif //__EEPROMCLASS_H__
