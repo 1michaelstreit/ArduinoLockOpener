@@ -76,12 +76,12 @@ AuthorizationHandlerClass::~AuthorizationHandlerClass()
 /*                                                                           */
 /*****************************************************************************/
 
-void AuthorizationHandlerClass::handleReceivedCall(){
+void AuthorizationHandlerClass::handleReceivedCall( ContactDirectoryClass *ContactDirectory){
 	if(strstr(GsmCommunication->receiveBuffer, "RING") != NULL){ // if call received
 		// check phone Number from caller
-		GsmCommunication->sendAtCmd("AT+CLCC");	
+		GsmCommunication->sendAtCmd((char*)"AT+CLCC");	
 		GsmCommunication->readSerial();
-		if(checkAuthorization(&GsmCommunication->receiveBuffer[0]) == 1){
+		if(checkAuthorization((char*)&GsmCommunication->receiveBuffer, ContactDirectory) == 1){
 			Serial.write("Number authorized -> OPEN LOCK \n\n");
 			answerCall();		
 			// open lock
@@ -91,13 +91,40 @@ void AuthorizationHandlerClass::handleReceivedCall(){
 	}
 }
 
-int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck){
+int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck, ContactDirectoryClass *ContactDirectory){
+	char displayString[100] = {0};
+	
 	Serial.write("CheckAuthorization\n");
-	//displayString(nrToCheck);
-	return(1);
+	
+	ContactClass *currentContact = ContactDirectory->head;
+	int numberOfMatchingDigits = 0;
+	
+	// check temporary numbers
+	Serial.write("temporary phone numbers:\n");
+	while(currentContact != NULL){		// until end of list reached
+		sprintf(displayString,"phone number: %s		Name: %s \n", currentContact->phoneNumber, currentContact->Name);
+		Serial.write(displayString);	// display current phone nr
+		
+		_delay_ms(100);		// for debug
+		
+		for(int u=0; nrToCheck[u] != '\0'; u++){
+			if(nrToCheck[u] == currentContact->phoneNumber[numberOfMatchingDigits]){ // compare the single digits
+				numberOfMatchingDigits++;
+			}else{
+				numberOfMatchingDigits = 0;
+			}
+			if(numberOfMatchingDigits >= MATCHING_DIGITS){	// return 1 if Number matches
+				return(1);
+			}
+		}
+		currentContact = currentContact->next;	// rearch in next contact in the list
+	}	
+	return(0);		// return 0 if no matching phone number was detected
 }
 
 void AuthorizationHandlerClass::answerCall(){
+	
+	// hang up incoming Call
 	GsmCommunication->sendAtCmd("ATA");
 	GsmCommunication->readSerial();
 	GsmCommunication->sendAtCmd("AT+CVHU=0");

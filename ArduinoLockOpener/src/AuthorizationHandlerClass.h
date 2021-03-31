@@ -22,10 +22,11 @@
 /* imports */
 #include "AuthorizationHandlerClass.h"
 #include "GsmCommunicationClass.h"
+#include "ContactDirectoryClass.h"
 
 
 /* Class constant declaration  */
-
+#define MATCHING_DIGITS	9
 /* Class Type declaration      */
 
 /* Class data declaration      */
@@ -37,6 +38,7 @@ class AuthorizationHandlerClass
 // Data
 public:
 GsmCommunicationClass *GsmCommunication;
+
 protected:
 private:
 
@@ -45,8 +47,8 @@ public:
 	AuthorizationHandlerClass(GsmCommunicationClass *NewGsmCommunication);
 	~AuthorizationHandlerClass();
 	
-	void handleReceivedCall();
-	int  checkAuthorization(char *nrToCheck);
+	void handleReceivedCall(ContactDirectoryClass *ContactDirectory);
+	int  checkAuthorization(char *nrToCheck, ContactDirectoryClass *ContactDirectory);
 	void answerCall();
 protected:
 private:

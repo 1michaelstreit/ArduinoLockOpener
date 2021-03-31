@@ -1,5 +1,5 @@
-src/main_LockOpener.d src/main_LockOpener.o: ../src/main_LockOpener.cpp \
- ../Arduino/hardware/avr/cores/arduino/Arduino.h \
+src/ContactClass.d src/ContactClass.o: ../src/ContactClass.cpp \
+ ../src/ContactClass.h ../Arduino/hardware/avr/cores/arduino/Arduino.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h \
@@ -33,12 +33,9 @@ src/main_LockOpener.d src/main_LockOpener.o: ../src/main_LockOpener.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  ../Arduino/hardware/avr/cores/arduino/Arduino.h \
- ../Arduino/hardware/avr/variants/standard/pins_arduino.h \
- ../Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.h \
- ../Arduino/hardware/avr/cores/arduino/Stream.h ../src/Leds.hpp \
- ../src/GsmCommunicationClass.h ../src/SmsHandlerClass.h \
- ../src/AuthorizationHandlerClass.h ../src/ContactDirectoryClass.h \
- ../src/ContactClass.h
+ ../Arduino/hardware/avr/variants/standard/pins_arduino.h
+
+../src/ContactClass.h:
 
 ../Arduino/hardware/avr/cores/arduino/Arduino.h:
 
@@ -109,19 +106,3 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Arduino/hardware/avr/cores/arduino/Arduino.h:
 
 ../Arduino/hardware/avr/variants/standard/pins_arduino.h:
-
-../Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.h:
-
-../Arduino/hardware/avr/cores/arduino/Stream.h:
-
-../src/Leds.hpp:
-
-../src/GsmCommunicationClass.h:
-
-../src/SmsHandlerClass.h:
-
-../src/AuthorizationHandlerClass.h:
-
-../src/ContactDirectoryClass.h:
-
-../src/ContactClass.h:

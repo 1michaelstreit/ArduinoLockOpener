@@ -1,7 +1,7 @@
-#ifndef __GSMCOMMUNICATIONCLASS_H__
-#define __GSMCOMMUNICATIONCLASS_H__
+#ifndef __CONTACTCLASS_H__
+#define __CONTACTCLASS_H__
 /****************************************************************************/
-/*  Header     : GsmCommunicationClass                          Version 1.0 */
+/*  Header     : ContactClass                          Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
 /*  Function   :          */
@@ -11,23 +11,20 @@
 /*                                                                          */
 /*  Author     : M. Streit                                                  */
 /*                                                                          */
-/*  History    : 23.03.2021  IO Created                                     */
+/*  History    : 31.03.2021  IO Created                                     */
 /*                                                                          */
-/*  File       : GsmCommunicationClass.hpp                                  */
+/*  File       : ContactClass.hpp											*/
 /*                                                                          */
 /****************************************************************************/
 /* HTA Burgdorf                                                             */
 /****************************************************************************/
-
 /* imports */
-#include "SoftwareSerial.h"
-
+//#include <string>
+#include <Arduino.h>
 
 /* Class constant declaration  */
-
-// for software serial
-#define RX	3 		// RX pin 3 on Arduino
-#define TX	2 		// TX pin 2 on Arduino
+#define TEMPORARY	1
+#define PERMANENT	2
 
 /* Class Type declaration      */
 
@@ -35,43 +32,30 @@
 
 /* Class definition            */
 
-class GsmCommunicationClass
+class ContactClass
 {
-// Data
+//Data
 public:
-static const int bufferSize = 256;
-SoftwareSerial *GsmSerial;
-int checkConnectionTime;
-char receiveBuffer[bufferSize];
-
-private:
-bool gsmIsConnected = false;
-bool gsmIsConnectedOld = false;
-bool answerReceived = false;
-
-
-
-
-// Methods
-public:
-	GsmCommunicationClass(SoftwareSerial *NewGsmSerial);
-	~GsmCommunicationClass();
-	
-	void checkConnection();
-	void readSerial();
-	void displayString(char *dString);
-	void sendAtCmd(char atCmd[256]);
-	
-
-	
+char Name[50];
+char phoneNumber[20]; 
+ContactClass *next;
+ContactClass *prev;
+protected:
 private:
 
-	void checkReceivedData();	
-	void setUpSmsMode();
-	
-	
-};
+
+
+//Methods
+public:
+	ContactClass(char *NewName, char *NewphoneNumber);
+	~ContactClass();
+protected:
+private:
+
+}; 
+
 /*****************************************************************************/
-/*  End Header  : GsmCommunicationClass                                      */
+/*  End Header  : ContactClass												 */
 /*****************************************************************************/
-#endif //__GSMCOMMUNICATIONCLASS_H__
+
+#endif //__CONTACTCLASS_H__

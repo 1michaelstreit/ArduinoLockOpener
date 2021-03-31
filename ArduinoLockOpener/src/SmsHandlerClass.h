@@ -50,7 +50,7 @@ public:
 	
 	void readSms(char *buffer);
 	void isolateSmsSenderPhoneNr(char *buffer);
-	void handleReceivedSms();
+	void handleReceivedSms(ContactDirectoryClass *ContactDirectory);
 protected:
 private:
 	

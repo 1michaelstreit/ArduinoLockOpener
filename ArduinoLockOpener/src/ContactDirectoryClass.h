@@ -1,7 +1,7 @@
-#ifndef __GSMCOMMUNICATIONCLASS_H__
-#define __GSMCOMMUNICATIONCLASS_H__
+#ifndef __CONTACTDIRECTORYCLASS_H__
+#define __CONTACTDIRECTORYCLASS_H__
 /****************************************************************************/
-/*  Header     : GsmCommunicationClass                          Version 1.0 */
+/*  Header     : ContactDirectoryClass                          Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
 /*  Function   :          */
@@ -11,23 +11,20 @@
 /*                                                                          */
 /*  Author     : M. Streit                                                  */
 /*                                                                          */
-/*  History    : 23.03.2021  IO Created                                     */
+/*  History    : 31.03.2021  IO Created                                     */
 /*                                                                          */
-/*  File       : GsmCommunicationClass.hpp                                  */
+/*  File       : ContactDirectoryClass.hpp									*/
 /*                                                                          */
 /****************************************************************************/
 /* HTA Burgdorf                                                             */
 /****************************************************************************/
 
 /* imports */
-#include "SoftwareSerial.h"
-
+//#include <C:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/list>
+//#include <list.h>
+#include "ContactClass.h"
 
 /* Class constant declaration  */
-
-// for software serial
-#define RX	3 		// RX pin 3 on Arduino
-#define TX	2 		// TX pin 2 on Arduino
 
 /* Class Type declaration      */
 
@@ -35,43 +32,31 @@
 
 /* Class definition            */
 
-class GsmCommunicationClass
+class ContactDirectoryClass
 {
-// Data
+	
+	
+//Data
 public:
-static const int bufferSize = 256;
-SoftwareSerial *GsmSerial;
-int checkConnectionTime;
-char receiveBuffer[bufferSize];
-
-private:
-bool gsmIsConnected = false;
-bool gsmIsConnectedOld = false;
-bool answerReceived = false;
-
-
-
-
-// Methods
-public:
-	GsmCommunicationClass(SoftwareSerial *NewGsmSerial);
-	~GsmCommunicationClass();
-	
-	void checkConnection();
-	void readSerial();
-	void displayString(char *dString);
-	void sendAtCmd(char atCmd[256]);
-	
-
-	
+// list elements
+	ContactClass *head = NULL;
+	ContactClass *tail = NULL;
+protected:
 private:
 
-	void checkReceivedData();	
-	void setUpSmsMode();
+
+//Methods
+public:
+	ContactDirectoryClass();
+	~ContactDirectoryClass();
+	void addContact(char *NewName, char *NewPhoneNr, int priority);
 	
-	
-};
+protected:
+private:
+	void pushFront(ContactClass *NewContact);
+
+}; 
 /*****************************************************************************/
-/*  End Header  : GsmCommunicationClass                                      */
+/*  End Header  : ContactDirectoryClass		                                 */
 /*****************************************************************************/
-#endif //__GSMCOMMUNICATIONCLASS_H__
+#endif //__CONTACTDIRECTORYCLASS_H__

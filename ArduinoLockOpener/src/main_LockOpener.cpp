@@ -25,7 +25,7 @@
 #include "GsmCommunicationClass.h"
 #include "SmsHandlerClass.h"
 #include "AuthorizationHandlerClass.h"
-
+#include "ContactDirectoryClass.h"
 
 
 
@@ -37,6 +37,11 @@ void main_ArduinoLockOpener() {
 	GsmCommunicationClass GsmCommunication(&GsmSerial);
 	AuthorizationHandlerClass AuthorizationHandler(&GsmCommunication);
 	SmsHandlerClass SmsHandler(&GsmCommunication,&AuthorizationHandler);
+	
+	ContactDirectoryClass ContactDirectory;
+	
+	ContactDirectory.addContact("Michael Streit","786750902",TEMPORARY);
+	ContactDirectory.addContact("Martin Streit","564418910",TEMPORARY);
 	
 	
     DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
@@ -54,11 +59,11 @@ void main_ArduinoLockOpener() {
     for(;;){
 		GsmCommunication.checkConnection();	
 		GsmCommunication.readSerial();	
-		SmsHandler.handleReceivedSms();
-		AuthorizationHandler.handleReceivedCall();
+		SmsHandler.handleReceivedSms(&ContactDirectory);
+		AuthorizationHandler.handleReceivedCall(&ContactDirectory);
 		
 		
-		//LockLed.Toggle();
+		//LockLed.Toggle();	// makes error on PORTD for Serial communication
 		
 		LedState.Toggle();
 		LedBuiltIn.Toggle();

@@ -79,23 +79,25 @@ SmsHandlerClass::~SmsHandlerClass()
 /*                                                                           */
 /*****************************************************************************/
 
-void SmsHandlerClass::handleReceivedSms(){
+void SmsHandlerClass::handleReceivedSms(ContactDirectoryClass *ContactDirectory){
 	if(strstr(GsmCommunication->receiveBuffer,"+CMT:") != NULL){	// if SMS received
 		
 		isolateSmsSenderPhoneNr(&(GsmCommunication->receiveBuffer[0]));
 		
 		// check Authorization
-		if(AuthorizationHandler->checkAuthorization(&smsSenderNr[0]) == 1){
+		if(AuthorizationHandler->checkAuthorization((char*)&smsSenderNr, ContactDirectory) == 1){
 			Serial.write("SMS sender AUTHORIZED !\n");
 			
 			// read sms Msg out of the receive Buffer
-			readSms(&(GsmCommunication->receiveBuffer[0]));
+			readSms((char*)&GsmCommunication->receiveBuffer);
 			
 			// handle sms commands
 			//GsmCommunication->displayString(smsMsg);		// for debbuging
 			if(strstr(smsMsg,"Globi 18") != NULL){
 				Serial.write("Msg Globi received\n");
 			}
+		}else{
+			Serial.write("SMS sender DECLINED \n");
 		}
 	}
 }

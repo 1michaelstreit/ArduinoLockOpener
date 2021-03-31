@@ -54,6 +54,10 @@ Arduino\hardware\avr\libraries\SoftwareSerial\src\SoftwareSerial.cpp
 
 src\AuthorizationHandlerClass.cpp
 
+src\ContactClass.cpp
+
+src\ContactDirectoryClass.cpp
+
 src\GsmCommunicationClass.cpp
 
 src\Leds.cpp
