@@ -76,13 +76,17 @@ AuthorizationHandlerClass::~AuthorizationHandlerClass()
 /*                                                                           */
 /*****************************************************************************/
 
-void AuthorizationHandlerClass::handleReceivedCall(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass* ContactDirectoryPermanent){
+void AuthorizationHandlerClass::handleReceivedCall(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent){
+	
 	if(strstr(GsmCommunication->receiveBuffer, "RING") != NULL){ // if call received
+		
 		// check phone Number from caller
 		GsmCommunication->sendAtCmd((char*)"AT+CLCC");	
 		GsmCommunication->readSerial();
-		if(checkAuthorization((char*)&GsmCommunication->receiveBuffer, ContactDirectoryTemporary) == 1		// check all contacts
-		|| checkAuthorization((char*)&GsmCommunication->receiveBuffer, ContactDirectoryPermanent) == 1){
+		
+		
+		
+		if(checkAuthorization((char*)&GsmCommunication->receiveBuffer,ContactDirectoryTemporary,ContactDirectoryPermanent) == 1){	// if Nr of caller is authorized
 			Serial.write("Number authorized -> OPEN LOCK \n\n");
 			answerCall();		
 			// open lock
@@ -92,34 +96,43 @@ void AuthorizationHandlerClass::handleReceivedCall(ContactDirectoryClass *Contac
 	}
 }
 
-int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck, ContactDirectoryClass *ContactDirectory){
+int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck, ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent){
+	
+	ContactDirectoryTemporary->showContactList();
+	ContactDirectoryPermanent->showContactList();
+	
+	return(1); // for debug
+	
 	char displayString[100] = {0};
 	
 	Serial.write("CheckAuthorization\n");
 	
-	ContactClass *currentContact = ContactDirectory->head;
+	ContactClass *currentContact = ContactDirectoryTemporary->head;
 	int numberOfMatchingDigits = 0;
 	
 	// check temporary numbers
 	Serial.write("phone numbers in Contacts:\n");
-	while(currentContact != NULL){		// until end of list reached
-		sprintf(displayString,"phone number: %s		Name: %s \n", currentContact->phoneNumber, currentContact->Name);
-		Serial.write(displayString);	// display current phone nr
+	for(int v=0; v<2; v++){					// check Permanent and Temporary
+		while(currentContact != NULL){		// until end of list reached
+			sprintf(displayString,"phone number: %s		Name: %s \n", currentContact->phoneNumber, currentContact->Name);
+			Serial.write(displayString);	// display current phone nr
+			sprintf(displayString,"next phone number: %s		Name: %s \n", currentContact->next->phoneNumber, currentContact->next->Name);
+			Serial.write(displayString);	// display current phone nr
 		
-		_delay_ms(100);		// for debug
-		
-		for(int u=0; nrToCheck[u] != '\0'; u++){
-			if(nrToCheck[u] == currentContact->phoneNumber[numberOfMatchingDigits]){ // compare the single digits
-				numberOfMatchingDigits++;
-			}else{
-				numberOfMatchingDigits = 0;
+			for(int u=0; nrToCheck[u] != '\0'; u++){
+				if(nrToCheck[u] == currentContact->phoneNumber[numberOfMatchingDigits]){ // compare the single digits
+					numberOfMatchingDigits++;
+				}else{
+					numberOfMatchingDigits = 0;
+				}
+				if(numberOfMatchingDigits >= MATCHING_DIGITS){	// return 1 if Number matches
+					return(1);
+				}
 			}
-			if(numberOfMatchingDigits >= MATCHING_DIGITS){	// return 1 if Number matches
-				return(1);
-			}
-		}
-		currentContact = currentContact->next;	// rearch in next contact in the list
-	}	
+			currentContact = currentContact->next;	// rearch in next contact in the list
+		}	
+		currentContact = ContactDirectoryPermanent->head;
+	}
 	return(0);		// return 0 if no matching phone number was detected
 }
 

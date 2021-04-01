@@ -40,6 +40,7 @@ public:
 // list elements
 	ContactClass *head = NULL;
 	ContactClass *tail = NULL;
+	char listName[NAME_SIZE];
 protected:
 private:
 	
@@ -47,9 +48,10 @@ private:
 
 //Methods
 public:
-	ContactDirectoryClass();
+	ContactDirectoryClass(char *newName);
 	~ContactDirectoryClass();
-	void addContact(char *NewName, char *NewPhoneNr, int priority);
+	void addContact(char *NewListName, char *NewPhoneNr, int priority);
+	void showContactList();
 	
 protected:
 private:

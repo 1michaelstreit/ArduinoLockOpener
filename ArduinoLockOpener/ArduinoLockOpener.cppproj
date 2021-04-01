@@ -321,6 +321,12 @@
     <Compile Include="src\AuthorizationHandlerClass.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\CmdContactClass.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\CmdContactClass.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\ContactClass.cpp">
       <SubType>compile</SubType>
     </Compile>

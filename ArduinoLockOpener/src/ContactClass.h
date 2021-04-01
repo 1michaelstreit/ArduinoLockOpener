@@ -40,8 +40,8 @@ class ContactClass
 public:
 char Name[NAME_SIZE];
 char phoneNumber[PHONE_NR_SIZE]; 
-ContactClass *next;
-ContactClass *prev;
+ContactClass *next = NULL;
+ContactClass *prev = NULL;
 protected:
 private:
 

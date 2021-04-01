@@ -31,8 +31,11 @@
 /* Class procedure declaration */
 
 // default constructor
-ContactDirectoryClass::ContactDirectoryClass()
+ContactDirectoryClass::ContactDirectoryClass(char newListName[NAME_SIZE])
 {
+	head = NULL;
+	tail = NULL;
+	strcpy(listName,newListName);
 } //ContactDirectoryClass
 
 // default destructor
@@ -41,33 +44,31 @@ ContactDirectoryClass::~ContactDirectoryClass()
 } //~ContactDirectoryClass
 
 void ContactDirectoryClass::addContact(char *newName, char *newPhoneNr, int priority){
-	
-	// add temporary data until power off
-	if(priority == TEMPORARY){
-		ContactClass *newContact;		// pointer to new Contact
-		newContact = new ContactClass(newName, newPhoneNr);	// new Contact
-	
-		/*
-		for(int i=0; i<10; i++){	// store 10 digits from phone Nr
-		newContact->phoneNumber[i] = newPhoneNr[i];
-		}
-		*/
-		pushFront(newContact);	// add to List
-		
-		Serial.write("Added...\"");
-		Serial.write(newPhoneNr);
-		Serial.write("\" to Contact \n\n");
+			
 
+	
+	// add temporary data into List until power off
+	if(priority == TEMPORARY){
+			
+			ContactClass *newContact = new ContactClass(newName, newPhoneNr);	// new Contact
+			
+			pushFront(newContact);	// add to List
+			
+			Serial.write("Added...\"");
+			Serial.write(newPhoneNr);
+			Serial.write("\" to Contact List \n\n");	
 	}
 	
-	// add to EEPROM
+	// add Permanent
 	
 	if(priority == PERMANENT){
 		EepromClass tempEeprom;
-		tempEeprom.addContactToEeprom(newName, newPhoneNr);
+		tempEeprom.addContactToEeprom(newName, newPhoneNr);	// add new Contact to Eeprom
 		
-		tempEeprom.eepromToContactDirectory(this);
-	}
+		addContact(newName,newPhoneNr,TEMPORARY);			// add new Contact to Contact List Permenant
+		
+		//tempEeprom.eepromToContactDirectory(this);
+	}	
 }
 
 void ContactDirectoryClass::pushFront(ContactClass *newContact){
@@ -79,4 +80,25 @@ void ContactDirectoryClass::pushFront(ContactClass *newContact){
 	newContact->next = head;
 	head = newContact;
 	newContact->prev = NULL;
+}
+
+void ContactDirectoryClass::showContactList(){
+	ContactClass *currentContact = tail;
+	
+	char displayString1[100] = {0};
+	char displayString2[100] = {0};
+		
+		//sprintf(displayString2,"Displays Contacts from Contact Directory List: %s \n", this->listName);
+		//Serial.write(displayString2);
+		
+		Serial.write(this->listName);
+		Serial.write("\n");
+
+	
+		while(currentContact != NULL){
+			sprintf(displayString1,"phone number: %s		Name: %s \n", currentContact->phoneNumber, currentContact->Name);
+			Serial.write(displayString1);
+		
+			currentContact = currentContact->next;
+		}
 }

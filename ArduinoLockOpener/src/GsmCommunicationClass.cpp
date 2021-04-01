@@ -95,21 +95,21 @@ void GsmCommunicationClass::checkConnection()
 {	
 	if(checkConnectionTime > 10){	// check connection loop rate
 		checkConnectionTime = 0;
-	if (GsmSerial->available()==0){
-		GsmSerial->println("AT+CREG?");		// ask if connected to cellular Network
-	}
-	readSerial();		// read Answer
-	
-	if(strstr(receiveBuffer, "+CREG: 0,1") != NULL){ // check if connection was successful
-		gsmIsConnected = true;
-		Serial.write("GSM Connected\n\n\n");
-		if(gsmIsConnected == true && gsmIsConnectedOld == false){
-			setUpSmsMode();		// set up Sms Mode if connected
+		if (GsmSerial->available()==0){
+			GsmSerial->println("AT+CREG?");		// ask if connected to cellular Network
 		}
-		gsmIsConnectedOld = gsmIsConnected;
-		}else{
-		gsmIsConnected = false;
-	}
+		readSerial();		// read Answer
+	
+		if(strstr(receiveBuffer, "+CREG: 0,1") != NULL){ // check if connection was successful
+			gsmIsConnected = true;
+			Serial.write("GSM Connected\n\n\n");
+			if(gsmIsConnected == true && gsmIsConnectedOld == false){
+				setUpSmsMode();		// set up Sms Mode if connected
+			}
+			gsmIsConnectedOld = gsmIsConnected;
+			}else{
+			gsmIsConnected = false;
+		}
 	}else{
 		checkConnectionTime++;
 	}

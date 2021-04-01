@@ -42,7 +42,7 @@ public:
 	EepromClass();
 	~EepromClass();
 	void addContactToEeprom(char *newName, char *newPhoneNr);
-	void eepromToContactDirectory(ContactDirectoryClass *ContactDirectory);
+	void eepromToContactDirectory(ContactDirectoryClass *ContactDirectoryPermanent);
 	void clearEeprom();
 	void displayEeprom();
 protected:

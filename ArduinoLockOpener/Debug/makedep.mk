@@ -54,6 +54,8 @@ Arduino\hardware\avr\libraries\SoftwareSerial\src\SoftwareSerial.cpp
 
 src\AuthorizationHandlerClass.cpp
 
+src\CmdContactClass.cpp
+
 src\ContactClass.cpp
 
 src\ContactDirectoryClass.cpp

@@ -27,27 +27,37 @@
 #include "AuthorizationHandlerClass.h"
 #include "ContactDirectoryClass.h"
 #include "EepromClass.h"
+#include "CmdContactClass.h"
 
 
 
 // the loop function runs over and over again forever
 void main_ArduinoLockOpener() {
 	
+	delay(2000);
+	
 	SoftwareSerial GsmSerial(RX, TX); // RX TX
+	
+	// creat Contact directories
+	ContactDirectoryClass ContactDirectoryTemporary("Temporary");
+	ContactDirectoryClass ContactDirectoryPermanent("Permanent");
 	
 	GsmCommunicationClass GsmCommunication(&GsmSerial);
 	AuthorizationHandlerClass AuthorizationHandler(&GsmCommunication);
-	SmsHandlerClass SmsHandler(&GsmCommunication,&AuthorizationHandler);
+	CmdContactClass SmsHandler(&GsmCommunication,&AuthorizationHandler);
 	
-	ContactDirectoryClass ContactDirectoryTemporary;
-	ContactDirectoryClass ContactDirectoryPermanent;
+
 	
 	EepromClass Eeprom1;
 	Eeprom1.clearEeprom();
 	
-	ContactDirectoryPermanent.addContact("Anna","555555555",PERMANENT);
+	Eeprom1.eepromToContactDirectory(&ContactDirectoryPermanent); // make permanent List out of Eeprom
 	
-	ContactDirectoryTemporary.addContact("Martin Streit","564418910",TEMPORARY);
+	ContactDirectoryPermanent.addContact("Michael Streit","786750902",PERMANENT);
+	
+
+	
+	//ContactDirectoryTemporary.addContact("Martin Streit","564418910",TEMPORARY);
 	
 	
     DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
@@ -65,14 +75,15 @@ void main_ArduinoLockOpener() {
     for(;;){
 		GsmCommunication.checkConnection();	
 		GsmCommunication.readSerial();	
-		SmsHandler.handleReceivedSms(&ContactDirectoryTemporary);
+		SmsHandler.handleReceivedSms(&ContactDirectoryTemporary, &ContactDirectoryPermanent);
+		SmsHandler.executeSmsCmd(&ContactDirectoryTemporary,&ContactDirectoryPermanent);
 		AuthorizationHandler.handleReceivedCall(&ContactDirectoryTemporary,&ContactDirectoryPermanent);
 		
 		
 		//LockLed.Toggle();	// makes error on PORTD for Serial communication
 		
-		LedState.Toggle();
-		LedBuiltIn.Toggle();
-		_delay_ms(50);		
+		//LedState.Toggle();
+		//LedBuiltIn.Toggle();
+		_delay_ms(100);		
 	}
 }

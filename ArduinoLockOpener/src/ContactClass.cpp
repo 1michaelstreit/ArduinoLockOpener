@@ -32,6 +32,8 @@
 // default constructor
 ContactClass::ContactClass(char *NewName, char *NewphoneNumber)
 {
+	next = NULL;
+	prev = NULL;
 	strcpy(Name, NewName);
 	strcpy(phoneNumber,NewphoneNumber);
 } //ContactClass

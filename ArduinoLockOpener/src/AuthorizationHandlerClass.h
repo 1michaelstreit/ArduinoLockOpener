@@ -44,11 +44,11 @@ private:
 
 // Methods
 public:
-	AuthorizationHandlerClass(GsmCommunicationClass *NewGsmCommunication);
+	AuthorizationHandlerClass(GsmCommunicationClass *NewCommunication);
 	~AuthorizationHandlerClass();
 	
-	void handleReceivedCall(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass* ContactDirectoryPermanent);
-	int  checkAuthorization(char *nrToCheck, ContactDirectoryClass *ContactDirectory);
+	void handleReceivedCall(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent);
+	int  checkAuthorization(char *nrToCheck,ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent);
 	void answerCall();
 protected:
 private:

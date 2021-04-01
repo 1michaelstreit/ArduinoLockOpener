@@ -41,8 +41,8 @@ class GsmCommunicationClass
 public:
 static const int bufferSize = 256;
 SoftwareSerial *GsmSerial;
-int checkConnectionTime;
-char receiveBuffer[bufferSize];
+int checkConnectionTime = 0;
+char receiveBuffer[bufferSize] = {0};
 
 private:
 bool gsmIsConnected = false;

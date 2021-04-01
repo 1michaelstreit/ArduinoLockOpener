@@ -40,7 +40,7 @@ EepromClass::~EepromClass()
 {
 } //~EepromClass
 
-void EepromClass::eepromToContactDirectory(ContactDirectoryClass *ContactDirectory){
+void EepromClass::eepromToContactDirectory(ContactDirectoryClass *ContactDirectoryPermanent){
 	
 	eepromAddress = getEepromAddress();
 	char tempNumber[PHONE_NR_SIZE]={0};
@@ -57,8 +57,8 @@ void EepromClass::eepromToContactDirectory(ContactDirectoryClass *ContactDirecto
 			}else{
 				tempName[i] = '\0';			// end name string
 				
-				// add contact readed out of eeprom to contact
-				ContactDirectory->addContact((char*)&tempName,(char*)&tempNumber,TEMPORARY);	
+				// add contact readed out of eeprom to contact List
+				ContactDirectoryPermanent->addContact((char*)&tempName,(char*)&tempNumber,TEMPORARY);	
 				state = 0;
 			}
 		}else{
