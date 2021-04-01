@@ -98,10 +98,8 @@ void AuthorizationHandlerClass::handleReceivedCall(ContactDirectoryClass *Contac
 
 int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck, ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent){
 	
-	ContactDirectoryTemporary->showContactList();
+	ContactDirectoryTemporary->showContactList();	// for debug
 	ContactDirectoryPermanent->showContactList();
-	
-	return(1); // for debug
 	
 	char displayString[100] = {0};
 	
@@ -114,11 +112,6 @@ int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck, ContactDirect
 	Serial.write("phone numbers in Contacts:\n");
 	for(int v=0; v<2; v++){					// check Permanent and Temporary
 		while(currentContact != NULL){		// until end of list reached
-			sprintf(displayString,"phone number: %s		Name: %s \n", currentContact->phoneNumber, currentContact->Name);
-			Serial.write(displayString);	// display current phone nr
-			sprintf(displayString,"next phone number: %s		Name: %s \n", currentContact->next->phoneNumber, currentContact->next->Name);
-			Serial.write(displayString);	// display current phone nr
-		
 			for(int u=0; nrToCheck[u] != '\0'; u++){
 				if(nrToCheck[u] == currentContact->phoneNumber[numberOfMatchingDigits]){ // compare the single digits
 					numberOfMatchingDigits++;

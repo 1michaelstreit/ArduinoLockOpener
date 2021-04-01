@@ -49,15 +49,14 @@ void main_ArduinoLockOpener() {
 
 	
 	EepromClass Eeprom1;
+
 	Eeprom1.clearEeprom();
 	
 	Eeprom1.eepromToContactDirectory(&ContactDirectoryPermanent); // make permanent List out of Eeprom
 	
 	ContactDirectoryPermanent.addContact("Michael Streit","786750902",PERMANENT);
-	
-
-	
-	//ContactDirectoryTemporary.addContact("Martin Streit","564418910",TEMPORARY);
+	//ContactDirectoryPermanent.addContact("Hans","564418910",PERMANENT);
+	//ContactDirectoryPermanent.addContact("Anna","564418784",PERMANENT);
 	
 	
     DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 

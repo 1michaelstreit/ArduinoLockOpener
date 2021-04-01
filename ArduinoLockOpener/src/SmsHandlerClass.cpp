@@ -95,11 +95,11 @@ void SmsHandlerClass::handleReceivedSms(ContactDirectoryClass *ContactDirectoryT
 			readSms((char*)&GsmCommunication->receiveBuffer);
 			newSmsReceived = true;
 			// handle sms commands
+			}else{
+				Serial.write("SMS sender DECLINED \n");
+				newSmsReceived = false;			// set flag for execute Comands
+			}
 		}else{
-			Serial.write("SMS sender DECLINED \n");
-			newSmsReceived = false;			// set flag for execute Comands
-		}
-	}else{
 		newSmsReceived = false;
 	}
 }

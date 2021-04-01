@@ -43,6 +43,7 @@ ContactDirectoryClass::~ContactDirectoryClass()
 {
 } //~ContactDirectoryClass
 
+// does not work correctly
 void ContactDirectoryClass::addContact(char *newName, char *newPhoneNr, int priority){
 			
 
@@ -50,13 +51,19 @@ void ContactDirectoryClass::addContact(char *newName, char *newPhoneNr, int prio
 	// add temporary data into List until power off
 	if(priority == TEMPORARY){
 			
-			ContactClass *newContact = new ContactClass(newName, newPhoneNr);	// new Contact
+			ContactClass *newContact; 	// new Contact
+			newContact = new ContactClass(newName, newPhoneNr);
 			
-			pushFront(newContact);	// add to List
+			if(newContact == 0){		// immer Nullpointer bei zweitem versuch??? wird nicht erkennt won if??
+				Serial.write("eeror new Contact not created");
+			}else{
 			
-			Serial.write("Added...\"");
-			Serial.write(newPhoneNr);
-			Serial.write("\" to Contact List \n\n");	
+				pushFront(newContact);	// add to List
+			
+				Serial.write("Added...\"");
+				Serial.write(newPhoneNr);
+				Serial.write("\" to Contact List \n\n");	
+			}
 	}
 	
 	// add Permanent
@@ -96,9 +103,15 @@ void ContactDirectoryClass::showContactList(){
 
 	
 		while(currentContact != NULL){
-			sprintf(displayString1,"phone number: %s		Name: %s \n", currentContact->phoneNumber, currentContact->Name);
-			Serial.write(displayString1);
+			//sprintf(displayString1,"phone number: %s		Name: %s \n", currentContact->phoneNumber, currentContact->Name);
+			//Serial.write(displayString1);
+		
+			Serial.write(currentContact->phoneNumber);
+			Serial.write("     ");
+			Serial.write(currentContact->Name);
+			Serial.write("\n");
 		
 			currentContact = currentContact->next;
 		}
+		delay(1000);	// for debug
 }

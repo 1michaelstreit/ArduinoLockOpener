@@ -88,14 +88,15 @@ void CmdContactClass::executeSmsCmd(ContactDirectoryClass *ContactDirectoryTempo
 			
 			if(strstr(smsMsg,"Master:") != NULL){
 				// add permament	
-				ContactDirectoryPermanent->addContact(&newName[0],&newPhoneNumber[0],PERMANENT);
+				Serial.write("Should add permanent.. \n");
+				//ContactDirectoryPermanent->addContact(&newName[0],&newPhoneNumber[0],PERMANENT);
 			}else{
 				// add temporary
-
-				ContactDirectoryTemporary->addContact(&newName[0],&newPhoneNumber[0],TEMPORARY);
+				Serial.write("Should add temporary.. \n");
+				//ContactDirectoryTemporary->addContact(&newName[0],&newPhoneNumber[0],TEMPORARY);
 			}
-		newSmsReceived == false;
 	}
+	newSmsReceived == false;
 }
 
 void CmdContactClass::removePrefix(char *phoneNumber, char *smsMsg){
