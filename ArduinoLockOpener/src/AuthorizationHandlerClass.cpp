@@ -76,8 +76,7 @@ AuthorizationHandlerClass::~AuthorizationHandlerClass()
 /*                                                                           */
 /*****************************************************************************/
 
-void AuthorizationHandlerClass::handleReceivedCall(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent){
-	
+void AuthorizationHandlerClass::handleReceivedCall( ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent, GPIOLedClass *LockLed){
 	if(strstr(GsmCommunication->receiveBuffer, "RING") != NULL){ // if call received
 		
 		// check phone Number from caller
@@ -88,8 +87,12 @@ void AuthorizationHandlerClass::handleReceivedCall(ContactDirectoryClass *Contac
 		
 		if(checkAuthorization((char*)&GsmCommunication->receiveBuffer,ContactDirectoryTemporary,ContactDirectoryPermanent) == 1){	// if Nr of caller is authorized
 			Serial.write("Number authorized -> OPEN LOCK \n\n");
-			answerCall();		
+			answerCall();
+			delay(1000);		
 			// open lock
+			LockLed->On();
+			delay(1000);
+			LockLed->Off();
 		}else{
 			Serial.write("Number DECLINED \n\n");
 		}

@@ -23,6 +23,8 @@
 #include "AuthorizationHandlerClass.h"
 #include "GsmCommunicationClass.h"
 #include "ContactDirectoryClass.h"
+#include "Leds.hpp"
+
 
 
 /* Class constant declaration  */
@@ -47,7 +49,7 @@ public:
 	AuthorizationHandlerClass(GsmCommunicationClass *NewCommunication);
 	~AuthorizationHandlerClass();
 	
-	void handleReceivedCall(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent);
+	void handleReceivedCall( ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent,  GPIOLedClass *LockLed);
 	int  checkAuthorization(char *nrToCheck,ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent);
 	void answerCall();
 protected:

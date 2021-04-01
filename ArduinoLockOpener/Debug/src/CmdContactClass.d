@@ -38,7 +38,7 @@ src/CmdContactClass.d src/CmdContactClass.o: ../src/CmdContactClass.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  ../Arduino/hardware/avr/cores/arduino/Arduino.h \
- ../Arduino/hardware/avr/variants/standard/pins_arduino.h
+ ../Arduino/hardware/avr/variants/standard/pins_arduino.h ../src/Leds.hpp
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:
 
@@ -125,3 +125,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Arduino/hardware/avr/cores/arduino/Arduino.h:
 
 ../Arduino/hardware/avr/variants/standard/pins_arduino.h:
+
+../src/Leds.hpp:

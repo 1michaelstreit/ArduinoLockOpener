@@ -38,7 +38,7 @@ src/SmsHandlerClass.d src/SmsHandlerClass.o: ../src/SmsHandlerClass.cpp \
  ../Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.h \
  ../Arduino/hardware/avr/cores/arduino/Stream.h \
  ../src/AuthorizationHandlerClass.h ../src/ContactDirectoryClass.h \
- ../src/ContactClass.h
+ ../src/ContactClass.h ../src/Leds.hpp
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\string.h:
 
@@ -123,3 +123,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../src/ContactDirectoryClass.h:
 
 ../src/ContactClass.h:
+
+../src/Leds.hpp:

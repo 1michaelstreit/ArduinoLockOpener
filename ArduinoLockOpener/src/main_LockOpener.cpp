@@ -59,7 +59,7 @@ void main_ArduinoLockOpener() {
 	//ContactDirectoryPermanent.addContact("Anna","564418784",PERMANENT);
 	
 	
-    DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
+    //DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
 	GpioPortClass GpioPortB((uint8_t*)0x25);
 	GpioPortClass GpioPortD((uint8_t*)0x2B);
 	GPIOLedClass LedBuiltIn(&GpioPortB,LED_BUILTIN);
@@ -76,13 +76,13 @@ void main_ArduinoLockOpener() {
 		GsmCommunication.readSerial();	
 		SmsHandler.handleReceivedSms(&ContactDirectoryTemporary, &ContactDirectoryPermanent);
 		SmsHandler.executeSmsCmd(&ContactDirectoryTemporary,&ContactDirectoryPermanent);
-		AuthorizationHandler.handleReceivedCall(&ContactDirectoryTemporary,&ContactDirectoryPermanent);
+		AuthorizationHandler.handleReceivedCall( &ContactDirectoryTemporary,&ContactDirectoryPermanent, &LockLed);
 		
 		
 		//LockLed.Toggle();	// makes error on PORTD for Serial communication
 		
-		//LedState.Toggle();
-		//LedBuiltIn.Toggle();
+		LedState.Toggle();
+		LedBuiltIn.Toggle();
 		_delay_ms(100);		
 	}
 }
