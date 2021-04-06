@@ -2,13 +2,16 @@
 #define LEDS_H_
 
 /****************************************************************************/
-/*  Header     : LedClass										Version 1.0 */
+/*  Header     : GpioPortClass									Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
-/*  Function   :           */
+/*  Function   : This class describes the Leds                              */
 /*                                                                          */
 /*                                                                          */
-/*  Methodes   :                                                            */
+/*  Methodes   : GpioPortClass()                                            */
+/*              ~GpioPortClass()  ToDo                                      */
+/*               SetLed()                                                   */
+/*               ToggleLed()	                                            */
 /*                                                                          */
 /*  Author     : M. Streit                                                  */
 /*                                                                          */
@@ -29,6 +32,8 @@
 #define LED_BUILTIN		5
 #define LOCK			5
 
+#define REP_TOGGLE_LED			1
+
 /* Class Type declaration      */
 
 /* Class data declaration      */
@@ -40,10 +45,9 @@ class GpioPortClass
 	// Data
 	public:
 		enum {MAX_LED = 8};
-		//enum {PORTB_BASE = 0x25};
 		uint8_t port_base;
 		enum LedState{ON = 1, OFF = 0};	
-		int toggleTime = 0;	
+		int loopCntLed = 0;	
 			
 	private:
 	      volatile uint8_t *LedBase;
@@ -58,7 +62,27 @@ class GpioPortClass
 
 };
 
-
+/****************************************************************************/
+/*  Header     : LedClass										Version 1.0 */
+/****************************************************************************/
+/*                                                                          */
+/*  Function   : This class describes the Leds                              */
+/*                                                                          */
+/*                                                                          */
+/*  Methodes   : On()														*/
+/*               Off()														*/
+/*               Toggle()                                                   */
+/*								                                            */
+/*                                                                          */
+/*  Author     : M. Streit                                                  */
+/*                                                                          */
+/*  History    : 10.03.2021  IO Created                                     */
+/*                                                                          */
+/*  File       : Leds.hpp													*/
+/*                                                                          */
+/****************************************************************************/
+/* HTA Burgdorf                                                             */
+/****************************************************************************/
 class LedClass
 {
 	// Data
@@ -69,6 +93,27 @@ class LedClass
 	virtual void Toggle() = 0;
 };
 
+/****************************************************************************/
+/*  Header     : GPIOLedClass										Version 1.0 */
+/****************************************************************************/
+/*                                                                          */
+/*  Function   : This class describes the Leds                              */
+/*                                                                          */
+/*                                                                          */
+/*  Methodes   : On()														*/
+/*               Off()														*/
+/*               Toggle()                                                   */
+/*								                                            */
+/*                                                                          */
+/*  Author     : M. Streit                                                  */
+/*                                                                          */
+/*  History    : 10.03.2021  IO Created                                     */
+/*                                                                          */
+/*  File       : Leds.hpp													*/
+/*                                                                          */
+/****************************************************************************/
+/* HTA Burgdorf                                                             */
+/****************************************************************************/
 class GPIOLedClass : public LedClass
 {
 	   GpioPortClass *MyParent;
@@ -79,6 +124,19 @@ class GPIOLedClass : public LedClass
       void On()    {MyParent->SetLed(MyLed, GpioPortClass::ON);};
       void Off()   {MyParent->SetLed(MyLed, GpioPortClass::OFF);};
       void Toggle(){MyParent->ToggleLed(MyLed);};
+	
+};
+
+class LockOpenerClass : public LedClass
+{
+	GpioPortClass *MyParent;
+	int MyLed;
+	
+	public:
+	LockOpenerClass(GpioPortClass *Parent, int LedNumber) : MyParent(Parent), MyLed(LedNumber) {};
+	void On()    {MyParent->SetLed(MyLed, GpioPortClass::ON);};
+	void Off()   {MyParent->SetLed(MyLed, GpioPortClass::OFF);};
+	void Toggle(){MyParent->ToggleLed(MyLed);};
 	
 };
 

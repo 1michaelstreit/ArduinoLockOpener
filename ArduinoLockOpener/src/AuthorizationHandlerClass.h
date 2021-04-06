@@ -4,10 +4,14 @@
 /*  Header     : AuthorizationHandlerClass                      Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
-/*  Function   :          */
+/*  Function   : Thies Class handles incomming Calls and checks the         */
+/*				 Authorization                                              */
 /*                                                                          */
-/*                                                                          */
-/*  Methodes   :                                                            */
+/*  Methodes   : AuthorizationHandlerClass()	                            */
+/*              ~AuthorizationHandlerClass()                                */
+/*              handleReceivedCall()                                        */
+/*              checkAuthorization()                                        */
+/*              answerCall()                                                */
 /*                                                                          */
 /*  Author     : M. Streit                                                  */
 /*                                                                          */
@@ -25,8 +29,6 @@
 #include "Leds.hpp"
 #include "EepromClass.h"
 
-
-
 /* Class constant declaration  */
 #define MATCHING_DIGITS	9
 /* Class Type declaration      */
@@ -37,25 +39,23 @@
 
 class AuthorizationHandlerClass
 {
-// Data
-public:
-GsmCommunicationClass *GsmCommunication;
-EepromClass *eeprom1;
+	// Data
+	public:
+	protected:
+	private:
+	GsmCommunicationClass *GsmCommunication;
+	EepromClass *eeprom1;
 
-protected:
-private:
-
-// Methods
-public:
+	// Methods
+	public:
 	AuthorizationHandlerClass(GsmCommunicationClass *NewCommunication, EepromClass *NewEeprom1);
 	~AuthorizationHandlerClass();
 	
-	void handleReceivedCall(GPIOLedClass *LockLed);
+	void handleReceivedCall(LockOpenerClass *Lock);
 	int  checkAuthorization(char *nrToCheck);
+	protected:
+	private:
 	void answerCall();
-protected:
-private:
-
 	
 };
 /*****************************************************************************/

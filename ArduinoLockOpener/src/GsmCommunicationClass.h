@@ -4,8 +4,8 @@
 /*  Header     : GsmCommunicationClass                          Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
-/*  Function   :          */
-/*                                                                          */
+/*  Function   : This Class manages the Communication between the the uP and*/
+/*               the GSM Moduel                                             */
 /*                                                                          */
 /*  Methodes   :                                                            */
 /*                                                                          */
@@ -26,9 +26,11 @@
 
 /* Class constant declaration  */
 
-// for software serial
+// define Pins for software serial to GSM Modul
 #define RX	3 		// RX pin 3 on Arduino
 #define TX	2 		// TX pin 2 on Arduino
+
+#define REP_CHECK_CONNECTION	50
 
 /* Class Type declaration      */
 
@@ -41,16 +43,14 @@ class GsmCommunicationClass
 // Data
 public:
 static const int bufferSize = 256;
-SoftwareSerial *GsmSerial;
-int checkConnectionTime = 0;
 char receiveBuffer[bufferSize] = {0};
+int loopCntConnection = REP_CHECK_CONNECTION;
 
 private:
+SoftwareSerial *GsmSerial;
 bool gsmIsConnected = false;
 bool gsmIsConnectedOld = false;
 bool answerReceived = false;
-
-
 
 
 // Methods
@@ -60,17 +60,12 @@ public:
 	
 	void checkConnection();
 	void readSerial();
-	void displayString(char *dString);
 	void sendAtCmd(char atCmd[256]);
-	
-
-	
+		
 private:
 
-	void checkReceivedData();	
 	void setUpSmsMode();
-	
-	
+		
 };
 /*****************************************************************************/
 /*  End Header  : GsmCommunicationClass                                      */

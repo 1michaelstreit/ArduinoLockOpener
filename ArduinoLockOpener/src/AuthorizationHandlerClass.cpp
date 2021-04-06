@@ -2,11 +2,14 @@
 /*  Class      : AuthorizationHandlerClass                      Version 1.0  */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function   :                                    */
+/*  Function   : Thies Class handles incomming Calls and checks the          */
+/*				 Authorization                                               */
 /*                                                                           */
-/*                                                                           */
-/*  Methodes   : AuthorizationHandlerClass()  ToDo                           */
-/*              ~AuthorizationHandlerClass()  ToDo                           */
+/*  Methodes   : AuthorizationHandlerClass()	                             */
+/*              ~AuthorizationHandlerClass()                                 */
+/*              handleReceivedCall()                                         */
+/*              checkAuthorization()                                         */
+/*              answerCall()                                                 */
 /*                                                                           */
 /*  Author     : Michael Streit                                              */
 /*                                                                           */
@@ -23,8 +26,6 @@
 #include "AuthorizationHandlerClass.h"
 #include "EEPROM.h"
 
-
-
 /* Class constant declaration  */
 #define NR_OF_MATCHING_DIGITS 9
 
@@ -38,13 +39,14 @@
 /*  Method      : AuthorizationHandlerClass                                  */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function    :                                                            */
+/*  Function    : Constructor                                                */
 /*                                                                           */
 /*  Type        : Constructor                                                */
 /*                                                                           */
-/*  Input Para  :                                                            */
+/*  Input Para  : NewCommunication: pointer to GSM communication             */
+/*				  NewEeprom1: pointer to Eeprom Object						 */
 /*                                                                           */
-/*  Output Para :                                                            */
+/*  Output Para : -                                                          */
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
@@ -63,58 +65,70 @@ AuthorizationHandlerClass::~AuthorizationHandlerClass()
 } //~AuthorizationHandlerClass
 
 /*****************************************************************************/
-/*  Method      : 		                                     */
+/*  Method      : handleReceivedCall	                                     */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function    :                                                            */
+/*  Function    : Checks if call is received. checks if caller is authorized.*/
+/*				  open Lock if caller is authorized							 */
 /*                                                                           */
-/*  Type        :			                                                */
 /*                                                                           */
-/*  Input Para  :                                                            */
+/*  Input Para  : Lock: Pointer to GPIO LED Class                            */
 /*                                                                           */
-/*  Output Para :                                                            */
+/*  Output Para : -                                                          */
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
 /*  History     : 30.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-
-void AuthorizationHandlerClass::handleReceivedCall(GPIOLedClass *LockLed){
-	if(strstr(GsmCommunication->receiveBuffer, "RING") != NULL){ // if call received
+void AuthorizationHandlerClass::handleReceivedCall(LockOpenerClass *Lock){
+	
+	if(strstr(GsmCommunication->receiveBuffer, "RING") != NULL){		// check if call received
 		
-		// check phone Number from caller
-		GsmCommunication->sendAtCmd((char*)"AT+CLCC");	
+		GsmCommunication->sendAtCmd("AT+CLCC");			// read phone Number from caller
 		GsmCommunication->readSerial();
 		
-		
-		
-		if(checkAuthorization(GsmCommunication->receiveBuffer) == 1){	// if Nr of caller is authorized
+		if(checkAuthorization(GsmCommunication->receiveBuffer) == 1){	// if Nr. of caller is authorized open Lock
 			Serial.write("Number authorized -> OPEN LOCK \n\n");
-			answerCall();
-			delay(1000);		
+			answerCall();		//hang up incoming call
+			
 			// open lock
-			LockLed->On();
+			delay(1000);		
+			Lock->On();
 			delay(1000);
-			LockLed->Off();
+			Lock->Off();
 		}else{
-			Serial.write("Number DECLINED \n\n");
+			Serial.write("Number DECLINED \n\n");		// if Nr. is declined
 		}
 	}
 }
 
+/*****************************************************************************/
+/*  Method      : check Authorization	                                     */
+/*****************************************************************************/
+/*                                                                           */
+/*  Function    : compares phone number to check with the contacts in the	 */
+/*				  EEPROM, return 1 if one matches else return 0				 */
+/*                                                                           */
+/*                                                                           */
+/*  Input Para  : nrToCheck: checkstring with phone number to check          */
+/*                                                                           */
+/*  Output Para : -                                                          */
+/*                                                                           */
+/*  Author      : Michael Streit                                             */
+/*                                                                           */
+/*  History     : 30.03.2021  IO  Created                                    */
+/*                                                                           */
+/*****************************************************************************/
 int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck){
 	int i = 0;
 	int v = 0;
 	int nrOfMatchDigits = 0;
 	int eepromAddress = eeprom1->getEepromAddress();
 	
-	Serial.write("CheckAuthorization\n");
-	
-	// check temporary numbers
-	Serial.write("phone numbers in Contacts:\n");
-	
-	eeprom1->displayEeprom();
+	Serial.write("CheckAuthorization...\n");
+	//Serial.write("phone numbers in Contacts:\n");
+	//eeprom1->displayEeprom();						// displays all contacts in Eeprom
 	
 	// return 1 if minimum nr of digits matching
 	for(i=0; i<eepromAddress;i++){								// until end of eeprom data reached
@@ -135,14 +149,32 @@ int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck){
 	return(0);		// return 0 if no matching phone number was detected
 }
 
-
+/*****************************************************************************/
+/*  Method      : answerCall			                                     */
+/*****************************************************************************/
+/*                                                                           */
+/*  Function    : hangs up the incoming Call								 */
+/*                                                                           */
+/*                                                                           */
+/*  Input Para  : -													         */
+/*                                                                           */
+/*  Output Para : -                                                          */
+/*                                                                           */
+/*  Author      : Michael Streit                                             */
+/*                                                                           */
+/*  History     : 30.03.2021  IO  Created                                    */
+/*                                                                           */
+/*****************************************************************************/
 void AuthorizationHandlerClass::answerCall(){
 	
 	// hang up incoming Call
 	GsmCommunication->sendAtCmd("ATA");
+	_delay_ms(400);
 	GsmCommunication->readSerial();
 	GsmCommunication->sendAtCmd("AT+CVHU=0");
+	_delay_ms(400);
 	GsmCommunication->readSerial();
 	GsmCommunication->sendAtCmd("ATH");
+	_delay_ms(400);
 	GsmCommunication->readSerial();
 }

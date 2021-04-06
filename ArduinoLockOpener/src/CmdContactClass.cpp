@@ -2,11 +2,13 @@
 /*  Class      : CmdContactClass		                        Version 1.0  */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function   :                                    */
+/*  Function   : This Class executes received messages                       */
 /*                                                                           */
 /*                                                                           */
-/*  Methodes   : CmdContactClass()  ToDo                                     */
-/*              ~CmdContactClass()  ToDo                                     */
+/*  Methodes   : CmdContactClass()											 */
+/*              ~CmdContactClass()											 */
+/*              executeSmsCmd()									             */
+/*              removePrefix()                                               */
 /*                                                                           */
 /*  Author     : Michael Streit                                              */
 /*                                                                           */
@@ -30,26 +32,28 @@
 
 /* Class procedure declaration */
 
-
 /*****************************************************************************/
 /*  Method      : CmdContactClass		                                     */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function    :                                                            */
+/*  Function    : Constructor							                     */
 /*                                                                           */
 /*  Type        : Constructor                                                */
 /*                                                                           */
-/*  Input Para  :                                                            */
+/*  Input Para  : newEeprom1: pointer to eeprom1                             */
+/*                NewGsmCommunication: pointer to GsmCommunication           */
+/*                NewAuthorizationHandler: pointer to Authorization handler  */
 /*                                                                           */
-/*  Output Para :                                                            */
+/*  Output Para :  -                                                         */
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
 /*  History     : 31.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-CmdContactClass::CmdContactClass(GsmCommunicationClass *NewGsmCommunication, AuthorizationHandlerClass *NewAuthorizationHandler) :SmsHandlerClass(NewGsmCommunication,NewAuthorizationHandler)
+CmdContactClass::CmdContactClass(EepromClass *newEeprom1, GsmCommunicationClass *NewGsmCommunication, AuthorizationHandlerClass *NewAuthorizationHandler) :SmsHandlerClass(NewGsmCommunication,NewAuthorizationHandler)
 {
+	eeprom1 = newEeprom1;
 } //CmdContactClass
 
 // default destructor
@@ -58,16 +62,20 @@ CmdContactClass::~CmdContactClass()
 } //~CmdContactClass
 
 /*****************************************************************************/
-/*  Method      : 		                                     */
+/*  Method      : executeSmsCmd			                                     */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function    :                                                            */
+/*  Function    : Finds command in sms message and executes the cmd			 */
 /*                                                                           */
-/*  Type        :			                                                */
+/*  Commands	:                                                            */
+/*				CMD_Add_Nr:		adds a new number to eeprom					 */
+/*				CMD_clear:		clears the eeprom and adds standard contact	 */
+/*				CMD_contacts:	displays all stored contacts				 */
 /*                                                                           */
-/*  Input Para  :                                                            */
 /*                                                                           */
-/*  Output Para :                                                            */
+/*  Input Para  : -                                                          */
+/*                                                                           */
+/*  Output Para : -                                                          */
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
@@ -75,41 +83,67 @@ CmdContactClass::~CmdContactClass()
 /*                                                                           */
 /*****************************************************************************/
 void CmdContactClass::executeSmsCmd(){
+	char cBuffer[50];
 	
 	if(newSmsReceived == true){
 		char newPhoneNumber[10] = {0};
 		char newName[NAME_SIZE] = {0};
-			
-		strcpy(newName,"Unknown");
-		removePrefix((char*)&newPhoneNumber,(char*)&smsMsg);
 		
-		Serial.write("Number received: ");
-		Serial.write(newPhoneNumber);
-		Serial.write("\n");
+		// add new Contact
+		if(strstr(smsMsg,"CMD_Add_Nr:") != NULL){		
 			
-			if(strstr(smsMsg,"Master:") != NULL){
-				// add permament	
-				Serial.write("Should add permanent.. \n");
-				//ContactDirectoryPermanent->addContact(&newName[0],&newPhoneNumber[0],PERMANENT);
+			removePrefix(newPhoneNumber,smsMsg);		// removes prefix from nr. 
+			strcpy(newName,"Unknown");					// define standard name for new nr.
+			
+			sprintf(cBuffer,"Number received: %s \n",newPhoneNumber );
+			Serial.write(cBuffer);
+			
+			eeprom1->addContactToEeprom(newName,newPhoneNumber);	// store new contact
+		}else
+		
+		// clear eeprom
+		if(strstr(smsMsg,"CMD_clear") != NULL){
+			eeprom1->clearEeprom();										// clear eeprom
+			eeprom1->addContactToEeprom("Michael Streit", "786750902");	// add standard contact
+		}else
+		
+		// display contacts
+		if(strstr(smsMsg,"CMD_contacts") != NULL){
+			Serial.write("Displays all Contacts: \n");				// display all contacts
+			eeprom1->displayEeprom();
 			}else{
-				// add temporary
-				Serial.write("Should add temporary.. \n");
-				//ContactDirectoryTemporary->addContact(&newName[0],&newPhoneNumber[0],TEMPORARY);
-			}
+			Serial.write("No Command received \n");					// if no cmd was received
+		}
 	}
 	newSmsReceived == false;
 }
 
+/*****************************************************************************/
+/*  Method      : removePrefix			                                     */
+/*****************************************************************************/
+/*                                                                           */
+/*  Function    : get the 9 last character of the smsMsg and stores			 */
+/*                them into phoneNumber                                      */
+/*                                                                           */
+/*  Input Para  : phoneNumber: pointer where nr. needs to be stored          */
+/*                smsMsg: string with sms msg                                */
+/*                                                                           */
+/*  Output Para : -                                                          */
+/*                                                                           */
+/*  Author      : Michael Streit                                             */
+/*                                                                           */
+/*  History     : 31.03.2021  IO  Created                                    */
+/*                                                                           */
+/*****************************************************************************/
 void CmdContactClass::removePrefix(char *phoneNumber, char *smsMsg){
 
-    int stringLength = strlen(smsMsg)-2; // string length 2 more
-    //Serial.println(stringLength);		// for debugging
+	int stringLength = strlen(smsMsg)-2; // get the sting length
 
-    // remove prefix
-    if(stringLength>9){
-        for(int u=0; u<9; u++){
-            phoneNumber[u] = smsMsg[u+(stringLength-9)];
-        }
-    }
+	// remove prefix
+	if(stringLength>9){
+		for(int u=0; u<9; u++){
+			phoneNumber[u] = smsMsg[u+(stringLength-9)];
+		}
+	}
 	phoneNumber[9] = '\0';
 }

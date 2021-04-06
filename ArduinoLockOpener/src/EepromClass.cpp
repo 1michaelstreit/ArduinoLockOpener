@@ -2,17 +2,21 @@
 /*  Class      : EepromClass									Version 1.0  */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function   :                                    */
+/*  Function   : This Class manages the eeprom                               */
 /*                                                                           */
 /*                                                                           */
-/*  Methodes   : EepromClass()  ToDo                                       */
-/*              ~EepromClass()  ToDo                                       */
+/*  Methodes   : EepromClass                                                 */
+/*				 ~EepromClass()												 */
+/*               addContactToEeprom()                                        */
+/*               clearEeprom()                                               */
+/*               displayEeprom()                                             */
+/*               getEepromAddress()                                          */
 /*                                                                           */
 /*  Author     : Michael Streit                                              */
 /*                                                                           */
 /*  History    : 31.03.2021  IO Created                                      */
 /*                                                                           */
-/*  File       : EepromClass.cpp                                         */
+/*  File       : EepromClass.cpp											 */
 /*                                                                           */
 /*****************************************************************************/
 /* HTA Burgdorf                                                              */
@@ -31,7 +35,27 @@
 
 /* Class procedure declaration */
 
-// default constructor
+/****************************************************************************/
+/*  Method      : EepromClass									Version 1.0 */
+/****************************************************************************/
+/*																			*/
+/*  Function   : Constructor				                                */
+/*                                                                          */
+/*                                                                          */
+/*  Type        : Constructor                                               */
+/*                                                                          */
+/*  Input Para  : -                                                         */
+/*                                                                          */
+/*  Output Para : -                                                         */
+/*                                                                          */
+/*                                                                          */
+/*  Author     : Michael Streit                                             */
+/*                                                                          */
+/*  History    : 31.03.2021  IO Created                                     */
+/*                                                                          */
+/*  File       : EepromClass.cpp											*/
+/*                                                                          */
+/****************************************************************************/
 EepromClass::EepromClass()
 {
 } //EepromClass
@@ -41,7 +65,29 @@ EepromClass::~EepromClass()
 {
 } //~EepromClass
 
+/****************************************************************************/
+/*  Method      : addContactToEeprom							Version 1.0 */
+/****************************************************************************/
+/*																			*/
+/*  Function   : add new Contact to EEPROM	                                */
+/*                                                                          */
+/*                                                                          */
+/*  Input Para  : newName: new name of new Contact                          */
+/*                newPhoneNr: new Number of new Contact                     */
+/*                                                                          */
+/*  Output Para : -                                                         */
+/*                                                                          */
+/*                                                                          */
+/*  Author     : Michael Streit                                             */
+/*                                                                          */
+/*  History    : 31.03.2021  IO Created                                     */
+/*                                                                          */
+/*  File       : EepromClass.cpp											*/
+/*                                                                          */
+/****************************************************************************/
 void EepromClass::addContactToEeprom(char *newName, char *newPhoneNr){
+	char cBuffer[50];
+	int eepromAddress;
 	
 	eepromAddress = getEepromAddress();							// "Phone_Number0","Name0","Phone_Number1","Name1",...
 	
@@ -64,11 +110,29 @@ void EepromClass::addContactToEeprom(char *newName, char *newPhoneNr){
 	}
 	EEPROM.write(eepromAddress, ',');							// write delimiter
 	
-	Serial.write("Added...\"");
-	Serial.write(newPhoneNr);
-	Serial.write("\" to EEPROM \n\n");
+	sprintf(cBuffer,"Added: %s, %s	to EEPROM \n\n",newPhoneNr,newName );
+	Serial.write(cBuffer);
 }
 
+/****************************************************************************/
+/*  Method      : getEepromAddress								Version 1.0 */
+/****************************************************************************/
+/*																			*/
+/*  Function   : findes the index of the rearmost data in EEPROM			*/
+/*                                                                          */
+/*                                                                          */
+/*  Input Para  : -															*/
+/*                                                                          */
+/*  Output Para : offset of the rearmost data in EEPROM                     */
+/*                                                                          */
+/*                                                                          */
+/*  Author     : Michael Streit                                             */
+/*                                                                          */
+/*  History    : 31.03.2021  IO Created                                     */
+/*                                                                          */
+/*  File       : EepromClass.cpp											*/
+/*                                                                          */
+/****************************************************************************/
 int EepromClass::getEepromAddress(){
 	for(int address=0; address < EEPROM.length();address++){
 		if(EEPROM.read(address)== 0){
@@ -78,26 +142,64 @@ int EepromClass::getEepromAddress(){
 	return(EEPROM.length());
 }
 
+/****************************************************************************/
+/*  Method      : clearEeprom									Version 1.0 */
+/****************************************************************************/
+/*																			*/
+/*  Function   : clears the EEPROM											*/
+/*                                                                          */
+/*                                                                          */
+/*  Input Para  : -															*/
+/*                                                                          */
+/*  Output Para : -										                    */
+/*                                                                          */
+/*                                                                          */
+/*  Author     : Michael Streit                                             */
+/*                                                                          */
+/*  History    : 31.03.2021  IO Created                                     */
+/*                                                                          */
+/*  File       : EepromClass.cpp											*/
+/*                                                                          */
+/****************************************************************************/
 void EepromClass::clearEeprom(){
 	for (int i = 0 ; i < EEPROM.length() ; i++) {
 		EEPROM.write(i, 0);
 	}
 	Serial.write("EEPROM cleared\n\n");
 }
-
+/****************************************************************************/
+/*  Method      : displayEeprom									Version 1.0 */
+/****************************************************************************/
+/*																			*/
+/*  Function   : displays everything in EEPROM								*/
+/*                                                                          */
+/*                                                                          */
+/*  Input Para  : -															*/
+/*                                                                          */
+/*  Output Para : -										                    */
+/*                                                                          */
+/*                                                                          */
+/*  Author     : Michael Streit                                             */
+/*                                                                          */
+/*  History    : 31.03.2021  IO Created                                     */
+/*                                                                          */
+/*  File       : EepromClass.cpp											*/
+/*                                                                          */
+/****************************************************************************/
 void EepromClass::displayEeprom(){
 	int delimiterCnt = 0;
+	int eepromAddress;
 	
 	eepromAddress = getEepromAddress();
 	for(int i= 0; i<eepromAddress; i++){	// display contact until end of eepromdata reached
 		if(EEPROM.read(i)==','){			// check if Name or Number ended
 			delimiterCnt++;
 		}
-		if(delimiterCnt>1){				// make new line for new contact
-				Serial.write("\n");
-				delimiterCnt = 0;
-				}else{
-				Serial.write(EEPROM.read(i));	// display Contact
-		}		
+		if(delimiterCnt>1){					// make new line for new contact
+			Serial.write("\n");
+			delimiterCnt = 0;
+			}else{
+			Serial.write(EEPROM.read(i));	// display Contact
+		}
 	}
 }

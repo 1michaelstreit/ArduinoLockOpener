@@ -4,10 +4,12 @@
 /*  Header     : CmdContactClass                                Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
-/*  Function   :          */
+/*  Function   : This Class executes received messages                      */
 /*                                                                          */
-/*                                                                          */
-/*  Methodes   :                                                            */
+/*  Methodes   : CmdContactClass()											*/
+/*              ~CmdContactClass()											*/
+/*              executeSmsCmd()									            */
+/*              removePrefix()                                              */
 /*                                                                          */
 /*  Author     : M. Streit                                                  */
 /*                                                                          */
@@ -23,7 +25,7 @@
 #include "SmsHandlerClass.h"
 
 /* Class constant declaration  */
-#define NAME_SIZE 50
+#define NAME_SIZE	50
 
 /* Class Type declaration      */
 
@@ -37,10 +39,11 @@ class CmdContactClass : public SmsHandlerClass
 public:
 protected:
 private:
+EepromClass *eeprom1;
 
 //functions
 public:
-	CmdContactClass(GsmCommunicationClass *NewGsmCommunication, AuthorizationHandlerClass *NewAuthorizationHandler);
+	CmdContactClass(EepromClass *NewEeprom1,GsmCommunicationClass *NewGsmCommunication, AuthorizationHandlerClass *NewAuthorizationHandler);
 	~CmdContactClass();
 	void executeSmsCmd();
 	void removePrefix(char *phoneNumber, char *smsMsg);	

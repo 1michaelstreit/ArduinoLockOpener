@@ -40,24 +40,18 @@
 // the loop function runs over and over again forever
 void main_ArduinoLockOpener() {
 	
-	delay(2000);
-	
+	// create gsmSerial 
 	SoftwareSerial GsmSerial(RX, TX); // RX TX
-	
-	// creat Contact directories
-	//ContactDirectoryClass ContactDirectoryTemporary("Temporary");
-	//ContactDirectoryClass ContactDirectoryPermanent("Permanent");
 	
 	// create eeprom object
 	EepromClass Eeprom1;
 	
 	GsmCommunicationClass GsmCommunication(&GsmSerial);
 	AuthorizationHandlerClass AuthorizationHandler(&GsmCommunication,&Eeprom1);
-	CmdContactClass SmsHandler(&GsmCommunication,&AuthorizationHandler);
+	CmdContactClass SmsHandler(&Eeprom1, &GsmCommunication, &AuthorizationHandler);
 
+	// clear EEPROM and add standard contacts
 	Eeprom1.clearEeprom();
-	
-	//Eeprom1.eepromToContactDirectory(&ContactDirectoryPermanent); // make permanent List out of Eeprom
 	
 	Eeprom1.addContactToEeprom("Michael Streit","786750902");
 	//Eeprom1.addContactToEeprom("Hans","564418910");
@@ -67,11 +61,10 @@ void main_ArduinoLockOpener() {
     //DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
 	GpioPortClass GpioPortB((uint8_t*)0x25);
 	GpioPortClass GpioPortD((uint8_t*)0x2B);
-	GPIOLedClass LedBuiltIn(&GpioPortB,LED_BUILTIN);
-	GPIOLedClass LedState(&GpioPortB,LED_STATE);
-	GPIOLedClass LockLed(&GpioPortD,LOCK);
+	GPIOLedClass LedBuiltIn(&GpioPortB,LED_BUILTIN);// bult in LED
+	LockOpenerClass LockRepresentationLed(&GpioPortB,LED_STATE);	// Lock repesentation LED
+	LockOpenerClass Lock(&GpioPortD,LOCK);							// real Lock Port unused
 	
-	_delay_ms(1000);
 	Serial.write("Start\n");
 	_delay_ms(1000);
 	
@@ -81,13 +74,8 @@ void main_ArduinoLockOpener() {
 		GsmCommunication.readSerial();	
 		SmsHandler.handleReceivedSms();
 		SmsHandler.executeSmsCmd();
-		AuthorizationHandler.handleReceivedCall(&LockLed);
+		AuthorizationHandler.handleReceivedCall(&LockRepresentationLed);
 		
-		
-		//LockLed.Toggle();	// makes error on PORTD for Serial communication
-		
-		LedState.Toggle();
 		LedBuiltIn.Toggle();
-		_delay_ms(100);		
 	}
 }

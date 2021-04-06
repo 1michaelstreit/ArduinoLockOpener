@@ -4,10 +4,14 @@
 /*  Header     : SmsHandlerClass                                Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
-/*  Function   :          */
+/*  Function   : This class handles the incoming SMS                        */
 /*                                                                          */
 /*                                                                          */
-/*  Methodes   :                                                            */
+/*  Methodes   : TemplateClass()											*/
+/*              ~TemplateClass()											*/
+/*              readSms()                                                   */
+/*              isolateSmsSenderPhoneNr()                                   */
+/*              handleReceivedSms()                                         */
 /*                                                                          */
 /*  Author     : M. Streit                                                  */
 /*                                                                          */
@@ -34,31 +38,29 @@
 
 class SmsHandlerClass
 {
-// Data
-public:
-GsmCommunicationClass *GsmCommunication;
-AuthorizationHandlerClass *AuthorizationHandler;
+	// Data
+	public:
 
-char smsMsg[BUFFER_SIZE] = {0};
-protected:
-bool newSmsReceived = false;
-private:
-char smsSenderNr[20] = {0};
+	char smsMsg[BUFFER_SIZE] = {0};
 
+	protected:
+	bool newSmsReceived = false;
+	private:
+	char smsSenderNr[20] = {0};
+	GsmCommunicationClass *GsmCommunication;
+	AuthorizationHandlerClass *AuthorizationHandler;
 
-// Methods
-public:
+	// Methods
+	public:
 	SmsHandlerClass(GsmCommunicationClass *NewGsmCommunication, AuthorizationHandlerClass *NewAuthorizationHandler);
 	~SmsHandlerClass();
 	
-	void readSms(char *buffer);
-	void isolateSmsSenderPhoneNr(char *buffer);
+	void readSms(char *target, char *buffer);
+	void isolateSmsSenderPhoneNr(char *target, char *buffer);
 	void handleReceivedSms();
 	
-
-protected:
-private:
-	
+	protected:
+	private:
 
 };
 /*****************************************************************************/

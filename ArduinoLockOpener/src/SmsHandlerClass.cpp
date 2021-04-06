@@ -2,11 +2,14 @@
 /*  Class      : SmsHandlerClass		                        Version 1.0  */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function   :                                    */
+/*  Function   : This class handles the incoming SMS                         */
 /*                                                                           */
 /*                                                                           */
-/*  Methodes   : TemplateClass()  ToDo                                       */
-/*              ~TemplateClass()  ToDo                                       */
+/*  Methodes   : TemplateClass()											 */
+/*              ~TemplateClass()											 */
+/*              readSms()                                                    */
+/*              isolateSmsSenderPhoneNr()                                    */
+/*              handleReceivedSms()                                          */
 /*                                                                           */
 /*  Author     : Michael Streit                                              */
 /*                                                                           */
@@ -37,7 +40,7 @@
 /*  Method      : SmsHandlerClass		                                     */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function    :                                                            */
+/*  Function    : Constructor                                                */
 /*                                                                           */
 /*  Type        : Constructor                                                */
 /*                                                                           */
@@ -62,79 +65,115 @@ SmsHandlerClass::~SmsHandlerClass()
 } //~SmsHandlerClass
 
 /*****************************************************************************/
-/*  Method      : 		                                     */
+/*  Method      : handleReceivedSms		                                     */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function    :                                                            */
+/*  Function    : If a new sms was received, it will be checked the phone    */
+/*                number of the sender and checks his authorization          */
+/*                if the number is ok, commands can be executed				 */
 /*                                                                           */
-/*  Type        :			                                                */
 /*                                                                           */
-/*  Input Para  :                                                            */
+/*  Input Para  : -                                                          */
 /*                                                                           */
-/*  Output Para :                                                            */
+/*  Output Para : -                                                          */
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
 /*  History     : 30.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-
 void SmsHandlerClass::handleReceivedSms(){
 	
 	if(strstr(GsmCommunication->receiveBuffer,"+CMT:") != NULL){	// if SMS received
 		
-		// isolate sender Nr from buffer
-		isolateSmsSenderPhoneNr(GsmCommunication->receiveBuffer);	
+		isolateSmsSenderPhoneNr(smsSenderNr, GsmCommunication->receiveBuffer);
 		
-		// check Authorization
 		if(AuthorizationHandler->checkAuthorization(smsSenderNr) == 1){	// check if sms seder is authorized
 			Serial.write("SMS sender AUTHORIZED !\n");
 			
-			// read sms Msg out of the receive Buffer
-			readSms((char*)&GsmCommunication->receiveBuffer);
-			newSmsReceived = true;
+			
+			readSms(smsMsg, GsmCommunication->receiveBuffer);			// read sms Msg out of the receive Buffer
+			newSmsReceived = true;						// set flag for execute sms CMDs
 			// handle sms commands
 			}else{
-				Serial.write("SMS sender DECLINED \n");
-				newSmsReceived = false;			// set flag for execute Comands
-			}
+			Serial.write("SMS sender DECLINED \n");
+			newSmsReceived = false;			// set flag for execute Comands
+		}
 		}else{
 		newSmsReceived = false;
 	}
 }
 
-void SmsHandlerClass::readSms(char *buffer){
+/*****************************************************************************/
+/*  Method      : readSms				                                     */
+/*****************************************************************************/
+/*                                                                           */
+/*  Function    : reads sms message out of buffer and stores it in the target*/
+/*                                                                           */
+/*                                                                           */
+/*  Input Para  : target: pointer where to write in result                   */
+/*                buffer: reads sms msg out of this buffer                   */
+/*                                                                           */
+/*  Output Para : -                                                          */
+/*                                                                           */
+/*  Author      : Michael Streit                                             */
+/*                                                                           */
+/*  History     : 30.03.2021  IO  Created                                    */
+/*                                                                           */
+/*****************************************************************************/
+void SmsHandlerClass::readSms(char *target, char *buffer){
 	int textStart = 0;
 	int i = 0;
 	
 	for(int u=0;(buffer[u]!='\0')||((buffer[u]=='A')&&(buffer[u+1]=='T')&&(buffer[u+2]=='+')); u++){
-		// trigger start of SMS message
-		if(((buffer[u-3]=='"')&&(buffer[u-2]==13)&&(buffer[u-1]==10))|| (textStart == 1)){
+		
+		if(((buffer[u-3]=='"')&&(buffer[u-2]==13)&&(buffer[u-1]==10))|| (textStart == 1)){ // trigger start of SMS message
 			textStart = 1;
-			smsMsg[i]=buffer[u];
+			target[i]=buffer[u];		// copy sms msg into target
 			i++;
 		}
 	}
-	smsMsg[i]='\0';	
+	target[i]='\0';
+	
+	Serial.write("Readed SMS MSG: ");
+	Serial.write(target);
+	Serial.write("\n");
 }
 
-void SmsHandlerClass::isolateSmsSenderPhoneNr(char *buffer){
-    char *retBuf;
-    int u = 0;
-    retBuf = strstr(buffer,"+CMT:");		// find beginning of sms sender
-    if(retBuf != NULL){						// if SMS sender Nr received
-        for(u=0; retBuf[u+7] !='\"';u++){	// fill Nr into variable until end of Nr reached
-            smsSenderNr[u] = retBuf[u+7];
-        }
-        smsSenderNr[u]='\0';
-    }else{
-        smsSenderNr[u]='\0';
-    }
+/*****************************************************************************/
+/*  Method      : isolateSmsSenderPhoneNr	                                 */
+/*****************************************************************************/
+/*                                                                           */
+/*  Function    : reads out sms number from buffer and stores it in target   */
+/*                                                                           */
+/*                                                                           */
+/*  Input Para  : target: pointer where to write in result                   */
+/*                buffer: reads sms msg out of this buffer                   */
+/*                                                                           */
+/*  Output Para : -                                                          */
+/*                                                                           */
+/*  Author      : Michael Streit                                             */
+/*                                                                           */
+/*  History     : 30.03.2021  IO  Created                                    */
+/*                                                                           */
+/*****************************************************************************/
+void SmsHandlerClass::isolateSmsSenderPhoneNr(char* target, char *buffer){
+	char *retBuf;
+	int u = 0;
+	retBuf = strstr(buffer,"+CMT:");		// find beginning of sms sender phone number
+	if(retBuf != NULL){
+		for(u=0; retBuf[u+7] !='\"';u++){	// fill Nr into variable until end of Nr reached
+			target[u] = retBuf[u+7];
+		}
+		target[u]='\0';
+		}else{
+		target[u]='\0';
+	}
 	
 	// Display SMS sender
 	Serial.write("SMS sender: ");
-	GsmCommunication->displayString(smsSenderNr);
-	Serial.write("\n\n");	
+	Serial.write(smsSenderNr);
+	Serial.write("\n\n");
 }
 
 

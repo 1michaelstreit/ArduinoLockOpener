@@ -2,11 +2,17 @@
 /*  Class      : GsmCommunicationClass                          Version 1.0  */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function   :                                    */
+/*  Function   : This Class manages the Communication between the the uP and */
+/*               the GSM Moduel                                              */
+/*                                                                           */
+/*  Methodes   : GsmCommunicationClass()									 */
+/*              ~GsmCommunicationClass()									 */
+/*              checkConnection()                                            */
+/*              setUpSmsMode()												 */
+/*              sendAtCmd()                                                  */
+/*              readSerial()                                                 */
 /*                                                                           */
 /*                                                                           */
-/*  Methodes   : GsmCommunicationClass()  ToDo                               */
-/*              ~GsmCommunicationClass()  ToDo                               */
 /*                                                                           */
 /*  Author     : Michael Streit                                              */
 /*                                                                           */
@@ -22,10 +28,7 @@
 #include <string.h>
 #include "GsmCommunicationClass.h"
 #include "Arduino.h"
-#include "SoftwareSerial.h"
 
-
-using namespace std;
 
 /* Class constant declaration  */
 #define BAUDRATE_DEBUG_SERIAL	( 9600 )
@@ -41,13 +44,13 @@ using namespace std;
 /*  Method      : GsmCommunicationClass                                      */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function    :                                                            */
+/*  Function    : begin serial communications                                */
 /*                                                                           */
 /*  Type        : Constructor                                                */
 /*                                                                           */
-/*  Input Para  :                                                            */
+/*  Input Para  : NewGsmSerial: pointer to Gsm Serial Object                 */
 /*                                                                           */
-/*  Output Para :                                                            */
+/*  Output Para : -                                                          */
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
@@ -61,7 +64,7 @@ GsmCommunicationClass::GsmCommunicationClass(SoftwareSerial *NewGsmSerial)
 	// begin serial communication
 	Serial.begin(BAUDRATE_DEBUG_SERIAL);		// for debugging with USB
 	GsmSerial->begin(BAUDRATE_GSM_SERIAL);		// for GSM communication
-
+	
 	_delay_ms(1000);
 	
 	GsmSerial->println("AT");	// AT Handshake with GSM
@@ -75,16 +78,15 @@ GsmCommunicationClass::~GsmCommunicationClass()
 } //~GsmCommunicationClass
 
 /*****************************************************************************/
-/*  Method      : 		                                     */
+/*  Method      : checkConnection		                                     */
 /*****************************************************************************/
 /*                                                                           */
-/*  Function    :                                                            */
+/*  Function    : checks repetitively if GSM is connected to Network         */
 /*                                                                           */
-/*  Type        :			                                                */
 /*                                                                           */
-/*  Input Para  :                                                            */
+/*  Input Para  : -                                                          */
 /*                                                                           */
-/*  Output Para :                                                            */
+/*  Output Para : -                                                          */
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
@@ -93,32 +95,49 @@ GsmCommunicationClass::~GsmCommunicationClass()
 /*****************************************************************************/
 void GsmCommunicationClass::checkConnection()
 {	
-	if(checkConnectionTime > 10){	// check connection loop rate
-		checkConnectionTime = 0;
+	if(loopCntConnection >= REP_CHECK_CONNECTION){			// define repetition rate
+		loopCntConnection = 0;
+		
 		if (GsmSerial->available()==0){
-			GsmSerial->println("AT+CREG?");		// ask if connected to cellular Network
+			GsmSerial->println("AT+CREG?");					// ask if connected to cellular Network
 		}
-		readSerial();		// read Answer
+		readSerial();										// read Answer
 	
-		if(strstr(receiveBuffer, "+CREG: 0,1") != NULL){ // check if connection was successful
+		if(strstr(receiveBuffer, "+CREG: 0,1") != NULL){	// check if connection was successful
 			gsmIsConnected = true;
-			Serial.write("GSM Connected\n\n\n");
+			Serial.write("GSM Connected\n\n\n");			// print that connection is successful
 			if(gsmIsConnected == true && gsmIsConnectedOld == false){
-				setUpSmsMode();		// set up Sms Mode if connected
+				setUpSmsMode();								// set up Sms Mode if connected
 			}
 			gsmIsConnectedOld = gsmIsConnected;
 			}else{
-			gsmIsConnected = false;
+			gsmIsConnected = false;							// GSM is not connected
 		}
 	}else{
-		checkConnectionTime++;
+		loopCntConnection++;
 	}
 }
-
+/*****************************************************************************/
+/*  Method      : readSerial			                                     */
+/*****************************************************************************/
+/*                                                                           */
+/*  Function    : Checks if something received from GSM Module, if yes       */
+/*				  fill received data into Buffer and display it              */
+/*                                                                           */
+/*  Input Para  : -                                                          */
+/*                                                                           */
+/*  Output Para : -                                                          */
+/*                                                                           */
+/*  Author      : Michael Streit                                             */
+/*                                                                           */
+/*  History     : 23.03.2021  IO  Created                                    */
+/*                                                                           */
+/*****************************************************************************/
 void GsmCommunicationClass::readSerial(){
 	int i = 0;
+	bool somethingReceived = false;
 	
-	_delay_ms(500);
+	_delay_ms(100);
 	
 	// clear Buffer
 	for(int u=0; u<bufferSize; u++){
@@ -126,52 +145,68 @@ void GsmCommunicationClass::readSerial(){
 	}
 	
 	// fill Buffer
-	while(GsmSerial->available()){
+	if(GsmSerial->available()){
+		while(GsmSerial->available()){
 		receiveBuffer[i] = GsmSerial->read();
 		i++;
-	}
+		}
 	
 	// set end of string
 	receiveBuffer[i] = '\0';
 	
 	// print received Buffer
-	displayString(receiveBuffer);
-}
-
-void GsmCommunicationClass::displayString(char *dString){
-	if(dString!=0){
-		for(int i=0; dString[i]!='\0';i++){
-			Serial.print(dString[i]);
-		}
-		Serial.print("\n");
+	Serial.write(receiveBuffer);
 	}
 }
-
-void GsmCommunicationClass::checkReceivedData(){
-}
-
-
-
 	
-
+/*****************************************************************************/
+/*  Method      : setUpSmsMode			                                     */
+/*****************************************************************************/
+/*                                                                           */
+/*  Function    : enable settings to receive SMS				             */
+/*                                                                           */
+/*  Input Para  : -                                                          */
+/*                                                                           */
+/*  Output Para : -                                                          */
+/*                                                                           */
+/*  Author      : Michael Streit                                             */
+/*                                                                           */
+/*  History     : 23.03.2021  IO  Created                                    */
+/*                                                                           */
+/*****************************************************************************/
 void GsmCommunicationClass::setUpSmsMode(){
-	GsmSerial->println("AT+CMGF=1");	// Configure TEXT mode
+	GsmSerial->println("AT+CMGF=1");			// Configure TEXT mode
 	readSerial();
 	
 	GsmSerial->println("AT+CNMI=1,2,0,0,0");	// define how newly arrived SMS Msg. should be handled
 	readSerial();
+	
 	// check Answer
-	if(strstr(receiveBuffer, "OK") != NULL){ // check if configured
+	if(strstr(receiveBuffer, "OK") != NULL){			// check if configured
 		Serial.write("SMS Mode is configured\n\n");
 		gsmIsConnectedOld = gsmIsConnected;
-	}else if(strstr(receiveBuffer, "ERROR")){
+	}else if(strstr(receiveBuffer, "ERROR")){	
 		Serial.write("ERROR in SMS mode configuration\n");
 	}else{
 		Serial.write("No response in SMS configuration\n");
 	}
 }
 
-
+/*****************************************************************************/
+/*  Method      : sendAtCmd				                                     */
+/*****************************************************************************/
+/*                                                                           */
+/*  Function    : send At commands for extern classes			             */
+/*                                                                           */
+/*  Input Para  : atCmd: string which should be send                         */
+/*                                                                           */
+/*  Output Para : -                                                          */
+/*                                                                           */
+/*  Author      : Michael Streit                                             */
+/*                                                                           */
+/*  History     : 23.03.2021  IO  Created                                    */
+/*                                                                           */
+/*****************************************************************************/
 void GsmCommunicationClass::sendAtCmd(char atCmd[256]){
 	GsmSerial->println(atCmd);
 }

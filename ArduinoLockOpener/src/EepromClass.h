@@ -4,16 +4,22 @@
 /*  Header     : EepromClass			                        Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
-/*  Function   :          */
+/*  Function   : This Class manages the eeprom								*/
 /*                                                                          */
 /*                                                                          */
-/*  Methodes   :                                                            */
+/*  Methodes   : EepromClass                                                */
+/*				 ~EepromClass()												*/
+/*               addContactToEeprom()                                       */
+/*               clearEeprom()                                              */
+/*               displayEeprom()                                            */
+/*               getEepromAddress()                                         */
+/*                                                                          */
 /*                                                                          */
 /*  Author     : M. Streit                                                  */
 /*                                                                          */
 /*  History    : 31.03.2021  IO Created                                     */
 /*                                                                          */
-/*  File       : EepromClass.hpp									*/
+/*  File       : EepromClass.hpp											*/
 /*                                                                          */
 /****************************************************************************/
 /* HTA Burgdorf                                                             */
@@ -31,24 +37,20 @@
 
 class EepromClass
 {
-//variables
-public:
-protected:
-private:
-	int eepromAddress;
-//functions
-public:
+	//variables
+	public:
+	protected:
+	private:
+	//functions
+	public:
 	EepromClass();
 	~EepromClass();
 	void addContactToEeprom(char *newName, char *newPhoneNr);
 	void clearEeprom();
 	void displayEeprom();
 	int getEepromAddress();
-protected:
-private:
-	
-	
-	
+	protected:
+	private:
 
 };
 /*****************************************************************************/

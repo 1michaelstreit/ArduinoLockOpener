@@ -126,6 +126,10 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
                               Arduino/hardware/avr/cores/arduino/WString.o (__utoa)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
                               Arduino/hardware/avr/cores/arduino/WString.o (__utoa_ncheck)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                              src/CmdContactClass.o (sprintf)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o) (vfprintf)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(dtoa_prf.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(dtostrf.o) (dtoa_prf)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strtod.o)
@@ -136,8 +140,16 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(isspace.o) (__ctype_isfalse)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strncasecmp_P.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strtod.o) (strncasecmp_P)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (strnlen_P)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (strnlen)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_ncheck.o) (strrev)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (fputc)
+c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                              c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o) (__ultoa_invert)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
                               c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strtod.o) (errno)
 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
@@ -714,8 +726,6 @@ Discarded input sections
  .bss           0x00000000        0x0 src/GsmCommunicationClass.o
  .text._ZN21GsmCommunicationClassD2Ev
                 0x00000000        0x2 src/GsmCommunicationClass.o
- .text._ZN21GsmCommunicationClass17checkReceivedDataEv
-                0x00000000        0x2 src/GsmCommunicationClass.o
  .text          0x00000000        0x0 src/Leds.o
  .data          0x00000000        0x0 src/Leds.o
  .bss           0x00000000        0x0 src/Leds.o
@@ -1203,6 +1213,12 @@ Discarded input sections
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
  .text.avr-libc
                 0x00000000       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(dtoa_prf.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(dtoa_prf.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(dtoa_prf.o)
@@ -1232,11 +1248,23 @@ Discarded input sections
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strncasecmp_P.o)
  .text.avr-libc
                 0x00000000       0x30 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strncasecmp_P.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
  .text.avr-libc
                 0x00000000       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
@@ -1272,8 +1300,6 @@ Discarded input sections
  .text.libgcc.div
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
  .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
- .text.libgcc.prologue
-                0x00000000       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
  .text.libgcc.builtins
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
  .text.libgcc.fmul
@@ -1288,8 +1314,6 @@ Discarded input sections
  .text.libgcc.div
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
  .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
- .text.libgcc.prologue
-                0x00000000       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
  .text.libgcc.builtins
                 0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
  .text.libgcc.fmul
@@ -1457,7 +1481,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1f84
+.text           0x00000000     0x2642
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -1713,121 +1737,142 @@ END GROUP
                 0x0000118a                _ZN25AuthorizationHandlerClassC1EP21GsmCommunicationClassP11EepromClass
                 0x0000118a                _ZN25AuthorizationHandlerClassC2EP21GsmCommunicationClassP11EepromClass
  .text._ZN25AuthorizationHandlerClass18checkAuthorizationEPc
-                0x00001196      0x118 src/AuthorizationHandlerClass.o
+                0x00001196       0xf8 src/AuthorizationHandlerClass.o
                 0x00001196                _ZN25AuthorizationHandlerClass18checkAuthorizationEPc
  .text._ZN25AuthorizationHandlerClass10answerCallEv
-                0x000012ae       0x48 src/AuthorizationHandlerClass.o
-                0x000012ae                _ZN25AuthorizationHandlerClass10answerCallEv
- .text._ZN25AuthorizationHandlerClass18handleReceivedCallEP12GPIOLedClass
-                0x000012f6       0xd0 src/AuthorizationHandlerClass.o
-                0x000012f6                _ZN25AuthorizationHandlerClass18handleReceivedCallEP12GPIOLedClass
- .text._ZN15CmdContactClassC2EP21GsmCommunicationClassP25AuthorizationHandlerClass
-                0x000013c6        0x6 src/CmdContactClass.o
-                0x000013c6                _ZN15CmdContactClassC1EP21GsmCommunicationClassP25AuthorizationHandlerClass
-                0x000013c6                _ZN15CmdContactClassC2EP21GsmCommunicationClassP25AuthorizationHandlerClass
+                0x0000128e       0x7e src/AuthorizationHandlerClass.o
+                0x0000128e                _ZN25AuthorizationHandlerClass10answerCallEv
+ .text._ZN25AuthorizationHandlerClass18handleReceivedCallEP15LockOpenerClass
+                0x0000130c       0xca src/AuthorizationHandlerClass.o
+                0x0000130c                _ZN25AuthorizationHandlerClass18handleReceivedCallEP15LockOpenerClass
+ .text._ZN15CmdContactClassC2EP11EepromClassP21GsmCommunicationClassP25AuthorizationHandlerClass
+                0x000013d6       0x26 src/CmdContactClass.o
+                0x000013d6                _ZN15CmdContactClassC1EP11EepromClassP21GsmCommunicationClassP25AuthorizationHandlerClass
+                0x000013d6                _ZN15CmdContactClassC2EP11EepromClassP21GsmCommunicationClassP25AuthorizationHandlerClass
  .text._ZN15CmdContactClass12removePrefixEPcS0_
-                0x000013cc       0x36 src/CmdContactClass.o
-                0x000013cc                _ZN15CmdContactClass12removePrefixEPcS0_
+                0x000013fc       0x36 src/CmdContactClass.o
+                0x000013fc                _ZN15CmdContactClass12removePrefixEPcS0_
  .text._ZN15CmdContactClass13executeSmsCmdEv
-                0x00001402      0x12c src/CmdContactClass.o
-                0x00001402                _ZN15CmdContactClass13executeSmsCmdEv
+                0x00001432      0x18a src/CmdContactClass.o
+                0x00001432                _ZN15CmdContactClass13executeSmsCmdEv
  .text._ZN11EepromClassC2Ev
-                0x0000152e        0x2 src/EepromClass.o
-                0x0000152e                _ZN11EepromClassC2Ev
-                0x0000152e                _ZN11EepromClassC1Ev
+                0x000015bc        0x2 src/EepromClass.o
+                0x000015bc                _ZN11EepromClassC2Ev
+                0x000015bc                _ZN11EepromClassC1Ev
  .text._ZN11EepromClass16getEepromAddressEv
-                0x00001530       0x2c src/EepromClass.o
-                0x00001530                _ZN11EepromClass16getEepromAddressEv
+                0x000015be       0x2c src/EepromClass.o
+                0x000015be                _ZN11EepromClass16getEepromAddressEv
  .text._ZN11EepromClass18addContactToEepromEPcS0_
-                0x0000155c      0x132 src/EepromClass.o
-                0x0000155c                _ZN11EepromClass18addContactToEepromEPcS0_
+                0x000015ea      0x126 src/EepromClass.o
+                0x000015ea                _ZN11EepromClass18addContactToEepromEPcS0_
  .text._ZN11EepromClass11clearEepromEv
-                0x0000168e       0x3c src/EepromClass.o
-                0x0000168e                _ZN11EepromClass11clearEepromEv
+                0x00001710       0x3c src/EepromClass.o
+                0x00001710                _ZN11EepromClass11clearEepromEv
  .text._ZN11EepromClass13displayEepromEv
-                0x000016ca       0x82 src/EepromClass.o
-                0x000016ca                _ZN11EepromClass13displayEepromEv
- .text._ZN21GsmCommunicationClass13displayStringEPc
-                0x0000174c       0x34 src/GsmCommunicationClass.o
-                0x0000174c                _ZN21GsmCommunicationClass13displayStringEPc
+                0x0000174c       0x76 src/EepromClass.o
+                0x0000174c                _ZN11EepromClass13displayEepromEv
  .text._ZN21GsmCommunicationClass10readSerialEv
-                0x00001780       0x92 src/GsmCommunicationClass.o
-                0x00001780                _ZN21GsmCommunicationClass10readSerialEv
+                0x000017c2       0xd4 src/GsmCommunicationClass.o
+                0x000017c2                _ZN21GsmCommunicationClass10readSerialEv
  .text._ZN21GsmCommunicationClassC2EP14SoftwareSerial
-                0x00001812       0x7a src/GsmCommunicationClass.o
-                0x00001812                _ZN21GsmCommunicationClassC1EP14SoftwareSerial
-                0x00001812                _ZN21GsmCommunicationClassC2EP14SoftwareSerial
+                0x00001896       0x92 src/GsmCommunicationClass.o
+                0x00001896                _ZN21GsmCommunicationClassC1EP14SoftwareSerial
+                0x00001896                _ZN21GsmCommunicationClassC2EP14SoftwareSerial
  .text._ZN21GsmCommunicationClass12setUpSmsModeEv
-                0x0000188c       0xc0 src/GsmCommunicationClass.o
-                0x0000188c                _ZN21GsmCommunicationClass12setUpSmsModeEv
+                0x00001928       0xc4 src/GsmCommunicationClass.o
+                0x00001928                _ZN21GsmCommunicationClass12setUpSmsModeEv
  .text._ZN21GsmCommunicationClass15checkConnectionEv
-                0x0000194c       0xc6 src/GsmCommunicationClass.o
-                0x0000194c                _ZN21GsmCommunicationClass15checkConnectionEv
+                0x000019ec       0xcc src/GsmCommunicationClass.o
+                0x000019ec                _ZN21GsmCommunicationClass15checkConnectionEv
  .text._ZN21GsmCommunicationClass9sendAtCmdEPc
-                0x00001a12        0xc src/GsmCommunicationClass.o
-                0x00001a12                _ZN21GsmCommunicationClass9sendAtCmdEPc
+                0x00001ab8       0x10 src/GsmCommunicationClass.o
+                0x00001ab8                _ZN21GsmCommunicationClass9sendAtCmdEPc
  .text._ZN13GpioPortClassC2EPh
-                0x00001a1e       0x20 src/Leds.o
-                0x00001a1e                _ZN13GpioPortClassC1EPh
-                0x00001a1e                _ZN13GpioPortClassC2EPh
+                0x00001ac8       0x20 src/Leds.o
+                0x00001ac8                _ZN13GpioPortClassC1EPh
+                0x00001ac8                _ZN13GpioPortClassC2EPh
  .text._ZN13GpioPortClass6SetLedEiNS_8LedStateE
-                0x00001a3e       0x6e src/Leds.o
-                0x00001a3e                _ZN13GpioPortClass6SetLedEiNS_8LedStateE
+                0x00001ae8       0x6e src/Leds.o
+                0x00001ae8                _ZN13GpioPortClass6SetLedEiNS_8LedStateE
  .text._ZN13GpioPortClass9ToggleLedEi
-                0x00001aac       0x56 src/Leds.o
-                0x00001aac                _ZN13GpioPortClass9ToggleLedEi
- .text._ZN12GPIOLedClass3OffEv
-                0x00001b02       0x12 src/main_LockOpener.o
-                0x00001b02                _ZN12GPIOLedClass3OffEv
- .text._ZN12GPIOLedClass2OnEv
-                0x00001b14       0x12 src/main_LockOpener.o
-                0x00001b14                _ZN12GPIOLedClass2OnEv
- .text._ZN12GPIOLedClass6ToggleEv
-                0x00001b26       0x10 src/main_LockOpener.o
-                0x00001b26                _ZN12GPIOLedClass6ToggleEv
+                0x00001b56       0x56 src/Leds.o
+                0x00001b56                _ZN13GpioPortClass9ToggleLedEi
+ .text._ZN15LockOpenerClass3OffEv
+                0x00001bac       0x12 src/main_LockOpener.o
+                0x00001bac                _ZN15LockOpenerClass3OffEv
+ .text._ZN15LockOpenerClass2OnEv
+                0x00001bbe       0x12 src/main_LockOpener.o
+                0x00001bbe                _ZN15LockOpenerClass2OnEv
+ .text._ZN15LockOpenerClass6ToggleEv
+                0x00001bd0       0x10 src/main_LockOpener.o
+                0x00001bd0                _ZN15LockOpenerClass6ToggleEv
  .text.main_ArduinoLockOpener
-                0x00001b36      0x178 src/main_LockOpener.o
-                0x00001b36                main_ArduinoLockOpener
+                0x00001be0      0x13c src/main_LockOpener.o
+                0x00001be0                main_ArduinoLockOpener
  .text._ZN15SmsHandlerClassC2EP21GsmCommunicationClassP25AuthorizationHandlerClass
-                0x00001cae       0x36 src/SmsHandlerClass.o
-                0x00001cae                _ZN15SmsHandlerClassC1EP21GsmCommunicationClassP25AuthorizationHandlerClass
-                0x00001cae                _ZN15SmsHandlerClassC2EP21GsmCommunicationClassP25AuthorizationHandlerClass
- .text._ZN15SmsHandlerClass7readSmsEPc
-                0x00001ce4       0x5a src/SmsHandlerClass.o
-                0x00001ce4                _ZN15SmsHandlerClass7readSmsEPc
- .text._ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc
-                0x00001d3e       0xa0 src/SmsHandlerClass.o
-                0x00001d3e                _ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPc
+                0x00001d1c       0x2e src/SmsHandlerClass.o
+                0x00001d1c                _ZN15SmsHandlerClassC1EP21GsmCommunicationClassP25AuthorizationHandlerClass
+                0x00001d1c                _ZN15SmsHandlerClassC2EP21GsmCommunicationClassP25AuthorizationHandlerClass
+ .text._ZN15SmsHandlerClass7readSmsEPcS0_
+                0x00001d4a       0xba src/SmsHandlerClass.o
+                0x00001d4a                _ZN15SmsHandlerClass7readSmsEPcS0_
+ .text._ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPcS0_
+                0x00001e04       0xba src/SmsHandlerClass.o
+                0x00001e04                _ZN15SmsHandlerClass23isolateSmsSenderPhoneNrEPcS0_
  .text._ZN15SmsHandlerClass17handleReceivedSmsEv
-                0x00001dde       0xa2 src/SmsHandlerClass.o
-                0x00001dde                _ZN15SmsHandlerClass17handleReceivedSmsEv
+                0x00001ebe       0xac src/SmsHandlerClass.o
+                0x00001ebe                _ZN15SmsHandlerClass17handleReceivedSmsEv
  .text.libgcc.div
-                0x00001e80       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
-                0x00001e80                _div
-                0x00001e80                __divmodhi4
+                0x00001f6a       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
+                0x00001f6a                _div
+                0x00001f6a                __divmodhi4
  .text.libgcc.div
-                0x00001ea8       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00001ea8                __udivmodsi4
+                0x00001f92       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x00001f92                __udivmodsi4
  .text.libgcc.div
-                0x00001eec       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
-                0x00001eec                __udivmodhi4
- .text.libgcc   0x00001f14        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
-                0x00001f14                __tablejump2__
+                0x00001fd6       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
+                0x00001fd6                __udivmodhi4
+ .text.libgcc   0x00001ffe        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_tablejump2.o)
+                0x00001ffe                __tablejump2__
  .text.avr-libc
-                0x00001f20       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strstr.o)
-                0x00001f20                strstr
+                0x0000200a       0x34 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strstr.o)
+                0x0000200a                strstr
  .text.avr-libc
-                0x00001f54       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
-                0x00001f54                eeprom_read_byte
+                0x0000203e       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                0x0000203e                sprintf
  .text.avr-libc
-                0x00001f64       0x1c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
-                0x00001f64                eeprom_write_byte
-                0x00001f66                eeprom_write_r18
-                0x00001f80                . = ALIGN (0x2)
+                0x00002082      0x3c2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                0x00002082                vfprintf
+ .text.avr-libc
+                0x00002444       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                0x00002444                strnlen_P
+ .text.avr-libc
+                0x0000245a       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                0x0000245a                strnlen
+ .text.avr-libc
+                0x00002470       0x78 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x00002470                fputc
+ .text.avr-libc
+                0x000024e8       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                0x000024e8                __ultoa_invert
+ .text.avr-libc
+                0x000025a4       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
+                0x000025a4                eeprom_read_byte
+ .text.avr-libc
+                0x000025b4       0x1c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
+                0x000025b4                eeprom_write_byte
+                0x000025b6                eeprom_write_r18
+ .text.libgcc.prologue
+                0x000025d0       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
+                0x000025d0                __prologue_saves__
+ .text.libgcc.prologue
+                0x00002608       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
+                0x00002608                __epilogue_restores__
+                0x0000263e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001f80        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x00001f80                _exit
-                0x00001f80                exit
+ .fini9         0x0000263e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x0000263e                _exit
+                0x0000263e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -1846,11 +1891,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001f80        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000263e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001f84                _etext = .
+                0x00002642                _etext = .
 
-.data           0x00800100      0x26a load address 0x00001f84
+.data           0x00800100      0x280 load address 0x00002642
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1872,77 +1917,76 @@ END GROUP
                 0x0080012c       0x12 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
                 0x0080012c                _ZTV14SoftwareSerial
  .rodata.str1.1
-                0x0080013e       0x84 src/AuthorizationHandlerClass.o
+                0x0080013e       0x6b src/AuthorizationHandlerClass.o
  .rodata.str1.1
-                0x008001c2       0x54 src/CmdContactClass.o
-                                 0x56 (size before relaxing)
+                0x008001a9       0x89 src/CmdContactClass.o
  .rodata.str1.1
-                0x00800216       0x3f src/EepromClass.o
-                                 0x41 (size before relaxing)
+                0x00800232       0x41 src/EepromClass.o
+                                 0x43 (size before relaxing)
  .rodata.str1.1
-                0x00800255       0xa9 src/GsmCommunicationClass.o
-                                 0xab (size before relaxing)
+                0x00800273       0xa9 src/GsmCommunicationClass.o
  .rodata.str1.1
-                0x008002fe       0x20 src/main_LockOpener.o
- .rodata._ZTV12GPIOLedClass
-                0x0080031e        0xa src/main_LockOpener.o
-                0x0080031e                _ZTV12GPIOLedClass
+                0x0080031c        0x7 src/main_LockOpener.o
+                                 0x20 (size before relaxing)
+ .rodata._ZTV15LockOpenerClass
+                0x00800323        0xa src/main_LockOpener.o
+                0x00800323                _ZTV15LockOpenerClass
  .rodata.str1.1
-                0x00800328       0x42 src/SmsHandlerClass.o
-                                 0x45 (size before relaxing)
+                0x0080032d       0x53 src/SmsHandlerClass.o
+                                 0x58 (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x0080036a                . = ALIGN (0x2)
-                0x0080036a                _edata = .
-                0x0080036a                PROVIDE (__data_end, .)
+                0x00800380                . = ALIGN (0x2)
+                0x00800380                _edata = .
+                0x00800380                PROVIDE (__data_end, .)
 
-.bss            0x0080036a      0x1b7
-                0x0080036a                PROVIDE (__bss_start, .)
+.bss            0x00800380      0x1b7
+                0x00800380                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.Serial    0x0080036a       0x9d Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
-                0x0080036a                Serial
+ .bss.Serial    0x00800380       0x9d Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
+                0x00800380                Serial
  .bss._ZL11INADDR_NONE
-                0x00800407        0x6 Arduino/hardware/avr/cores/arduino/IPAddress.o
+                0x0080041d        0x6 Arduino/hardware/avr/cores/arduino/IPAddress.o
  .bss.timer2_pin_mask
-                0x0080040d        0x1 Arduino/hardware/avr/cores/arduino/Tone.o
-                0x0080040d                timer2_pin_mask
+                0x00800423        0x1 Arduino/hardware/avr/cores/arduino/Tone.o
+                0x00800423                timer2_pin_mask
  .bss.timer2_pin_port
-                0x0080040e        0x2 Arduino/hardware/avr/cores/arduino/Tone.o
-                0x0080040e                timer2_pin_port
+                0x00800424        0x2 Arduino/hardware/avr/cores/arduino/Tone.o
+                0x00800424                timer2_pin_port
  .bss.timer2_toggle_count
-                0x00800410        0x4 Arduino/hardware/avr/cores/arduino/Tone.o
-                0x00800410                timer2_toggle_count
+                0x00800426        0x4 Arduino/hardware/avr/cores/arduino/Tone.o
+                0x00800426                timer2_toggle_count
  .bss.timer0_fract
-                0x00800414        0x1 Arduino/hardware/avr/cores/arduino/wiring.o
+                0x0080042a        0x1 Arduino/hardware/avr/cores/arduino/wiring.o
  .bss.timer0_millis
-                0x00800415        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
-                0x00800415                timer0_millis
+                0x0080042b        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
+                0x0080042b                timer0_millis
  .bss.timer0_overflow_count
-                0x00800419        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
-                0x00800419                timer0_overflow_count
+                0x0080042f        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
+                0x0080042f                timer0_overflow_count
  .bss._ZN14SoftwareSerial20_receive_buffer_headE
-                0x0080041d        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x0080041d                _ZN14SoftwareSerial20_receive_buffer_headE
+                0x00800433        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800433                _ZN14SoftwareSerial20_receive_buffer_headE
  .bss._ZN14SoftwareSerial20_receive_buffer_tailE
-                0x0080041e        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x0080041e                _ZN14SoftwareSerial20_receive_buffer_tailE
+                0x00800434        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800434                _ZN14SoftwareSerial20_receive_buffer_tailE
  .bss._ZN14SoftwareSerial15_receive_bufferE
-                0x0080041f      0x100 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x0080041f                _ZN14SoftwareSerial15_receive_bufferE
+                0x00800435      0x100 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800435                _ZN14SoftwareSerial15_receive_bufferE
  .bss._ZN14SoftwareSerial13active_objectE
-                0x0080051f        0x2 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x0080051f                _ZN14SoftwareSerial13active_objectE
+                0x00800535        0x2 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800535                _ZN14SoftwareSerial13active_objectE
  *(COMMON)
-                0x00800521                PROVIDE (__bss_end, .)
-                0x00001f84                __data_load_start = LOADADDR (.data)
-                0x000021ee                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800537                PROVIDE (__bss_end, .)
+                0x00002642                __data_load_start = LOADADDR (.data)
+                0x000028c2                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800521        0x0
+.noinit         0x00800537        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800521                _end = .
-                0x00800521                PROVIDE (__heap_start, .)
+                0x00800537                _end = .
+                0x00800537                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -1981,7 +2025,7 @@ END GROUP
 .stab.indexstr
  *(.stab.indexstr)
 
-.comment        0x00000000       0x30
+.comment        0x00000000       0x5c
  *(.comment)
  .comment       0x00000000       0x30 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
                                  0x31 (size before relaxing)
@@ -2002,6 +2046,10 @@ END GROUP
  .comment       0x00000030       0x31 src/Leds.o
  .comment       0x00000030       0x31 src/main_LockOpener.o
  .comment       0x00000030       0x31 src/SmsHandlerClass.o
+ .comment       0x00000030       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(sprintf.o)
+ .comment       0x00000030       0x2c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                                 0x2d (size before relaxing)
+ .comment       0x0000005c       0x31 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(fputc.o)
 
 .note.gnu.avr.deviceinfo
                 0x00000000       0x40
@@ -2023,7 +2071,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x610
+.debug_aranges  0x00000000      0x600
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x68 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -2054,22 +2102,22 @@ END GROUP
  .debug_aranges
                 0x00000480       0x48 src/EepromClass.o
  .debug_aranges
-                0x000004c8       0x58 src/GsmCommunicationClass.o
+                0x000004c8       0x48 src/GsmCommunicationClass.o
  .debug_aranges
-                0x00000520       0x38 src/Leds.o
+                0x00000510       0x38 src/Leds.o
  .debug_aranges
-                0x00000558       0x38 src/main_LockOpener.o
+                0x00000548       0x38 src/main_LockOpener.o
  .debug_aranges
-                0x00000590       0x40 src/SmsHandlerClass.o
+                0x00000580       0x40 src/SmsHandlerClass.o
  .debug_aranges
-                0x000005d0       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
+                0x000005c0       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
  .debug_aranges
-                0x000005f0       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
+                0x000005e0       0x20 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x10f7d
+.debug_info     0x00000000    0x10fdd
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4     0x1c39 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -2083,17 +2131,17 @@ END GROUP
  .debug_info    0x000084b1      0x2d2 Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_info    0x00008783      0x5db Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_info    0x00008d5e     0x2600 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_info    0x0000b35e     0x12df src/AuthorizationHandlerClass.o
- .debug_info    0x0000c63d      0xd73 src/CmdContactClass.o
- .debug_info    0x0000d3b0      0xfb4 src/EepromClass.o
- .debug_info    0x0000e364      0xa6c src/GsmCommunicationClass.o
- .debug_info    0x0000edd0      0x3e4 src/Leds.o
- .debug_info    0x0000f1b4      0xfd3 src/main_LockOpener.o
- .debug_info    0x00010187      0xcc2 src/SmsHandlerClass.o
- .debug_info    0x00010e49       0x9a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
- .debug_info    0x00010ee3       0x9a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
+ .debug_info    0x0000b35e     0x1347 src/AuthorizationHandlerClass.o
+ .debug_info    0x0000c6a5      0xd8b src/CmdContactClass.o
+ .debug_info    0x0000d430      0xfb7 src/EepromClass.o
+ .debug_info    0x0000e3e7      0x978 src/GsmCommunicationClass.o
+ .debug_info    0x0000ed5f      0x3d6 src/Leds.o
+ .debug_info    0x0000f135     0x1014 src/main_LockOpener.o
+ .debug_info    0x00010149      0xd60 src/SmsHandlerClass.o
+ .debug_info    0x00010ea9       0x9a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
+ .debug_info    0x00010f43       0x9a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
 
-.debug_abbrev   0x00000000     0x393c
+.debug_abbrev   0x00000000     0x38ea
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2      0x417 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -2107,17 +2155,17 @@ END GROUP
  .debug_abbrev  0x000019fd      0x146 Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_abbrev  0x00001b43      0x149 Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_abbrev  0x00001c8c      0x5c9 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_abbrev  0x00002255      0x3d9 src/AuthorizationHandlerClass.o
- .debug_abbrev  0x0000262e      0x393 src/CmdContactClass.o
- .debug_abbrev  0x000029c1      0x2b1 src/EepromClass.o
- .debug_abbrev  0x00002c72      0x35e src/GsmCommunicationClass.o
- .debug_abbrev  0x00002fd0      0x1d9 src/Leds.o
- .debug_abbrev  0x000031a9      0x3e6 src/main_LockOpener.o
- .debug_abbrev  0x0000358f      0x385 src/SmsHandlerClass.o
- .debug_abbrev  0x00003914       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
- .debug_abbrev  0x00003928       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
+ .debug_abbrev  0x00002255      0x3fc src/AuthorizationHandlerClass.o
+ .debug_abbrev  0x00002651      0x392 src/CmdContactClass.o
+ .debug_abbrev  0x000029e3      0x2e0 src/EepromClass.o
+ .debug_abbrev  0x00002cc3      0x327 src/GsmCommunicationClass.o
+ .debug_abbrev  0x00002fea      0x1c3 src/Leds.o
+ .debug_abbrev  0x000031ad      0x3a5 src/main_LockOpener.o
+ .debug_abbrev  0x00003552      0x370 src/SmsHandlerClass.o
+ .debug_abbrev  0x000038c2       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
+ .debug_abbrev  0x000038d6       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
 
-.debug_line     0x00000000     0x42b3
+.debug_line     0x00000000     0x4325
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000133      0x50f Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -2131,17 +2179,17 @@ END GROUP
  .debug_line    0x00001b16      0x2be Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_line    0x00001dd4      0x279 Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_line    0x0000204d      0x7d9 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_line    0x00002826      0x472 src/AuthorizationHandlerClass.o
- .debug_line    0x00002c98      0x31f src/CmdContactClass.o
- .debug_line    0x00002fb7      0x3d2 src/EepromClass.o
- .debug_line    0x00003389      0x479 src/GsmCommunicationClass.o
- .debug_line    0x00003802      0x1e4 src/Leds.o
- .debug_line    0x000039e6      0x3d8 src/main_LockOpener.o
- .debug_line    0x00003dbe      0x3dd src/SmsHandlerClass.o
- .debug_line    0x0000419b       0x7a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
- .debug_line    0x00004215       0x9e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
+ .debug_line    0x00002826      0x4f2 src/AuthorizationHandlerClass.o
+ .debug_line    0x00002d18      0x36b src/CmdContactClass.o
+ .debug_line    0x00003083      0x3e5 src/EepromClass.o
+ .debug_line    0x00003468      0x42a src/GsmCommunicationClass.o
+ .debug_line    0x00003892      0x1d6 src/Leds.o
+ .debug_line    0x00003a68      0x3b0 src/main_LockOpener.o
+ .debug_line    0x00003e18      0x3f5 src/SmsHandlerClass.o
+ .debug_line    0x0000420d       0x7a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eerd_byte.o)
+ .debug_line    0x00004287       0x9e C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5\libatmega328p.a(eewr_byte.o)
 
-.debug_frame    0x00000000     0x10bc
+.debug_frame    0x00000000     0x10b8
  *(.debug_frame)
  .debug_frame   0x00000000      0x104 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
  .debug_frame   0x00000104       0xec Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
@@ -2155,14 +2203,14 @@ END GROUP
  .debug_frame   0x000009c4       0x7c Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_frame   0x00000a40      0x1dc Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
  .debug_frame   0x00000c1c       0xe8 src/AuthorizationHandlerClass.o
- .debug_frame   0x00000d04       0x84 src/CmdContactClass.o
- .debug_frame   0x00000d88       0xd4 src/EepromClass.o
- .debug_frame   0x00000e5c       0xf4 src/GsmCommunicationClass.o
- .debug_frame   0x00000f50       0x60 src/Leds.o
- .debug_frame   0x00000fb0       0x68 src/main_LockOpener.o
- .debug_frame   0x00001018       0xa4 src/SmsHandlerClass.o
+ .debug_frame   0x00000d04       0x98 src/CmdContactClass.o
+ .debug_frame   0x00000d9c       0xe4 src/EepromClass.o
+ .debug_frame   0x00000e80       0xd8 src/GsmCommunicationClass.o
+ .debug_frame   0x00000f58       0x60 src/Leds.o
+ .debug_frame   0x00000fb8       0x68 src/main_LockOpener.o
+ .debug_frame   0x00001020       0x98 src/SmsHandlerClass.o
 
-.debug_str      0x00000000     0x3820
+.debug_str      0x00000000     0x38b2
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATmega_DFP/1.4.331/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_str     0x00000208     0x1376 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
@@ -2187,22 +2235,22 @@ END GROUP
                                 0x292 (size before relaxing)
  .debug_str     0x00002259      0x5db Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
                                0x172b (size before relaxing)
- .debug_str     0x00002834      0xa5a src/AuthorizationHandlerClass.o
-                                0xdaf (size before relaxing)
- .debug_str     0x0000328e      0x301 src/CmdContactClass.o
-                                0xc99 (size before relaxing)
- .debug_str     0x0000358f       0x6b src/EepromClass.o
-                                0x79c (size before relaxing)
- .debug_str     0x000035fa       0xbd src/GsmCommunicationClass.o
-                                0x632 (size before relaxing)
- .debug_str     0x000036b7       0x5f src/Leds.o
+ .debug_str     0x00002834      0xa22 src/AuthorizationHandlerClass.o
+                                0xd83 (size before relaxing)
+ .debug_str     0x00003256      0x33e src/CmdContactClass.o
+                                0xc5b (size before relaxing)
+ .debug_str     0x00003594       0x6b src/EepromClass.o
+                                0x7b5 (size before relaxing)
+ .debug_str     0x000035ff       0x94 src/GsmCommunicationClass.o
+                                0x591 (size before relaxing)
+ .debug_str     0x00003693       0x5f src/Leds.o
                                 0x347 (size before relaxing)
- .debug_str     0x00003716       0x79 src/main_LockOpener.o
-                                0xca7 (size before relaxing)
- .debug_str     0x0000378f       0x91 src/SmsHandlerClass.o
-                                0xb91 (size before relaxing)
+ .debug_str     0x000036f2      0x128 src/main_LockOpener.o
+                                0xce6 (size before relaxing)
+ .debug_str     0x0000381a       0x98 src/SmsHandlerClass.o
+                                0xb23 (size before relaxing)
 
-.debug_loc      0x00000000     0x5fab
+.debug_loc      0x00000000     0x6044
  *(.debug_loc)
  .debug_loc     0x00000000      0x4e0 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
  .debug_loc     0x000004e0      0x1ca Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
@@ -2213,13 +2261,13 @@ END GROUP
  .debug_loc     0x00003428      0x24a Arduino/hardware/avr/cores/arduino/wiring.o
  .debug_loc     0x00003672      0x5c4 Arduino/hardware/avr/cores/arduino/wiring_digital.o
  .debug_loc     0x00003c36      0xd72 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
- .debug_loc     0x000049a8      0x3e3 src/AuthorizationHandlerClass.o
- .debug_loc     0x00004d8b      0x1b9 src/CmdContactClass.o
- .debug_loc     0x00004f44      0x4af src/EepromClass.o
- .debug_loc     0x000053f3      0x4b9 src/GsmCommunicationClass.o
- .debug_loc     0x000058ac      0x12b src/Leds.o
- .debug_loc     0x000059d7      0x264 src/main_LockOpener.o
- .debug_loc     0x00005c3b      0x370 src/SmsHandlerClass.o
+ .debug_loc     0x000049a8      0x49d src/AuthorizationHandlerClass.o
+ .debug_loc     0x00004e45      0x289 src/CmdContactClass.o
+ .debug_loc     0x000050ce      0x4a1 src/EepromClass.o
+ .debug_loc     0x0000556f      0x46a src/GsmCommunicationClass.o
+ .debug_loc     0x000059d9      0x12b src/Leds.o
+ .debug_loc     0x00005b04      0x175 src/main_LockOpener.o
+ .debug_loc     0x00005c79      0x3cb src/SmsHandlerClass.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -2239,7 +2287,7 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x5c0
+.debug_ranges   0x00000000      0x5b0
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x58 Arduino/hardware/avr/cores/arduino/HardwareSerial.o
  .debug_ranges  0x00000058       0x38 Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
@@ -2255,10 +2303,10 @@ END GROUP
  .debug_ranges  0x00000450       0x30 src/AuthorizationHandlerClass.o
  .debug_ranges  0x00000480       0x28 src/CmdContactClass.o
  .debug_ranges  0x000004a8       0x50 src/EepromClass.o
- .debug_ranges  0x000004f8       0x48 src/GsmCommunicationClass.o
- .debug_ranges  0x00000540       0x28 src/Leds.o
- .debug_ranges  0x00000568       0x28 src/main_LockOpener.o
- .debug_ranges  0x00000590       0x30 src/SmsHandlerClass.o
+ .debug_ranges  0x000004f8       0x38 src/GsmCommunicationClass.o
+ .debug_ranges  0x00000530       0x28 src/Leds.o
+ .debug_ranges  0x00000558       0x28 src/main_LockOpener.o
+ .debug_ranges  0x00000580       0x30 src/SmsHandlerClass.o
 
 .debug_macro
  *(.debug_macro)
