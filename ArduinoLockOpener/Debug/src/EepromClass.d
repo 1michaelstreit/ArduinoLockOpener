@@ -1,6 +1,5 @@
 src/EepromClass.d src/EepromClass.o: ../src/EepromClass.cpp \
- ../src/EepromClass.h ../src/ContactDirectoryClass.h \
- ../src/ContactClass.h ../Arduino/hardware/avr/cores/arduino/Arduino.h \
+ ../Arduino/hardware/avr/cores/arduino/Arduino.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h \
@@ -35,13 +34,8 @@ src/EepromClass.d src/EepromClass.o: ../src/EepromClass.cpp \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  ../Arduino/hardware/avr/cores/arduino/Arduino.h \
  ../Arduino/hardware/avr/variants/standard/pins_arduino.h \
+ ../src/EepromClass.h \
  ../Arduino/hardware/avr/libraries/EEPROM/src/EEPROM.h
-
-../src/EepromClass.h:
-
-../src/ContactDirectoryClass.h:
-
-../src/ContactClass.h:
 
 ../Arduino/hardware/avr/cores/arduino/Arduino.h:
 
@@ -112,5 +106,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Arduino/hardware/avr/cores/arduino/Arduino.h:
 
 ../Arduino/hardware/avr/variants/standard/pins_arduino.h:
+
+../src/EepromClass.h:
 
 ../Arduino/hardware/avr/libraries/EEPROM/src/EEPROM.h:

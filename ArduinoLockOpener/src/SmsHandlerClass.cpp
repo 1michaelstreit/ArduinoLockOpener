@@ -79,16 +79,15 @@ SmsHandlerClass::~SmsHandlerClass()
 /*                                                                           */
 /*****************************************************************************/
 
-void SmsHandlerClass::handleReceivedSms(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent){
+void SmsHandlerClass::handleReceivedSms(){
 	
 	if(strstr(GsmCommunication->receiveBuffer,"+CMT:") != NULL){	// if SMS received
 		
-		isolateSmsSenderPhoneNr(&(GsmCommunication->receiveBuffer[0]));	
-		
-		
+		// isolate sender Nr from buffer
+		isolateSmsSenderPhoneNr(GsmCommunication->receiveBuffer);	
 		
 		// check Authorization
-		if(AuthorizationHandler->checkAuthorization((char*)&smsSenderNr,ContactDirectoryTemporary,ContactDirectoryPermanent) == 1){	// check if sms seder is authorized
+		if(AuthorizationHandler->checkAuthorization(smsSenderNr) == 1){	// check if sms seder is authorized
 			Serial.write("SMS sender AUTHORIZED !\n");
 			
 			// read sms Msg out of the receive Buffer

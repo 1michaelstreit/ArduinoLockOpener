@@ -37,8 +37,9 @@ src/AuthorizationHandlerClass.d src/AuthorizationHandlerClass.o: \
  ../Arduino/hardware/avr/variants/standard/pins_arduino.h \
  ../src/AuthorizationHandlerClass.h ../src/GsmCommunicationClass.h \
  ../Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.h \
- ../Arduino/hardware/avr/cores/arduino/Stream.h \
- ../src/ContactDirectoryClass.h ../src/ContactClass.h ../src/Leds.hpp
+ ../Arduino/hardware/avr/cores/arduino/Stream.h ../src/Leds.hpp \
+ ../src/EepromClass.h \
+ ../Arduino/hardware/avr/libraries/EEPROM/src/EEPROM.h
 
 ../Arduino/hardware/avr/cores/arduino/Arduino.h:
 
@@ -118,8 +119,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Arduino/hardware/avr/cores/arduino/Stream.h:
 
-../src/ContactDirectoryClass.h:
-
-../src/ContactClass.h:
-
 ../src/Leds.hpp:
+
+../src/EepromClass.h:
+
+../Arduino/hardware/avr/libraries/EEPROM/src/EEPROM.h:

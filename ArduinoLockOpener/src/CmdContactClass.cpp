@@ -20,6 +20,7 @@
 
 /* imports */
 #include <string.h>
+#include "Arduino.h"
 #include "CmdContactClass.h"
 /* Class constant declaration  */
 
@@ -73,7 +74,7 @@ CmdContactClass::~CmdContactClass()
 /*  History     : 31.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-void CmdContactClass::executeSmsCmd(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent){
+void CmdContactClass::executeSmsCmd(){
 	
 	if(newSmsReceived == true){
 		char newPhoneNumber[10] = {0};

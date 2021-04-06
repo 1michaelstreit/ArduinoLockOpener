@@ -56,10 +56,6 @@ src\AuthorizationHandlerClass.cpp
 
 src\CmdContactClass.cpp
 
-src\ContactClass.cpp
-
-src\ContactDirectoryClass.cpp
-
 src\EepromClass.cpp
 
 src\GsmCommunicationClass.cpp

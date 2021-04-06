@@ -22,8 +22,8 @@
 /* imports */
 #include "AuthorizationHandlerClass.h"
 #include "GsmCommunicationClass.h"
-#include "ContactDirectoryClass.h"
 #include "Leds.hpp"
+#include "EepromClass.h"
 
 
 
@@ -40,20 +40,22 @@ class AuthorizationHandlerClass
 // Data
 public:
 GsmCommunicationClass *GsmCommunication;
+EepromClass *eeprom1;
 
 protected:
 private:
 
 // Methods
 public:
-	AuthorizationHandlerClass(GsmCommunicationClass *NewCommunication);
+	AuthorizationHandlerClass(GsmCommunicationClass *NewCommunication, EepromClass *NewEeprom1);
 	~AuthorizationHandlerClass();
 	
-	void handleReceivedCall( ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent,  GPIOLedClass *LockLed);
-	int  checkAuthorization(char *nrToCheck,ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent);
+	void handleReceivedCall(GPIOLedClass *LockLed);
+	int  checkAuthorization(char *nrToCheck);
 	void answerCall();
 protected:
 private:
+
 	
 };
 /*****************************************************************************/

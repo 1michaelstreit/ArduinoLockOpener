@@ -23,6 +23,7 @@
 #include "SoftwareSerial.h"
 
 
+
 /* Class constant declaration  */
 
 // for software serial

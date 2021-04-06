@@ -21,9 +21,12 @@
 /* imports */
 #include "Arduino.h"
 #include "AuthorizationHandlerClass.h"
+#include "EEPROM.h"
+
 
 
 /* Class constant declaration  */
+#define NR_OF_MATCHING_DIGITS 9
 
 /* Class Type declaration      */
 
@@ -48,9 +51,10 @@
 /*  History     : 30.03.2021  IO  Created                                    */
 /*                                                                           */
 /*****************************************************************************/
-AuthorizationHandlerClass::AuthorizationHandlerClass(GsmCommunicationClass *NewCommunication)
+AuthorizationHandlerClass::AuthorizationHandlerClass(GsmCommunicationClass *NewCommunication, EepromClass *NewEeprom1)
 {
 	GsmCommunication = NewCommunication;
+	eeprom1 = NewEeprom1;
 } //AuthorizationHandlerClass
 
 // default destructor
@@ -76,7 +80,7 @@ AuthorizationHandlerClass::~AuthorizationHandlerClass()
 /*                                                                           */
 /*****************************************************************************/
 
-void AuthorizationHandlerClass::handleReceivedCall( ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent, GPIOLedClass *LockLed){
+void AuthorizationHandlerClass::handleReceivedCall(GPIOLedClass *LockLed){
 	if(strstr(GsmCommunication->receiveBuffer, "RING") != NULL){ // if call received
 		
 		// check phone Number from caller
@@ -85,7 +89,7 @@ void AuthorizationHandlerClass::handleReceivedCall( ContactDirectoryClass *Conta
 		
 		
 		
-		if(checkAuthorization((char*)&GsmCommunication->receiveBuffer,ContactDirectoryTemporary,ContactDirectoryPermanent) == 1){	// if Nr of caller is authorized
+		if(checkAuthorization(GsmCommunication->receiveBuffer) == 1){	// if Nr of caller is authorized
 			Serial.write("Number authorized -> OPEN LOCK \n\n");
 			answerCall();
 			delay(1000);		
@@ -99,38 +103,38 @@ void AuthorizationHandlerClass::handleReceivedCall( ContactDirectoryClass *Conta
 	}
 }
 
-int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck, ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent){
-	
-	ContactDirectoryTemporary->showContactList();	// for debug
-	ContactDirectoryPermanent->showContactList();
-	
-	char displayString[100] = {0};
+int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck){
+	int i = 0;
+	int v = 0;
+	int nrOfMatchDigits = 0;
+	int eepromAddress = eeprom1->getEepromAddress();
 	
 	Serial.write("CheckAuthorization\n");
 	
-	ContactClass *currentContact = ContactDirectoryTemporary->head;
-	int numberOfMatchingDigits = 0;
-	
 	// check temporary numbers
 	Serial.write("phone numbers in Contacts:\n");
-	for(int v=0; v<2; v++){					// check Permanent and Temporary
-		while(currentContact != NULL){		// until end of list reached
-			for(int u=0; nrToCheck[u] != '\0'; u++){
-				if(nrToCheck[u] == currentContact->phoneNumber[numberOfMatchingDigits]){ // compare the single digits
-					numberOfMatchingDigits++;
+	
+	eeprom1->displayEeprom();
+	
+	// return 1 if minimum nr of digits matching
+	for(i=0; i<eepromAddress;i++){								// until end of eeprom data reached
+		for(v=0;nrToCheck[v]!='\0';v++){						// until string end
+			if(nrToCheck[v]==EEPROM.read(i+nrOfMatchDigits)){	// compare single digits
+				nrOfMatchDigits++;								// increase if matching Digit
 				}else{
-					numberOfMatchingDigits = 0;
-				}
-				if(numberOfMatchingDigits >= MATCHING_DIGITS){	// return 1 if Number matches
-					return(1);
-				}
+				nrOfMatchDigits = 0;					
 			}
-			currentContact = currentContact->next;	// rearch in next contact in the list
-		}	
-		currentContact = ContactDirectoryPermanent->head;
+			if(nrOfMatchDigits>=NR_OF_MATCHING_DIGITS){			// return 1 if min matching digits reached
+				return(1);
+			}
+			if((i+1)%9==0 && i!=0){
+				nrOfMatchDigits = 0;
+			}
+		}
 	}
 	return(0);		// return 0 if no matching phone number was detected
 }
+
 
 void AuthorizationHandlerClass::answerCall(){
 	

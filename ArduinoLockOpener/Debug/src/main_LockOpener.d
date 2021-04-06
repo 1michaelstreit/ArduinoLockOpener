@@ -37,8 +37,8 @@ src/main_LockOpener.d src/main_LockOpener.o: ../src/main_LockOpener.cpp \
  ../Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.h \
  ../Arduino/hardware/avr/cores/arduino/Stream.h ../src/Leds.hpp \
  ../src/GsmCommunicationClass.h ../src/SmsHandlerClass.h \
- ../src/AuthorizationHandlerClass.h ../src/ContactDirectoryClass.h \
- ../src/ContactClass.h ../src/EepromClass.h ../src/CmdContactClass.h
+ ../src/AuthorizationHandlerClass.h ../src/EepromClass.h \
+ ../src/CmdContactClass.h
 
 ../Arduino/hardware/avr/cores/arduino/Arduino.h:
 
@@ -121,10 +121,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../src/SmsHandlerClass.h:
 
 ../src/AuthorizationHandlerClass.h:
-
-../src/ContactDirectoryClass.h:
-
-../src/ContactClass.h:
 
 ../src/EepromClass.h:
 

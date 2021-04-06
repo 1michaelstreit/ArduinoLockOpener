@@ -20,7 +20,6 @@
 /****************************************************************************/
 
 /* imports */
-#include "ContactDirectoryClass.h"
 
 /* Class constant declaration  */
 
@@ -42,12 +41,12 @@ public:
 	EepromClass();
 	~EepromClass();
 	void addContactToEeprom(char *newName, char *newPhoneNr);
-	void eepromToContactDirectory(ContactDirectoryClass *ContactDirectoryPermanent);
 	void clearEeprom();
 	void displayEeprom();
+	int getEepromAddress();
 protected:
 private:
-	int getEepromAddress();
+	
 	
 	
 

@@ -25,10 +25,16 @@
 #include "GsmCommunicationClass.h"
 #include "SmsHandlerClass.h"
 #include "AuthorizationHandlerClass.h"
-#include "ContactDirectoryClass.h"
 #include "EepromClass.h"
 #include "CmdContactClass.h"
 
+/* Class constant declaration  */
+
+/* Class Type declaration      */
+
+/* Class data declaration      */
+
+/* Class procedure declaration */
 
 
 // the loop function runs over and over again forever
@@ -39,24 +45,23 @@ void main_ArduinoLockOpener() {
 	SoftwareSerial GsmSerial(RX, TX); // RX TX
 	
 	// creat Contact directories
-	ContactDirectoryClass ContactDirectoryTemporary("Temporary");
-	ContactDirectoryClass ContactDirectoryPermanent("Permanent");
+	//ContactDirectoryClass ContactDirectoryTemporary("Temporary");
+	//ContactDirectoryClass ContactDirectoryPermanent("Permanent");
+	
+	// create eeprom object
+	EepromClass Eeprom1;
 	
 	GsmCommunicationClass GsmCommunication(&GsmSerial);
-	AuthorizationHandlerClass AuthorizationHandler(&GsmCommunication);
+	AuthorizationHandlerClass AuthorizationHandler(&GsmCommunication,&Eeprom1);
 	CmdContactClass SmsHandler(&GsmCommunication,&AuthorizationHandler);
-	
-
-	
-	EepromClass Eeprom1;
 
 	Eeprom1.clearEeprom();
 	
-	Eeprom1.eepromToContactDirectory(&ContactDirectoryPermanent); // make permanent List out of Eeprom
+	//Eeprom1.eepromToContactDirectory(&ContactDirectoryPermanent); // make permanent List out of Eeprom
 	
-	ContactDirectoryPermanent.addContact("Michael Streit","786750902",PERMANENT);
-	//ContactDirectoryPermanent.addContact("Hans","564418910",PERMANENT);
-	//ContactDirectoryPermanent.addContact("Anna","564418784",PERMANENT);
+	Eeprom1.addContactToEeprom("Michael Streit","786750902");
+	//Eeprom1.addContactToEeprom("Hans","564418910");
+	//Eeprom1.addContactToEeprom("Anna","564418784");
 	
 	
     //DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
@@ -74,9 +79,9 @@ void main_ArduinoLockOpener() {
     for(;;){
 		GsmCommunication.checkConnection();	
 		GsmCommunication.readSerial();	
-		SmsHandler.handleReceivedSms(&ContactDirectoryTemporary, &ContactDirectoryPermanent);
-		SmsHandler.executeSmsCmd(&ContactDirectoryTemporary,&ContactDirectoryPermanent);
-		AuthorizationHandler.handleReceivedCall( &ContactDirectoryTemporary,&ContactDirectoryPermanent, &LockLed);
+		SmsHandler.handleReceivedSms();
+		SmsHandler.executeSmsCmd();
+		AuthorizationHandler.handleReceivedCall(&LockLed);
 		
 		
 		//LockLed.Toggle();	// makes error on PORTD for Serial communication

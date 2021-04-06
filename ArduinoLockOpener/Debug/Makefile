@@ -76,8 +76,6 @@ C_SRCS +=  \
 ../Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.cpp \
 ../src/AuthorizationHandlerClass.cpp \
 ../src/CmdContactClass.cpp \
-../src/ContactClass.cpp \
-../src/ContactDirectoryClass.cpp \
 ../src/EepromClass.cpp \
 ../src/GsmCommunicationClass.cpp \
 ../src/Leds.cpp \
@@ -120,8 +118,6 @@ Arduino/hardware/avr/cores/arduino/WString.o \
 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o \
 src/AuthorizationHandlerClass.o \
 src/CmdContactClass.o \
-src/ContactClass.o \
-src/ContactDirectoryClass.o \
 src/EepromClass.o \
 src/GsmCommunicationClass.o \
 src/Leds.o \
@@ -157,8 +153,6 @@ Arduino/hardware/avr/cores/arduino/WString.o \
 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o \
 src/AuthorizationHandlerClass.o \
 src/CmdContactClass.o \
-src/ContactClass.o \
-src/ContactDirectoryClass.o \
 src/EepromClass.o \
 src/GsmCommunicationClass.o \
 src/Leds.o \
@@ -194,8 +188,6 @@ Arduino/hardware/avr/cores/arduino/WString.d \
 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.d \
 src/AuthorizationHandlerClass.d \
 src/CmdContactClass.d \
-src/ContactClass.d \
-src/ContactDirectoryClass.d \
 src/EepromClass.d \
 src/GsmCommunicationClass.d \
 src/Leds.d \
@@ -231,8 +223,6 @@ Arduino/hardware/avr/cores/arduino/WString.d \
 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.d \
 src/AuthorizationHandlerClass.d \
 src/CmdContactClass.d \
-src/ContactClass.d \
-src/ContactDirectoryClass.d \
 src/EepromClass.d \
 src/GsmCommunicationClass.d \
 src/Leds.d \
@@ -437,20 +427,6 @@ src/AuthorizationHandlerClass.o: ../src/AuthorizationHandlerClass.cpp
 	
 
 src/CmdContactClass.o: ../src/CmdContactClass.cpp
-	@echo Building file: $<
-	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\include" -I"../Arduino/hardware/avr/variants/standard" -I"../Arduino/hardware/avr/cores/arduino" -I"../Arduino/hardware/avr/libraries/SoftwareSerial/src" -I"../Arduino/hardware/avr/libraries/EEPROM/src"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-src/ContactClass.o: ../src/ContactClass.cpp
-	@echo Building file: $<
-	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\include" -I"../Arduino/hardware/avr/variants/standard" -I"../Arduino/hardware/avr/cores/arduino" -I"../Arduino/hardware/avr/libraries/SoftwareSerial/src" -I"../Arduino/hardware/avr/libraries/EEPROM/src"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-src/ContactDirectoryClass.o: ../src/ContactDirectoryClass.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\include" -I"../Arduino/hardware/avr/variants/standard" -I"../Arduino/hardware/avr/cores/arduino" -I"../Arduino/hardware/avr/libraries/SoftwareSerial/src" -I"../Arduino/hardware/avr/libraries/EEPROM/src"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\1.4.331\gcc\dev\atmega328p" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

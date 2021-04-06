@@ -23,6 +23,7 @@
 #include "SmsHandlerClass.h"
 
 /* Class constant declaration  */
+#define NAME_SIZE 50
 
 /* Class Type declaration      */
 
@@ -41,7 +42,7 @@ private:
 public:
 	CmdContactClass(GsmCommunicationClass *NewGsmCommunication, AuthorizationHandlerClass *NewAuthorizationHandler);
 	~CmdContactClass();
-	void executeSmsCmd(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent);
+	void executeSmsCmd();
 	void removePrefix(char *phoneNumber, char *smsMsg);	
 protected:
 private:

@@ -53,7 +53,7 @@ public:
 	
 	void readSms(char *buffer);
 	void isolateSmsSenderPhoneNr(char *buffer);
-	void handleReceivedSms(ContactDirectoryClass *ContactDirectoryTemporary, ContactDirectoryClass *ContactDirectoryPermanent);
+	void handleReceivedSms();
 	
 
 protected:
