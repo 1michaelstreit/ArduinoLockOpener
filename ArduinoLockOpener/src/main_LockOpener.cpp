@@ -54,8 +54,6 @@ void main_ArduinoLockOpener() {
 	Eeprom1.clearEeprom();
 	
 	Eeprom1.addContactToEeprom("Michael Streit","786750902");
-	//Eeprom1.addContactToEeprom("Hans","564418910");
-	//Eeprom1.addContactToEeprom("Anna","564418784");
 	
 	
     //DDRB = 0b00100000; // configure pin 7 of PORTB as output (digital pin 13 on the Arduino Mega2560) 
@@ -65,7 +63,7 @@ void main_ArduinoLockOpener() {
 	LockOpenerClass LockRepresentationLed(&GpioPortB,LED_STATE);	// Lock repesentation LED
 	LockOpenerClass Lock(&GpioPortD,LOCK);							// real Lock Port unused
 	
-	Serial.write("Start\n");
+	Serial.write("Start \r\n");
 	_delay_ms(1000);
 	
 

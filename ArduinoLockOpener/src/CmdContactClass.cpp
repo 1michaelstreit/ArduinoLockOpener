@@ -95,7 +95,7 @@ void CmdContactClass::executeSmsCmd(){
 			removePrefix(newPhoneNumber,smsMsg);		// removes prefix from nr. 
 			strcpy(newName,"Unknown");					// define standard name for new nr.
 			
-			sprintf(cBuffer,"Number received: %s \n",newPhoneNumber );
+			sprintf(cBuffer,"Number received: %s \r\n",newPhoneNumber );
 			Serial.write(cBuffer);
 			
 			eeprom1->addContactToEeprom(newName,newPhoneNumber);	// store new contact
@@ -109,10 +109,10 @@ void CmdContactClass::executeSmsCmd(){
 		
 		// display contacts
 		if(strstr(smsMsg,"CMD_contacts") != NULL){
-			Serial.write("Displays all Contacts: \n");				// display all contacts
+			Serial.write("Displays all Contacts: \r\n");				// display all contacts
 			eeprom1->displayEeprom();
 			}else{
-			Serial.write("No Command received \n");					// if no cmd was received
+			Serial.write("No Command received \r\n");					// if no cmd was received
 		}
 	}
 	newSmsReceived == false;

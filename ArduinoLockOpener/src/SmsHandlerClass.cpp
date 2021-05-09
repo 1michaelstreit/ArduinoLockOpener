@@ -88,15 +88,15 @@ void SmsHandlerClass::handleReceivedSms(){
 		
 		isolateSmsSenderPhoneNr(smsSenderNr, GsmCommunication->receiveBuffer);
 		
-		if(AuthorizationHandler->checkAuthorization(smsSenderNr) == 1){	// check if sms seder is authorized
-			Serial.write("SMS sender AUTHORIZED !\n");
+		if(AuthorizationHandler->checkAuthorization(smsSenderNr) == 1){	// check if sms sender is authorized
 			
-			
+			Serial.write("SMS sender AUTHORIZED ! \r\n");
+				
 			readSms(smsMsg, GsmCommunication->receiveBuffer);			// read sms Msg out of the receive Buffer
 			newSmsReceived = true;						// set flag for execute sms CMDs
 			// handle sms commands
 			}else{
-			Serial.write("SMS sender DECLINED \n");
+			Serial.write("SMS sender DECLINED \r\n");
 			newSmsReceived = false;			// set flag for execute Comands
 		}
 		}else{
@@ -137,7 +137,7 @@ void SmsHandlerClass::readSms(char *target, char *buffer){
 	
 	Serial.write("Readed SMS MSG: ");
 	Serial.write(target);
-	Serial.write("\n");
+	Serial.write("\r\n");
 }
 
 /*****************************************************************************/
@@ -173,7 +173,7 @@ void SmsHandlerClass::isolateSmsSenderPhoneNr(char* target, char *buffer){
 	// Display SMS sender
 	Serial.write("SMS sender: ");
 	Serial.write(smsSenderNr);
-	Serial.write("\n\n");
+	Serial.write("\r\n\r\n");
 }
 
 

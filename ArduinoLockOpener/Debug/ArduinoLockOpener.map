@@ -1895,7 +1895,7 @@ END GROUP
  *(.fini0)
                 0x00002642                _etext = .
 
-.data           0x00800100      0x280 load address 0x00002642
+.data           0x00800100      0x296 load address 0x00002642
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -1912,81 +1912,82 @@ END GROUP
                 0x00800117        0x6 Arduino/hardware/avr/cores/arduino/IPAddress.o
                 0x00800117                _ZTV9IPAddress
  .rodata.str1.1
-                0x0080011d        0xf Arduino/hardware/avr/cores/arduino/Print.o
+                0x0080011d        0xc Arduino/hardware/avr/cores/arduino/Print.o
+                                  0xf (size before relaxing)
  .rodata._ZTV14SoftwareSerial
-                0x0080012c       0x12 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x0080012c                _ZTV14SoftwareSerial
+                0x00800129       0x12 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800129                _ZTV14SoftwareSerial
  .rodata.str1.1
-                0x0080013e       0x6b src/AuthorizationHandlerClass.o
+                0x0080013b       0x70 src/AuthorizationHandlerClass.o
  .rodata.str1.1
-                0x008001a9       0x89 src/CmdContactClass.o
+                0x008001ab       0x8c src/CmdContactClass.o
  .rodata.str1.1
-                0x00800232       0x41 src/EepromClass.o
-                                 0x43 (size before relaxing)
+                0x00800237       0x46 src/EepromClass.o
+                                 0x49 (size before relaxing)
  .rodata.str1.1
-                0x00800273       0xa9 src/GsmCommunicationClass.o
+                0x0080027d       0xb0 src/GsmCommunicationClass.o
  .rodata.str1.1
-                0x0080031c        0x7 src/main_LockOpener.o
-                                 0x20 (size before relaxing)
+                0x0080032d        0x9 src/main_LockOpener.o
+                                 0x22 (size before relaxing)
  .rodata._ZTV15LockOpenerClass
-                0x00800323        0xa src/main_LockOpener.o
-                0x00800323                _ZTV15LockOpenerClass
+                0x00800336        0xa src/main_LockOpener.o
+                0x00800336                _ZTV15LockOpenerClass
  .rodata.str1.1
-                0x0080032d       0x53 src/SmsHandlerClass.o
-                                 0x58 (size before relaxing)
+                0x00800340       0x56 src/SmsHandlerClass.o
+                                 0x5e (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x00800380                . = ALIGN (0x2)
-                0x00800380                _edata = .
-                0x00800380                PROVIDE (__data_end, .)
+                0x00800396                . = ALIGN (0x2)
+                0x00800396                _edata = .
+                0x00800396                PROVIDE (__data_end, .)
 
-.bss            0x00800380      0x1b7
-                0x00800380                PROVIDE (__bss_start, .)
+.bss            0x00800396      0x1b7
+                0x00800396                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.Serial    0x00800380       0x9d Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
-                0x00800380                Serial
+ .bss.Serial    0x00800396       0x9d Arduino/hardware/avr/cores/arduino/HardwareSerial0.o
+                0x00800396                Serial
  .bss._ZL11INADDR_NONE
-                0x0080041d        0x6 Arduino/hardware/avr/cores/arduino/IPAddress.o
+                0x00800433        0x6 Arduino/hardware/avr/cores/arduino/IPAddress.o
  .bss.timer2_pin_mask
-                0x00800423        0x1 Arduino/hardware/avr/cores/arduino/Tone.o
-                0x00800423                timer2_pin_mask
+                0x00800439        0x1 Arduino/hardware/avr/cores/arduino/Tone.o
+                0x00800439                timer2_pin_mask
  .bss.timer2_pin_port
-                0x00800424        0x2 Arduino/hardware/avr/cores/arduino/Tone.o
-                0x00800424                timer2_pin_port
+                0x0080043a        0x2 Arduino/hardware/avr/cores/arduino/Tone.o
+                0x0080043a                timer2_pin_port
  .bss.timer2_toggle_count
-                0x00800426        0x4 Arduino/hardware/avr/cores/arduino/Tone.o
-                0x00800426                timer2_toggle_count
+                0x0080043c        0x4 Arduino/hardware/avr/cores/arduino/Tone.o
+                0x0080043c                timer2_toggle_count
  .bss.timer0_fract
-                0x0080042a        0x1 Arduino/hardware/avr/cores/arduino/wiring.o
+                0x00800440        0x1 Arduino/hardware/avr/cores/arduino/wiring.o
  .bss.timer0_millis
-                0x0080042b        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
-                0x0080042b                timer0_millis
+                0x00800441        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
+                0x00800441                timer0_millis
  .bss.timer0_overflow_count
-                0x0080042f        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
-                0x0080042f                timer0_overflow_count
+                0x00800445        0x4 Arduino/hardware/avr/cores/arduino/wiring.o
+                0x00800445                timer0_overflow_count
  .bss._ZN14SoftwareSerial20_receive_buffer_headE
-                0x00800433        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800433                _ZN14SoftwareSerial20_receive_buffer_headE
+                0x00800449        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x00800449                _ZN14SoftwareSerial20_receive_buffer_headE
  .bss._ZN14SoftwareSerial20_receive_buffer_tailE
-                0x00800434        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800434                _ZN14SoftwareSerial20_receive_buffer_tailE
+                0x0080044a        0x1 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x0080044a                _ZN14SoftwareSerial20_receive_buffer_tailE
  .bss._ZN14SoftwareSerial15_receive_bufferE
-                0x00800435      0x100 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800435                _ZN14SoftwareSerial15_receive_bufferE
+                0x0080044b      0x100 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x0080044b                _ZN14SoftwareSerial15_receive_bufferE
  .bss._ZN14SoftwareSerial13active_objectE
-                0x00800535        0x2 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
-                0x00800535                _ZN14SoftwareSerial13active_objectE
+                0x0080054b        0x2 Arduino/hardware/avr/libraries/SoftwareSerial/src/SoftwareSerial.o
+                0x0080054b                _ZN14SoftwareSerial13active_objectE
  *(COMMON)
-                0x00800537                PROVIDE (__bss_end, .)
+                0x0080054d                PROVIDE (__bss_end, .)
                 0x00002642                __data_load_start = LOADADDR (.data)
-                0x000028c2                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000028d8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800537        0x0
+.noinit         0x0080054d        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800537                _end = .
-                0x00800537                PROVIDE (__heap_start, .)
+                0x0080054d                _end = .
+                0x0080054d                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)

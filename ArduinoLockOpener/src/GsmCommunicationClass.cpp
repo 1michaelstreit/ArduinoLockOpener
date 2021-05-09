@@ -105,7 +105,7 @@ void GsmCommunicationClass::checkConnection()
 	
 		if(strstr(receiveBuffer, "+CREG: 0,1") != NULL){	// check if connection was successful
 			gsmIsConnected = true;
-			Serial.write("GSM Connected\n\n\n");			// print that connection is successful
+			Serial.write("GSM Connected\r\n\r\n\r\n");			// print that connection is successful
 			if(gsmIsConnected == true && gsmIsConnectedOld == false){
 				setUpSmsMode();								// set up Sms Mode if connected
 			}
@@ -183,12 +183,12 @@ void GsmCommunicationClass::setUpSmsMode(){
 	
 	// check Answer
 	if(strstr(receiveBuffer, "OK") != NULL){			// check if configured
-		Serial.write("SMS Mode is configured\n\n");
+		Serial.write("SMS Mode is configured\r\n\r\n");
 		gsmIsConnectedOld = gsmIsConnected;
 	}else if(strstr(receiveBuffer, "ERROR")){	
-		Serial.write("ERROR in SMS mode configuration\n");
+		Serial.write("ERROR in SMS mode configuration\r\n");
 	}else{
-		Serial.write("No response in SMS configuration\n");
+		Serial.write("No response in SMS configuration\r\n");
 	}
 }
 

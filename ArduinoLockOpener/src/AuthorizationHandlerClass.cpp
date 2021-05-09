@@ -89,7 +89,7 @@ void AuthorizationHandlerClass::handleReceivedCall(LockOpenerClass *Lock){
 		GsmCommunication->readSerial();
 		
 		if(checkAuthorization(GsmCommunication->receiveBuffer) == 1){	// if Nr. of caller is authorized open Lock
-			Serial.write("Number authorized -> OPEN LOCK \n\n");
+			Serial.write("Number authorized -> OPEN LOCK \r\n\r\n");
 			answerCall();		//hang up incoming call
 			
 			// open lock
@@ -98,7 +98,7 @@ void AuthorizationHandlerClass::handleReceivedCall(LockOpenerClass *Lock){
 			delay(1000);
 			Lock->Off();
 		}else{
-			Serial.write("Number DECLINED \n\n");		// if Nr. is declined
+			Serial.write("Number DECLINED \r\n\r\n");		// if Nr. is declined
 		}
 	}
 }
@@ -113,7 +113,7 @@ void AuthorizationHandlerClass::handleReceivedCall(LockOpenerClass *Lock){
 /*                                                                           */
 /*  Input Para  : nrToCheck: checkstring with phone number to check          */
 /*                                                                           */
-/*  Output Para : -                                                          */
+/*  Output Para : 1 if nr. matches else 0                                    */
 /*                                                                           */
 /*  Author      : Michael Streit                                             */
 /*                                                                           */
@@ -126,8 +126,8 @@ int AuthorizationHandlerClass::checkAuthorization(char *nrToCheck){
 	int nrOfMatchDigits = 0;
 	int eepromAddress = eeprom1->getEepromAddress();
 	
-	Serial.write("CheckAuthorization...\n");
-	//Serial.write("phone numbers in Contacts:\n");
+	Serial.write("CheckAuthorization...\r\n");
+	//Serial.write("phone numbers in Contacts: \r\n");
 	//eeprom1->displayEeprom();						// displays all contacts in Eeprom
 	
 	// return 1 if minimum nr of digits matching

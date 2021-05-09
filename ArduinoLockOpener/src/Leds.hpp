@@ -45,7 +45,6 @@ class GpioPortClass
 	// Data
 	public:
 		enum {MAX_LED = 8};
-		uint8_t port_base;
 		enum LedState{ON = 1, OFF = 0};	
 		int loopCntLed = 0;	
 			
@@ -94,10 +93,10 @@ class LedClass
 };
 
 /****************************************************************************/
-/*  Header     : GPIOLedClass										Version 1.0 */
+/*  Header     : GPIOLedClass									Version 1.0 */
 /****************************************************************************/
 /*                                                                          */
-/*  Function   : This class describes the Leds                              */
+/*  Function   : This class sets and clears the Leds                        */
 /*                                                                          */
 /*                                                                          */
 /*  Methodes   : On()														*/
@@ -127,6 +126,27 @@ class GPIOLedClass : public LedClass
 	
 };
 
+/****************************************************************************/
+/*  Header     : LockOpenerClass								Version 1.0 */
+/****************************************************************************/
+/*                                                                          */
+/*  Function   : This class sets and clears the Lock LED. Can be adapted    */
+/*               to the real LockClass.                                     */
+/*                                                                          */
+/*  Methodes   : On()														*/
+/*               Off()														*/
+/*               Toggle()                                                   */
+/*								                                            */
+/*                                                                          */
+/*  Author     : M. Streit                                                  */
+/*                                                                          */
+/*  History    : 10.03.2021  IO Created                                     */
+/*                                                                          */
+/*  File       : Leds.hpp													*/
+/*                                                                          */
+/****************************************************************************/
+/* HTA Burgdorf                                                             */
+/****************************************************************************/
 class LockOpenerClass : public LedClass
 {
 	GpioPortClass *MyParent;
